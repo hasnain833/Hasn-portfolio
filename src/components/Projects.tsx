@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Github, X, Calendar, Code } from "lucide-react";
 import newsapp from './img/Daily-News.png';
+import planify from './img/Planify.png';
+import portfolio from './img/Portfolio.png'; 
+import landingPage from './img/Landing-Page.png';
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -80,7 +83,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Developed a comprehensive tour booking application that allows users to search, book, and manage tours. The app features a collaborative interface for team bookings, real-time availability updates, and a user-friendly dashboard for managing bookings and payments.",
       image:
-        "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
+        planify,
       technologies: ["HTML", "CSS", "JavaScript", "React", "PHP", "MySQL"],
       githubLink: "https://github.com/hasnain833/Planify",
       year: "2024",
@@ -97,7 +100,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Developed a personal portfolio website to showcase my projects, skills, and experience. The site features a modern design, responsive layout, and smooth scrolling animations. It highlights my work in web development, including case studies and links to live projects.",
       image:
-        "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800",
+        portfolio,
       technologies: [
         "HTML",
         "CSS",
@@ -121,7 +124,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Designed and developed a landing page for a creative services agency. The page features a modern design, engaging visuals, and clear calls to action. It showcases the agency's services, portfolio, and client testimonials.",
       image:
-        "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800",
+        landingPage,
       technologies: [
         "HTML",
         "CSS",
@@ -201,7 +204,7 @@ const Projects: React.FC = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-64 object-cover object-top transition-transform duration-300 hover:scale-110"
                 />
                 <div className="absolute top-4 right-4 bg-white/90 dark:bg-gray-900/90 px-3 py-1 rounded-full text-sm font-medium">
                   {project.year}
@@ -275,7 +278,7 @@ const Projects: React.FC = () => {
                 <img
                   src={projects[selectedProject].image}
                   alt={projects[selectedProject].title}
-                  className="w-full h-100 object-cover"
+                  className="w-full h-100 object-cover object-top"
                 />
                 <button
                   onClick={closeModal}
