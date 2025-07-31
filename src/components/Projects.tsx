@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Github, X, Calendar, Code } from "lucide-react";
-import newsapp from './img/Daily-News.png';
-import planify from './img/Planify.png';
-import portfolio from './img/Portfolio.png'; 
-import landingPage from './img/Landing-Page.png';
+import newsapp from './img/dailynews.png';
+import planify from './img/planify.png';
+import portfolio from './img/portfolio.png'; 
+import landingPage from './img/landingpage.png';
 import inotebook from './img/iNoteBook.png'
 
 const Projects: React.FC = () => {
