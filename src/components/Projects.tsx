@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Github, X, Calendar, Code } from "lucide-react";
-import newsappimg from './img/dailynews.png';
-import planifyImg from './img/planify.png';
-import portfolioimg from './img/portfolio.png'; 
-import landingPageimg from './img/landingpage.png';
-import inotebookimg from './img/iNoteBook.png'
+import newsappimg from '../img/dailynews.png';
+import planifyImg from '../img/planify.png';
+import portfolioimg from '../img/portfolio.png'; 
+import landingPageimg from '../img/landingpage.png';
+import inotebookimg from '../img/iNoteBook.png'
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);

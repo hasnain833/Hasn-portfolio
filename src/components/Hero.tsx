@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ChevronDown, Download, Mail } from 'lucide-react';
-import profileImg from './img/profile.jpg';
+import profileImg from '../img/profile.jpg';
 
 const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
