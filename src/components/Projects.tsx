@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Github, X, Calendar, Code } from "lucide-react";
-import newsapp from './img/dailynews.png';
-import planify from './img/planify.png';
-import portfolio from './img/portfolio.png'; 
-import landingPage from './img/landingpage.png';
-import inotebook from './img/iNoteBook.png'
+import newsappimg from './img/dailynews.png';
+import planifyimg from './img/planify.png';
+import portfolioimg from './img/portfolio.png'; 
+import landingPageimg from './img/landingpage.png';
+import inotebookimg from './img/iNoteBook.png'
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -42,7 +42,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Built a comprehensive note-taking application with user authentication, CRUD operations, and a responsive design. The app allows users to create, edit, delete, and organize notes with rich text formatting and tagging features.",
       image:
-        inotebook,
+        inotebookimg,
       technologies: [
         "MongoDB",
         "Express.js",
@@ -66,7 +66,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Created an interactive news dashboard that aggregates articles from various sources. The app features a clean and modern UI, allowing users to filter news by categories, search for specific topics, and view trending articles. It utilizes a third-party news API for real-time updates.",
       image:
-        newsapp,
+        newsappimg,
       technologies: ["React.js", "CSS", "Bootstrap", "News API"],
       githubLink: "https://github.com/hasnain833/DailyNews",
       year: "2025",
@@ -84,7 +84,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Developed a comprehensive tour booking application that allows users to search, book, and manage tours. The app features a collaborative interface for team bookings, real-time availability updates, and a user-friendly dashboard for managing bookings and payments.",
       image:
-        planify,
+        planifyimg,
       technologies: ["HTML", "CSS", "JavaScript", "React", "PHP", "MySQL"],
       githubLink: "https://github.com/hasnain833/Planify",
       year: "2024",
@@ -101,7 +101,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Developed a personal portfolio website to showcase my projects, skills, and experience. The site features a modern design, responsive layout, and smooth scrolling animations. It highlights my work in web development, including case studies and links to live projects.",
       image:
-        portfolio,
+        portfolioimg,
       technologies: [
         "HTML",
         "CSS",
@@ -125,7 +125,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Designed and developed a landing page for a creative services agency. The page features a modern design, engaging visuals, and clear calls to action. It showcases the agency's services, portfolio, and client testimonials.",
       image:
-        landingPage,
+        landingPageimg,
       technologies: [
         "HTML",
         "CSS",
