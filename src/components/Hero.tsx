@@ -96,7 +96,7 @@ const Hero: React.FC = () => {
                 Get In Touch
               </button>
               <a
-                href="https://drive.google.com/file/d/16Tl2UqB4Dp1IH8vLndjE0LOtjr7-g2HF/view?usp=sharing"
+                href="https://drive.google.com/file/d/1WwpaXRZhRuyD90SvTaKNJ8Sj7j0-eJGQ/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 flex items-center gap-2 text-base"
