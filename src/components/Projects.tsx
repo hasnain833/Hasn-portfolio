@@ -142,31 +142,6 @@ const Projects: React.FC = () => {
         "Showcase of services and portfolio",
       ],
     },
-    {
-      title: "Flutter To-Do App",
-      description: "A simple to-do app built with Flutter",
-      longDescription:
-        "Developed a cross-platform to-do application using Flutter. The app allows users to create, update, and delete tasks, with a clean and intuitive interface. It showcases the capabilities of Flutter for building responsive and performant mobile applications.",
-      image:
-        "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: [
-        "Flutter",
-        "Dart",
-        "Firebase",
-        "Provider",
-        "GetX",
-        "SQLite",
-      ],
-      githubLink: "#",
-      year: "2024",
-      highlights: [
-        "Cross-platform functionality",
-        "Real-time data synchronization with Firebase",
-        "Intuitive user interface",
-        "State management with Provider and GetX",
-        "Local storage with SQLite",
-      ],
-    },
   ];
 
   const openModal = (index: number) => {
