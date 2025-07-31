@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Github, X, Calendar, Code } from "lucide-react";
 import newsappimg from './img/dailynews.png';
+import planifyImg from './img/planify.png';
 import portfolioimg from './img/portfolio.png'; 
 import landingPageimg from './img/landingpage.png';
 import inotebookimg from './img/iNoteBook.png'
@@ -83,7 +84,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Developed a comprehensive tour booking application that allows users to search, book, and manage tours. The app features a collaborative interface for team bookings, real-time availability updates, and a user-friendly dashboard for managing bookings and payments.",
       image:
-        "https://via.placeholder.com/300x200",
+        planifyImg,
       technologies: ["HTML", "CSS", "JavaScript", "React", "PHP", "MySQL"],
       githubLink: "https://github.com/hasnain833/Planify",
       year: "2024",
