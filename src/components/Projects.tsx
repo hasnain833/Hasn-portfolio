@@ -4,6 +4,7 @@ import newsapp from './img/Daily-News.png';
 import planify from './img/Planify.png';
 import portfolio from './img/Portfolio.png'; 
 import landingPage from './img/Landing-Page.png';
+import inotebook from './img/iNoteBook.png'
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -41,7 +42,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Built a comprehensive note-taking application with user authentication, CRUD operations, and a responsive design. The app allows users to create, edit, delete, and organize notes with rich text formatting and tagging features.",
       image:
-        "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
+        inotebook,
       technologies: [
         "MongoDB",
         "Express.js",

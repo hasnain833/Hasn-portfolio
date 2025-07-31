@@ -61,10 +61,10 @@ const Header: React.FC = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2 border-transparent
+                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 border-b-2
                   ${activeSection === item.href.slice(1)
-                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-b-2 hover:border-blue-600 dark:hover:border-blue-400'}
+                    ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400'
+                    : 'text-gray-700 dark:text-gray-300 border-transparent hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-600 dark:hover:border-blue-400'}
                 `}
               >
                 {item.name}
@@ -93,7 +93,7 @@ const Header: React.FC = () => {
                   onClick={() => scrollToSection(item.href)}
                   className={`block w-full text-left px-3 py-2 text-base font-medium transition-colors duration-200 ${
                     activeSection === item.href.slice(1)
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 dark:border-blue-400'
                       : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
                 >
