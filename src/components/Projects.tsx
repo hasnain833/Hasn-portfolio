@@ -16,7 +16,7 @@ const Projects: React.FC = () => {
       title: "CalmBot – AI-Driven CBT App",
       description: "AI-driven cognitive behavioral therapy app for mental wellness",
       longDescription:
-        "Developed an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
+        "Currently working on an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfnVKrhyuO2_Epp9CDKTfJ88sM3BUFflNcw&s",
       technologies: [
@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
       ],
     },
     {
-      title: "iNoteBook – Full Stack Note Taking Web App",
+      title: "iNoteBook – Note Taking Web App",
       description: "A full-stack note-taking application with modern UI/UX",
       longDescription:
         "Built a comprehensive note-taking application with user authentication, CRUD operations, and a responsive design. The app allows users to create, edit, delete, and organize notes with rich text formatting and tagging features.",
