@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
       longDescription:
         "Developed an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
       image:
-        "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfnVKrhyuO2_Epp9CDKTfJ88sM3BUFflNcw&s",
       technologies: [
         "Java",
         "Firebase",
