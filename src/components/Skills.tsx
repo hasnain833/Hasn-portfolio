@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { FaClock, FaUsers } from "react-icons/fa6";
+import { FaProjectDiagram } from "react-icons/fa";
 
 const Skills: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -8,28 +10,31 @@ const Skills: React.FC = () => {
     {
       title: "Frontend",
       skills: [
-        { name: "React.js", level: 90 },
-        { name: "CSS", level: 95 },
-        { name: "Bootstrap", level: 80 },
+        { name: "React.js", level: 95 },
+        { name: "Next.js", level: 90 },
         { name: "Tailwind CSS", level: 95 },
+        { name: "JavaScript (ES6+)", level: 92 },
+        { name: "HTML5 & CSS3", level: 96 },
       ],
     },
     {
       title: "Backend",
       skills: [
-        { name: "Node.js", level: 88 },
-        { name: "Java", level: 85 },
-        { name: "PHP", level: 75 },
-        { name: "MongoDB", level: 78 },
+        { name: "Node.js", level: 90 },
+        { name: "Express.js", level: 88 },
+        { name: "MongoDB", level: 85 },
+        { name: "RESTful APIs", level: 92 },
+        { name: "Authentication (JWT, OAuth)", level: 87 },
       ],
     },
     {
       title: "Tools & Others",
       skills: [
-        { name: "Git/GitHub", level: 92 },
+        { name: "Git & GitHub", level: 92 },
         { name: "Firebase", level: 80 },
-        { name: "MongoDB Compass", level: 80 },
-        { name: "GraphQL", level: 85 },
+        { name: "GraphQL", level: 82 },
+        { name: "Docker (Basics)", level: 70 },
+        { name: "Cloud Deployment (Vercel/Netlify)", level: 85 },
       ],
     },
   ];
@@ -108,27 +113,37 @@ const Skills: React.FC = () => {
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              "JavaScript",
-              "React.js",
-              "Node.js",
-              "Express.js",
-              "MongoDB",
+              // Core Languages
+              "JavaScript (ES6+)",
+              "TypeScript",
               "HTML5",
               "CSS3",
+
+              // Frontend
+              "React.js",
+              "Next.js",
               "Tailwind CSS",
               "Bootstrap",
+
+              // Backend
+              "Node.js",
+              "Express.js",
               "PHP",
-              "MySQL",
-              "TypeScript",
-              "Next.js",
               "Java",
+
+              // Database
+              "MongoDB",
+              "MySQL",
               "Firebase",
+
+              // APIs & Data
               "REST APIs",
               "GraphQL",
-              "Postman",
+
+              // Tools
               "Git/GitHub",
-              "VS Code",
-              "MongoDB Compass",
+              "Postman",
+              "Cloud Deployment (Vercel/Netlify)",
             ].map((tech, index) => (
               <span
                 key={index}
@@ -136,6 +151,48 @@ const Skills: React.FC = () => {
                 {tech}
               </span>
             ))}
+          </div>
+        </div>
+
+        {/* Static Stats Section */}
+        <div className="mt-20 grid md:grid-cols-3 gap-8 text-center">
+          {/* Card 1 */}
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-emerald-500/10 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition duration-300">
+            <div className="flex items-center justify-center w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 text-white">
+              <FaUsers size={28} />
+            </div>
+            <h3 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
+              20+
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 font-medium">
+              Happy Clients
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-emerald-500/10 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition duration-300">
+            <div className="flex items-center justify-center w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 text-white">
+              <FaProjectDiagram size={28} />
+            </div>
+            <h3 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
+              35+
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 font-medium">
+              Projects Completed
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-emerald-500/10 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition duration-300">
+            <div className="flex items-center justify-center w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 text-white">
+              <FaClock size={28} />
+            </div>
+            <h3 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
+              3+
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 font-medium">
+              Years of Experience
+            </p>
           </div>
         </div>
       </div>

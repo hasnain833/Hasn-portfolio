@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Github, X, Calendar, Code } from "lucide-react";
-import newsappimg from '../img/dailynews.png';
-import planifyImg from '../img/planify.png';
-import portfolioimg from '../img/portfolio.png'; 
-import landingPageimg from '../img/landingpage.png';
-import inotebookimg from '../img/iNoteBook.png'
+import { Github, X, Calendar, Code, ExternalLink } from "lucide-react";
+import newsappimg from "../img/dailynews.png";
+import planifyImg from "../img/planify.png";
+import portfolioimg from "../img/portfolio.png";
+import landingPageimg from "../img/landingpage.png";
+import inotebookimg from "../img/iNoteBook.png";
+import rangzebImg from "../img/Rangzeb.png";
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -12,28 +13,73 @@ const Projects: React.FC = () => {
   const viewMoreRef = React.useRef<HTMLDivElement>(null);
 
   const projects = [
+    // {
+    //   title: "CalmBot – AI-Driven CBT App",
+    //   description:
+    //     "AI-driven cognitive behavioral therapy app for mental wellness",
+    //   longDescription:
+    //     "Currently working on an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
+    //   image:
+    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfnVKrhyuO2_Epp9CDKTfJ88sM3BUFflNcw&s",
+    //   technologies: ["Java", "Firebase", "Python", "NLP", "Langchain", "Git"],
+    //   githubLink: "https://github.com/hasnain833/CalmBot",
+    //   year: "2025",
+    //   highlights: [
+    //     "AI-driven personalized CBT exercises",
+    //     "Mood tracking and progress monitoring",
+    //     "User-friendly interface with Flutter",
+    //     "Real-time data synchronization with Firebase",
+    //   ],
+    // },
     {
-      title: "CalmBot – AI-Driven CBT App",
-      description: "AI-driven cognitive behavioral therapy app for mental wellness",
+      title: "Rangzeb – Studio Portfolio & Booking Website",
+      description:
+        "A complete portfolio and booking website for a photography & videography studio.",
       longDescription:
-        "Currently working on an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfnVKrhyuO2_Epp9CDKTfJ88sM3BUFflNcw&s",
+        "Developed a full-featured website for Rangzeb Studio, a business offering photography, videography, and wedding shoot services. The platform showcases their portfolio, highlights service packages, and provides a seamless booking system for clients to schedule services easily. The site was built with a modern, responsive design ensuring smooth user experience across all devices.",
+      image: rangzebImg,
       technologies: [
-        "Java",
-        "Firebase",
-        "Python",
-        "NLP",
-        "Langchain",
-        "Git",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React.js",
+        "Tailwind CSS",
+        "PHP",
+        "jQuery",
       ],
-      githubLink: "https://github.com/hasnain833/CalmBot",
+      githubLink: "https://github.com/hasnain833/Rangzeb",
+      liveLink: "https://rangzeb.netlify.app/",
       year: "2025",
       highlights: [
-        "AI-driven personalized CBT exercises",
-        "Mood tracking and progress monitoring",
-        "User-friendly interface with Flutter",
-        "Real-time data synchronization with Firebase",
+        "Responsive, mobile-friendly design with Tailwind CSS",
+        "Service package listing and booking system",
+        "Dynamic photo/video portfolio showcase",
+        "Custom backend with PHP and jQuery integration",
+        "Optimized for performance and SEO",
+      ],
+    },
+    {
+      title: "Portfolio Website",
+      description: "Personal portfolio showcasing projects and skills",
+      longDescription:
+        "Developed a personal portfolio website to showcase my projects, skills, and experience. The site features a modern design, responsive layout, and smooth scrolling animations. It highlights my work in web development, including case studies and links to live projects.",
+      image: portfolioimg,
+      technologies: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "Tailwind CSS",
+        "TypeScript",
+      ],
+      githubLink: "https://github.com/hasnain833/Hasn-portfolio",
+      liveLink: "https://hasn-portfolio.netlify.app/",
+      year: "2024",
+      highlights: [
+        "Modern design and layout",
+        "Responsive across devices",
+        "Smooth scrolling animations",
+        "Showcase of web development skills",
       ],
     },
     {
@@ -41,8 +87,7 @@ const Projects: React.FC = () => {
       description: "A full-stack note-taking application with modern UI/UX",
       longDescription:
         "Built a comprehensive note-taking application with user authentication, CRUD operations, and a responsive design. The app allows users to create, edit, delete, and organize notes with rich text formatting and tagging features.",
-      image:
-        inotebookimg,
+      image: inotebookimg,
       technologies: [
         "MongoDB",
         "Express.js",
@@ -51,6 +96,7 @@ const Projects: React.FC = () => {
         "Tailwind CSS",
       ],
       githubLink: "https://github.com/hasnain833/iNoteBook",
+      // liveLink: "https://rangzeb.netlify.app/",
       year: "2025",
       highlights: [
         "User authentication with JWT",
@@ -65,10 +111,10 @@ const Projects: React.FC = () => {
       description: "Interactive dashboard for news articles and trends",
       longDescription:
         "Created an interactive news dashboard that aggregates articles from various sources. The app features a clean and modern UI, allowing users to filter news by categories, search for specific topics, and view trending articles. It utilizes a third-party news API for real-time updates.",
-      image:
-        newsappimg,
+      image: newsappimg,
       technologies: ["React.js", "CSS", "Bootstrap", "News API"],
       githubLink: "https://github.com/hasnain833/DailyNews",
+      // liveLink: "https://rangzeb.netlify.app/",
       year: "2025",
       highlights: [
         "Real-time news updates",
@@ -83,10 +129,10 @@ const Projects: React.FC = () => {
         "Collaborative tour booking application with real-time updates",
       longDescription:
         "Developed a comprehensive tour booking application that allows users to search, book, and manage tours. The app features a collaborative interface for team bookings, real-time availability updates, and a user-friendly dashboard for managing bookings and payments.",
-      image:
-        planifyImg,
+      image: planifyImg,
       technologies: ["HTML", "CSS", "JavaScript", "React", "PHP", "MySQL"],
       githubLink: "https://github.com/hasnain833/Planify",
+      // liveLink: "https://rangzeb.netlify.app/",
       year: "2024",
       highlights: [
         "Collaborative booking features",
@@ -96,44 +142,14 @@ const Projects: React.FC = () => {
       ],
     },
     {
-      title: "Portfolio Website",
-      description: "Personal portfolio showcasing projects and skills",
-      longDescription:
-        "Developed a personal portfolio website to showcase my projects, skills, and experience. The site features a modern design, responsive layout, and smooth scrolling animations. It highlights my work in web development, including case studies and links to live projects.",
-      image:
-        portfolioimg,
-      technologies: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React",
-        "Tailwind CSS",
-        "TypeScript",
-      ],
-      githubLink: "https://github.com/hasnain833/Hasn-portfolio",
-      year: "2024",
-      highlights: [
-        "Modern design and layout",
-        "Responsive across devices",
-        "Smooth scrolling animations",
-        "Showcase of web development skills",
-      ],
-    },
-    {
       title: "Creative Services Landing Page",
       description: "Landing page for a creative services agency",
       longDescription:
         "Designed and developed a landing page for a creative services agency. The page features a modern design, engaging visuals, and clear calls to action. It showcases the agency's services, portfolio, and client testimonials.",
-      image:
-        landingPageimg,
-      technologies: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React",
-        "Tailwind CSS",
-      ],
+      image: landingPageimg,
+      technologies: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"],
       githubLink: "https://github.com/hasnain833/Landing-Page",
+      // liveLink: "https://rangzeb.netlify.app/",
       year: "2024",
       highlights: [
         "Modern and engaging design",
@@ -167,10 +183,14 @@ const Projects: React.FC = () => {
           </p>
         </div>
 
-        <div 
-          style={{ transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1)', maxHeight: showAll ? '3000px' : '1200px', opacity: showAll ? 1 : 1 }}
-          className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 overflow-hidden"
-        >
+        <div
+          style={{
+            transition:
+              "max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1)",
+            maxHeight: showAll ? "3000px" : "1200px",
+            opacity: showAll ? 1 : 1,
+          }}
+          className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 overflow-hidden">
           {(showAll ? projects : projects.slice(0, 4)).map((project, index) => (
             <div
               key={index}
@@ -211,20 +231,34 @@ const Projects: React.FC = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(project.githubLink, "_blank");
-                    }}
-                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                    <Github size={16} />
-                    Code
-                  </button>
+                  {project.liveLink && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.liveLink, "_blank");
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                      <ExternalLink size={16} />
+                      Live
+                    </button>
+                  )}
+                  {project.githubLink && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.githubLink, "_blank");
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                      <Github size={16} />
+                      Code
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
           ))}
         </div>
+
         {/* View More / View Less Button */}
         {projects.length > 4 && (
           <div className="flex justify-center mt-8" ref={viewMoreRef}>
@@ -233,15 +267,17 @@ const Projects: React.FC = () => {
                 if (showAll && viewMoreRef.current) {
                   setShowAll(false);
                   setTimeout(() => {
-                    viewMoreRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    viewMoreRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    });
                   }, 500);
                 } else {
                   setShowAll(true);
                 }
               }}
-              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105"
-            >
-              {showAll ? 'View Less' : 'View More'}
+              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105">
+              {showAll ? "View Less" : "View More"}
             </button>
           </div>
         )}
