@@ -6,7 +6,7 @@ import portfolioimg from "../img/portfolio.png";
 import landingPageimg from "../img/landingpage.png";
 import inotebookimg from "../img/iNoteBook.png";
 import rangzebImg from "../img/Rangzeb.png";
-import excelMiddlewareImg from "../img/excel_middleware.png";
+import excelMiddlewareImg from "../img/excelmiddleware.png";
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
