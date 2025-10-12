@@ -6,6 +6,7 @@ import portfolioimg from "../img/portfolio.png";
 import landingPageimg from "../img/landingpage.png";
 import inotebookimg from "../img/iNoteBook.png";
 import rangzebImg from "../img/Rangzeb.png";
+import excelMiddlewareImg from "../img/excel_middleware.png";
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -31,6 +32,34 @@ const Projects: React.FC = () => {
     //     "Real-time data synchronization with Firebase",
     //   ],
     // },
+    {
+      title: "Excel Middleware API – Automation & Integration Layer",
+      description:
+        "A Node.js middleware API connecting Excel and OneDrive through Microsoft Graph for automated file operations.",
+      longDescription:
+        "Developed a scalable and secure Excel Middleware API using Node.js and Express, integrated with Microsoft Graph API. The system enables automated operations like reading, writing, renaming, and formatting Excel workbooks stored in OneDrive or SharePoint. It features robust middleware layers for validation, authentication, rate limiting, and auditing. The solution was deployed on Vercel, ensuring high availability and fast performance for enterprise-level automation tasks.",
+      image: excelMiddlewareImg, // Replace with your image import
+      technologies: [
+        "Node.js",
+        "Express.js",
+        "Microsoft Graph API",
+        "Vercel",
+        "REST API",
+        "Joi Validation",
+        "Winston Logger",
+        "Rate Limiting",
+      ],
+      githubLink: "https://github.com/hasnain833/Excel_middleware",
+      liveLink: "https://excel-middleware.vercel.app/",
+      year: "2025",
+      highlights: [
+        "Automated Excel file management via Microsoft Graph API",
+        "Robust API with read, write, rename, and batch operations",
+        "Integrated validation, rate limiting, and audit logging middleware",
+        "Deployed on Vercel for scalable serverless performance",
+        "Designed for secure enterprise-level data processing",
+      ],
+    },
     {
       title: "Rangzeb – Studio Portfolio & Booking Website",
       description:
