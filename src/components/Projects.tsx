@@ -7,6 +7,9 @@ import landingPageimg from "../img/landingpage.png";
 import inotebookimg from "../img/iNoteBook.png";
 import rangzebImg from "../img/Rangzeb.png";
 import excelMiddlewareImg from "../img/excelmiddleware.png";
+import calmbot from "../img/CalmBot_image4.jpg";
+import habibi from "../img/Habibi_Market.png";
+
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -14,24 +17,53 @@ const Projects: React.FC = () => {
   const viewMoreRef = React.useRef<HTMLDivElement>(null);
 
   const projects = [
-    // {
-    //   title: "CalmBot – AI-Driven CBT App",
-    //   description:
-    //     "AI-driven cognitive behavioral therapy app for mental wellness",
-    //   longDescription:
-    //     "Currently working on an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
-    //   image:
-    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMfnVKrhyuO2_Epp9CDKTfJ88sM3BUFflNcw&s",
-    //   technologies: ["Java", "Firebase", "Python", "NLP", "Langchain", "Git"],
-    //   githubLink: "https://github.com/hasnain833/CalmBot",
-    //   year: "2025",
-    //   highlights: [
-    //     "AI-driven personalized CBT exercises",
-    //     "Mood tracking and progress monitoring",
-    //     "User-friendly interface with Flutter",
-    //     "Real-time data synchronization with Firebase",
-    //   ],
-    // },
+    {
+      title: "Habibi Market – MERN E-Commerce Platform",
+      description:
+        "A full-stack MERN e-commerce platform offering seamless product browsing, cart management, secure checkout, and a modern shopping experience.",
+      longDescription:
+        "Habibi Market is a fully featured e-commerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The application includes product management, authentication, cart and checkout workflows, admin dashboards, and responsive UI design. It integrates secure APIs, optimized database queries, and reusable React components to deliver a smooth shopping experience. The platform is deployed on AWS Amplify, ensuring fast performance and high availability.",
+      image: habibi,
+      technologies: [
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "Redux Toolkit",
+        "JWT Authentication",
+        "Mongoose",
+        "AWS Amplify",
+        "REST API",
+      ],
+      githubLink: null, // Private repository - not shared
+      liveLink: "https://staging.d2ejvdp70ucx64.amplifyapp.com/",
+      year: "2025",
+      highlights: [
+        "Built a fully functional MERN e-commerce experience",
+        "User authentication with JWT, protected routes, and role-based access",
+        "Dynamic product catalog with filtering, sorting, and search",
+        "Cart, checkout, and order-processing workflows",
+        "Admin dashboard for inventory and user management",
+        "Deployed on AWS Amplify for scalable production hosting"
+      ],
+    },
+    {
+      title: "CalmBot – AI-Driven CBT App",
+      description:
+        "AI-driven cognitive behavioral therapy app for mental wellness",
+      longDescription:
+        "Currently working on an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
+      image: calmbot,
+      technologies: ["Java", "Firebase", "Python", "NLP", "Langchain", "Git"],
+      githubLink: "https://github.com/hasnain833/CalmBot",
+      year: "2025",
+      highlights: [
+        "AI-driven personalized CBT exercises",
+        "Mood tracking and progress monitoring",
+        "User-friendly interface with Flutter",
+        "Real-time data synchronization with Firebase",
+      ],
+    },
     {
       title: "Excel Middleware API – Automation & Integration Layer",
       description:
@@ -227,7 +259,7 @@ const Projects: React.FC = () => {
               onClick={() => openModal(index)}>
               <div className="relative overflow-hidden">
                 <img
-                  src={project.image}
+                  src={Array.isArray(project.image) ? project.image[0] : project.image}
                   alt={project.title}
                   className="w-full h-64 object-cover object-top transition-transform duration-300 hover:scale-110"
                 />
@@ -317,7 +349,7 @@ const Projects: React.FC = () => {
             <div className="bg-white dark:bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="relative">
                 <img
-                  src={projects[selectedProject].image}
+                  src={Array.isArray(projects[selectedProject].image) ? projects[selectedProject].image[0] : projects[selectedProject].image}
                   alt={projects[selectedProject].title}
                   className="w-full h-100 object-cover object-top"
                 />
@@ -380,17 +412,19 @@ const Projects: React.FC = () => {
                 </div>
 
                 <div className="flex gap-4">
-                  <button
-                    onClick={() =>
-                      window.open(
-                        projects[selectedProject].githubLink,
-                        "_blank"
-                      )
-                    }
-                    className="flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                    <Github size={18} />
-                    View Source Code
-                  </button>
+                  {projects[selectedProject].githubLink && (
+                    <button
+                      onClick={() =>
+                        window.open(
+                          projects[selectedProject].githubLink!,
+                          "_blank"
+                        )
+                      }
+                      className="flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                      <Github size={18} />
+                      View Source Code
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

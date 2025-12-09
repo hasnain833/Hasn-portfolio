@@ -3,26 +3,6 @@ import { Calendar, MapPin } from "lucide-react";
 
 const Experience: React.FC = () => {
   const experiences = [
-    // {
-    //   title: "Final Year Project – CalmBot (AI-Driven CBT Mobile App)",
-    //   company: "NUML",
-    //   location: "Islamabad, Pakistan",
-    //   period: "Present",
-    //   description: [
-    //     "Currently working on an AI-powered mobile app offering personalized mental health support using chatbot interaction, biosensor integration, and CBT-based exercises.",
-    //     "Utilizing Java for Android mobile development, integrating machine learning models for personalized user experiences.",
-    //     "Implementing secure data handling and user authentication to ensure privacy and compliance with mental health standards.",
-    //     "Collaborating with mental health professionals to validate content and ensure therapeutic effectiveness.",
-    //   ],
-    //   technologies: [
-    //     "Java",
-    //     "Firebase",
-    //     "Python",
-    //     "NLP",
-    //     "Langchain",
-    //     "Git",
-    //   ],
-    // },
     {
       title: "Full-Stack Web Developer",
       company: "BitzSol",
@@ -49,6 +29,19 @@ const Experience: React.FC = () => {
       ],
     },
     {
+      title: "Final Year Project – CalmBot (AI-Driven CBT Mobile App)",
+      company: "NUML",
+      location: "Islamabad, Pakistan",
+      period: "Present",
+      description: [
+        "Currently working on an AI-powered mobile app offering personalized mental health support using chatbot interaction, biosensor integration, and CBT-based exercises.",
+        "Utilizing Java for Android mobile development, integrating machine learning models for personalized user experiences.",
+        "Implementing secure data handling and user authentication to ensure privacy and compliance with mental health standards.",
+        "Collaborating with mental health professionals to validate content and ensure therapeutic effectiveness.",
+      ],
+      technologies: ["Java", "Firebase", "Python", "NLP", "Langchain", "Git"],
+    },
+    {
       title: "Junior Front-end Developer",
       company: "CafeVist@",
       location: "Islamabad, Pakistan",
@@ -61,18 +54,29 @@ const Experience: React.FC = () => {
       ],
       technologies: ["HTML", "CSS", "JavaScript", "React", "Git", "Figma"],
     },
+
     {
-      title: "Front-end Developer Intern",
-      company: "InternCareer",
+      title: "Freelance Full-Stack Developer",
+      company: "Self-Employed",
       location: "(Remote)",
-      period: "June 2024 – Aug 2024",
+      period: "Aug 2023 – Present",
       description: [
-        "Built responsive web interfaces and collaborated with the team using core front-end technologies.",
-        "Gained hands-on experience in React.js, enhancing skills in component-based architecture and state management.",
-        "Worked on debugging and optimizing existing code, improving application performance and user experience.",
-        "Engaged in daily stand-ups and sprint planning, contributing to agile development practices.",
+        "Delivered custom web solutions for clients across various industries, including e-commerce platforms and personal portfolio websites.",
+        "Built and deployed responsive and scalable applications using React.js, Node.js, Express, and MongoDB.",
+        "Integrated third-party APIs, implemented secure authentication, payment gateways, and developed admin dashboards for business operations.",
+        "Collaborated with international clients on Upwork and Fiverr, delivering production-ready web applications with a strong focus on performance and user experience.",
       ],
-      technologies: ["HTML", "CSS", "JavaScript", "React", "Git", "Figma"],
+      technologies: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Git",
+        "Figma",
+      ],
     },
   ];
 

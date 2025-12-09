@@ -144,6 +144,16 @@ const Skills: React.FC = () => {
               "Git/GitHub",
               "Postman",
               "Cloud Deployment (Vercel/Netlify)",
+              "AWS (Basics)",
+              "Docker",
+              "CI/CD",
+              
+              // Others
+              "Agile Methodologies",
+              "Unit Testing",
+              "Jest",
+              "Cypress",
+
             ].map((tech, index) => (
               <span
                 key={index}
