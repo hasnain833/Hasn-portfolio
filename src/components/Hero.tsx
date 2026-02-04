@@ -38,13 +38,13 @@ const Hero: React.FC = () => {
   }, [displayText, isDeleting, currentIndex, roles]);
 
   const socialLinks = [
-    { icon: <Github size={20} />, href: import.meta.env.VITE_GITHUB_URL || "https://github.com/hasnain833", label: "GitHub" },
-    { icon: <Linkedin size={20} />, href: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/in/hasnain-aftab-043632302", label: "LinkedIn" },
-    { icon: <Instagram size={20} />, href: import.meta.env.VITE_INSTAGRAM_URL || "https://instagram.com", label: "Instagram" },
+    { icon: <Github size={20} />, href: import.meta.env.VITE_GITHUB_URL, label: "GitHub" },
+    { icon: <Linkedin size={20} />, href: import.meta.env.VITE_LINKEDIN_URL, label: "LinkedIn" },
+    { icon: <Instagram size={20} />, href: import.meta.env.VITE_INSTAGRAM_URL, label: "Instagram" },
   ];
 
   return (
-    <section id="hero" className="min-h-screen pt-28 pb-10 flex flex-col items-center justify-center relative px-4 overflow-hidden bg-[#020617]">
+    <section id="hero" className="min-h-screen pt-40 md:pt-28 pb-10 flex flex-col items-center justify-center relative px-4 overflow-hidden bg-[#020617]">
 
       {/* Background Decorative Blobs */}
       <div className="absolute top-1/4 -right-20 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-blob"></div>
@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
             </button>
 
             <a
-              href={import.meta.env.VITE_RESUME_LINK || "https://drive.google.com/file/d/1WwpaXRZhRuyD90SvTaKNJ8Sj7j0-eJGQ/view?usp=sharing"}
+              href={import.meta.env.VITE_RESUME_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 glass-morphism border border-white/5 text-white font-black rounded-2xl hover:bg-white/5 transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 uppercase tracking-widest text-xs"
@@ -109,7 +109,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Right Side: Profile Integration */}
-        <div className="relative flex justify-center lg:justify-end order-1 lg:order-2 pr-12 lg:pr-16 animate-fade-in-right">
+        <div className="relative flex justify-center lg:justify-end order-1 lg:order-2 lg:pr-16 animate-fade-in-right">
 
           <div className="absolute -inset-10 bg-gradient-to-tr from-blue-500/10 via-transparent to-emerald-500/10 rounded-full blur-[60px] opacity-40 animate-pulse"></div>
 
@@ -131,14 +131,14 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Social Floating Group - Pull focus in */}
-            <div className="absolute -right-12 lg:-right-14 top-1/2 -translate-y-1/2 flex flex-col gap-4">
+            <div className="absolute -right-8 md:-right-12 lg:-right-14 top-1/2 -translate-y-1/2 flex flex-col gap-4">
               {socialLinks.map((link, i) => (
                 <a
                   key={i}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 glass-morphism rounded-2xl text-slate-500 hover:text-white hover:border-blue-500/40 transition-all duration-300 hover:scale-110 shadow-2xl"
+                  className="p-3 md:p-4 glass-morphism rounded-2xl text-slate-500 hover:text-white hover:border-blue-500/40 transition-all duration-300 hover:scale-110 shadow-2xl"
                   title={link.label}
                 >
                   {React.cloneElement(link.icon as React.ReactElement, { size: 18 })}

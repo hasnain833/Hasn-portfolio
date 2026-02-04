@@ -4,7 +4,7 @@ const About = () => {
   return (
     <section id="about" className="py-40 relative overflow-hidden bg-[#020617]">
       {/* Structural Background Typography */}
-      <div className="absolute top-20 -left-20 text-[20rem] font-black text-white/[0.02] select-none leading-none tracking-tighter uppercase italic">
+      <div className="absolute top-20 -left-20 text-[10rem] md:text-[20rem] font-black text-white/[0.02] select-none leading-none tracking-tighter uppercase italic">
         Story
       </div>
 
@@ -85,8 +85,8 @@ const About = () => {
       </div>
 
       {/* Decorative Floating Icon Elements */}
-      <div className="absolute bottom-1/4 right-10 text-blue-500/10 animate-orbit">
-        <Code size={200} strokeWidth={1} />
+      <div className="absolute bottom-1/4 -right-10 md:right-10 text-blue-500/10 animate-orbit">
+        <Code size={120} className="md:w-[200px] md:h-[200px]" strokeWidth={1} />
       </div>
     </section>
   );

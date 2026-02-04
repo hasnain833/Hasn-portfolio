@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         }`}>
         {/* Logo Section */}
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('#hero')}>
-          <span className="text-xl font-bold tracking-tight text-white hidden sm:block">
+          <span className="text-xl font-bold tracking-tight text-white">
             HAS<span className="text-blue-400">NAIN</span>
           </span>
         </div>

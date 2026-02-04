@@ -63,14 +63,14 @@ const Contact = () => {
                 {
                   icon: Mail,
                   label: 'Email',
-                  value: import.meta.env.VITE_EMAIL || 'hasnainaftab87@gmail.com',
-                  href: `mailto:${import.meta.env.VITE_EMAIL || 'hasnainaftab87@gmail.com'}`
+                  value: import.meta.env.VITE_EMAIL,
+                  href: `mailto:${import.meta.env.VITE_EMAIL}`
                 },
                 {
                   icon: MessageSquare,
                   label: 'Whatsapp',
-                  value: import.meta.env.VITE_WHATSAPP_NUMBER || '+92 331 8787833',
-                  href: `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER || '923318787833').replace(/\+/g, '').replace(/\s/g, '')}`
+                  value: import.meta.env.VITE_WHATSAPP_NUMBER,
+                  href: `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER).replace(/\+/g, '').replace(/\s/g, '')}`
                 }
               ].map((item, i) => (
                 <a key={i} href={item.href} className="group">

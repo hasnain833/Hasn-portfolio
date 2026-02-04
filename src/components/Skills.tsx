@@ -36,7 +36,7 @@ const Skills = () => {
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none select-none overflow-hidden">
         <div className="flex gap-20 animate-marquee rotate-[-8deg] scale-150 py-20">
           {Array(10).fill("HASNAIN_AFTAB_DEVELOPER_EXPERTISE_MATRIX_DEPLOYED").map((t, i) => (
-            <span key={i} className="text-[12rem] font-black whitespace-nowrap text-white">{t}</span>
+            <span key={i} className="text-[6rem] md:text-[12rem] font-black whitespace-nowrap text-white">{t}</span>
           ))}
         </div>
       </div>
@@ -50,7 +50,7 @@ const Skills = () => {
               <span className="w-12 h-px bg-blue-500"></span>
               03 // EXPERTISE
             </h2>
-            <h3 className="text-6xl md:text-8xl font-black text-white leading-[0.85] tracking-tighter">
+            <h3 className="text-4xl md:text-8xl font-black text-white leading-[0.85] tracking-tighter">
               MASTERING THE <br />
               <span className="text-gradient uppercase italic">STACK.</span>
             </h3>
@@ -129,7 +129,7 @@ const Skills = () => {
 
               {/* Central Value */}
               <div className="relative z-10 text-center">
-                <div className="text-8xl font-black text-white tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-700">
+                <div className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-700">
                   {stat.value}
                 </div>
                 <div className="inline-flex items-center gap-3 px-4 py-2 glass-morphism rounded-full border border-white/5 sm:translate-x-0">

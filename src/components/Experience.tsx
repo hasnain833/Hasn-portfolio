@@ -51,7 +51,7 @@ const Experience = () => {
     <section id="experience" className="py-40 relative bg-[#020617] overflow-hidden">
 
       {/* Structural Background Typography */}
-      <div className="absolute top-20 right-0 text-[20rem] font-black text-white/[0.01] select-none leading-none tracking-tighter uppercase italic translate-x-1/2">
+      <div className="absolute top-20 right-0 text-[10rem] md:text-[20rem] font-black text-white/[0.01] select-none leading-none tracking-tighter uppercase italic translate-x-1/2">
         History
       </div>
 
@@ -76,7 +76,7 @@ const Experience = () => {
               {/* Massive Year Indicator */}
               <div className="lg:col-span-3">
                 <div className="sticky top-40">
-                  <div className="text-8xl md:text-[10rem] font-black text-white/5 tracking-tighter leading-none mb-4 group-hover:text-blue-500/10 transition-colors duration-700">
+                  <div className="text-7xl md:text-[10rem] font-black text-white/5 tracking-tighter leading-none mb-4 group-hover:text-blue-500/10 transition-colors duration-700">
                     {exp.year}
                   </div>
                   <div className="flex items-center gap-3 text-blue-500/40 font-mono text-xs tracking-widest uppercase">
@@ -147,7 +147,7 @@ const Experience = () => {
 
       {/* Background Kinetic Accents */}
       <div className="absolute bottom-1/4 left-10 text-blue-500/5 rotate-12">
-        <Briefcase size={400} strokeWidth={1} />
+        <Briefcase size={150} className="md:w-[400px] md:h-[400px]" strokeWidth={1} />
       </div>
     </section>
   );
