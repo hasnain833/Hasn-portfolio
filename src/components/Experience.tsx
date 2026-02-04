@@ -1,163 +1,153 @@
-import React from "react";
-import { Calendar, MapPin } from "lucide-react";
+import { Briefcase } from 'lucide-react';
 
-const Experience: React.FC = () => {
+const Experience = () => {
   const experiences = [
     {
       title: "Full-Stack Web Developer",
       company: "BitzSol",
       location: "Islamabad, Pakistan",
-      period: "May 2025 – Present",
+      period: "Aug 2025 – PRESENT",
+      year: "2025",
       description: [
-        "Building and maintaining full-stack web applications using the MERN stack (MongoDB, Express.js, React, Node.js) and Next.js.",
-        "Developing responsive, high-performance front-end interfaces with React.js, Next.js, and Tailwind CSS.",
-        "Designing and implementing RESTful APIs and integrating third-party services to extend functionality.",
-        "Managing databases with MongoDB and MySQL, ensuring scalability, reliability, and optimized queries.",
-        "Collaborating with cross-functional teams to gather requirements, design solutions, and deliver client-focused products on time.",
-        "Deploying and maintaining applications on cloud platforms (Vercel, Netlify, Render) with CI/CD workflows.",
+        "Architecting high-performance MERN stack applications using React, Next.js, and Node.js.",
+        "Developing responsive, accessible front-end interfaces with Tailwind CSS and Framer Motion.",
+        "Designing scalable RESTful APIs and optimizing MongoDB/MySQL query performance.",
+        "Deploying and maintaining production environments on Vercel and AWS with CI/CD."
       ],
-      technologies: [
-        "JavaScript (ES6+)",
-        "React.js",
-        "Next.js",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "MySQL",
-        "Tailwind CSS",
-        "Git/GitHub",
-      ],
-    },
-    {
-      title: "Final Year Project – CalmBot (AI-Driven CBT Mobile App)",
-      company: "NUML",
-      location: "Islamabad, Pakistan",
-      period: "Present",
-      description: [
-        "Currently working on an AI-powered mobile app offering personalized mental health support using chatbot interaction, biosensor integration, and CBT-based exercises.",
-        "Utilizing Java for Android mobile development, integrating machine learning models for personalized user experiences.",
-        "Implementing secure data handling and user authentication to ensure privacy and compliance with mental health standards.",
-        "Collaborating with mental health professionals to validate content and ensure therapeutic effectiveness.",
-      ],
-      technologies: ["Java", "Firebase", "Python", "NLP", "Langchain", "Git"],
+      technologies: ["React", "Next.js", "Node.js", "MongoDB", "TypeScript", "Tailwind"],
+      current: true
     },
     {
       title: "Junior Front-end Developer",
       company: "CafeVist@",
       location: "Islamabad, Pakistan",
-      period: "Sept 2024 – Nov 2024",
+      period: "SEPT 2024 – NOV 2024",
+      year: "2024",
       description: [
-        "Developed and optimized user interfaces using HTML, CSS, and JavaScript. Focused on responsive design and enhancing UX across platforms.",
-        "Collaborated with designers to implement modern UI/UX principles, ensuring accessibility and performance.",
-        "Integrated RESTful APIs to fetch and display dynamic content, improving site interactivity.",
-        "Participated in code reviews and contributed to team knowledge sharing, enhancing overall code quality.",
+        "Optimized user interfaces for core business platforms focusing on speed and accessibility.",
+        "Collaborated with design teams to implement sophisticated UI/UX principles.",
+        "Integrated dynamic API data streams to enhance platform interactivity."
       ],
-      technologies: ["HTML", "CSS", "JavaScript", "React", "Git", "Figma"],
+      technologies: ["React", "JavaScript", "Redux", "Figma"],
+      current: false
     },
-
     {
-      title: "Freelance Full-Stack Developer",
-      company: "Self-Employed",
-      location: "(Remote)",
-      period: "Aug 2023 – Present",
+      title: "Front-end Developer Intern",
+      company: "InternCareer",
+      location: "Remote",
+      period: "JUNE 2024 – AUG 2024",
+      year: "2024",
       description: [
-        "Delivered custom web solutions for clients across various industries, including e-commerce platforms and personal portfolio websites.",
-        "Built and deployed responsive and scalable applications using React.js, Node.js, Express, and MongoDB.",
-        "Integrated third-party APIs, implemented secure authentication, payment gateways, and developed admin dashboards for business operations.",
-        "Collaborated with international clients on Upwork and Fiverr, delivering production-ready web applications with a strong focus on performance and user experience.",
+        "Engineered responsive components within an agile sprint environment.",
+        "Hands-on experience with modern React architecture and state management.",
+        "Debugged and optimized legacy frontend assets for cross-device compatibility."
       ],
-      technologies: [
-        "React.js",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "JavaScript",
-        "HTML",
-        "CSS",
-        "Git",
-        "Figma",
-      ],
-    },
+      technologies: ["HTML", "CSS", "React", "JavaScript", "Git"],
+      current: false
+    }
   ];
 
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Work Experience
+    <section id="experience" className="py-40 relative bg-[#020617] overflow-hidden">
+
+      {/* Structural Background Typography */}
+      <div className="absolute top-20 right-0 text-[20rem] font-black text-white/[0.01] select-none leading-none tracking-tighter uppercase italic translate-x-1/2">
+        History
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* Cinematic Header */}
+        <div className="mb-32 animate-fade-in-left">
+          <h2 className="text-sm font-black tracking-[0.5em] text-blue-500 uppercase mb-8 flex items-center gap-4">
+            <span className="w-12 h-px bg-blue-500"></span>
+            04 // PROFESSIONAL LOG
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            My professional journey and key achievements in software development
-          </p>
+          <h3 className="text-6xl md:text-8xl font-black text-white leading-tight tracking-tighter uppercase italic">
+            DIGITAL <br />
+            <span className="text-gradient not-italic">EVOLUTION.</span>
+          </h3>
         </div>
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-emerald-500"></div>
+        <div className="space-y-40">
+          {experiences.map((exp, index) => (
+            <div key={index} className="relative grid lg:grid-cols-12 gap-12 group">
 
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}>
-                {/* Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full border-4 border-white dark:border-gray-800 shadow-lg z-10"></div>
-
-                {/* Content Card */}
-                <div
-                  className={`ml-16 md:ml-0 ${
-                    index % 2 === 0 ? "md:mr-8" : "md:ml-8"
-                  } md:w-1/2`}>
-                  <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                    <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 text-sm font-medium mb-2">
-                      <Calendar size={16} />
-                      {exp.period}
-                    </div>
-
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                      {exp.title}
-                    </h3>
-
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
-                        {exp.company}
-                      </span>
-                      <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 text-sm">
-                        <MapPin size={14} />
-                        {exp.location}
-                      </div>
-                    </div>
-
-                    <ul className="space-y-2 mb-4">
-                      {exp.description.map((item, itemIndex) => (
-                        <li
-                          key={itemIndex}
-                          className="text-gray-600 dark:text-gray-300 text-sm flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+              {/* Massive Year Indicator */}
+              <div className="lg:col-span-3">
+                <div className="sticky top-40">
+                  <div className="text-8xl md:text-[10rem] font-black text-white/5 tracking-tighter leading-none mb-4 group-hover:text-blue-500/10 transition-colors duration-700">
+                    {exp.year}
+                  </div>
+                  <div className="flex items-center gap-3 text-blue-500/40 font-mono text-xs tracking-widest uppercase">
+                    <span className="w-8 h-px bg-blue-500/20"></span>
+                    {exp.period}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* Log Entry */}
+              <div className="lg:col-span-9 relative pl-12 border-l border-white/5 group-hover:border-blue-500/30 transition-colors duration-700">
+
+                {/* Status Indicator */}
+                <div className={`absolute -left-[5px] top-0 w-[9px] h-[9px] rounded-full ${exp.current ? 'bg-blue-500 animate-pulse' : 'bg-slate-700'}`}></div>
+
+                <div className="max-w-4xl">
+                  {/* Meta Data */}
+                  <div className="flex flex-wrap items-center gap-4 mb-6">
+                    <span className="text-blue-500 font-black text-xs tracking-widest uppercase">
+                      {exp.company}
+                    </span>
+                    <span className="w-1 h-1 rounded-full bg-slate-700"></span>
+                    <span className="text-slate-500 font-mono text-xs uppercase tracking-widest">
+                      {exp.location}
+                    </span>
+                  </div>
+
+                  {/* Role Title */}
+                  <h4 className="text-4xl md:text-6xl font-black text-white mb-10 tracking-tighter uppercase group-hover:text-blue-400 transition-colors">
+                    {exp.title}
+                  </h4>
+
+                  {/* Execution Steps - Bullet Points */}
+                  <div className="space-y-6 mb-12">
+                    {exp.description.map((item, i) => (
+                      <div key={i} className="flex gap-6 group/item">
+                        <span className="text-xs font-mono text-blue-500/40 mt-1.5 group-hover/item:text-blue-500 transition-colors">
+                          0{i + 1}
+                        </span>
+                        <p className="text-lg text-slate-400 leading-relaxed font-light group-hover/item:text-slate-300 transition-colors">
+                          {item}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Technology Stream */}
+                  <div className="flex flex-wrap gap-4">
+                    {exp.technologies.map((tech) => (
+                      <div key={tech} className="flex items-center gap-2 group/tech">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500/20 group-hover/tech:bg-blue-500 transition-all"></span>
+                        <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] group-hover/tech:text-white transition-colors">
+                          {tech}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tactical Guideline (Bottom Shadow) */}
+                <div className="absolute left-0 bottom-0 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent"></div>
+              </div>
+            </div>
+          ))}
         </div>
+
+      </div>
+
+      {/* Background Kinetic Accents */}
+      <div className="absolute bottom-1/4 left-10 text-blue-500/5 rotate-12">
+        <Briefcase size={400} strokeWidth={1} />
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, Download, Mail } from 'lucide-react';
+import { Download, Github, Linkedin, Instagram, Sparkles, ArrowRight } from 'lucide-react';
 import profileImg from '../img/profile.jpg';
 
 const Hero: React.FC = () => {
@@ -9,10 +9,9 @@ const Hero: React.FC = () => {
   const roles = useMemo(() => [
     'Full Stack Developer',
     'Software Engineer',
-    'Mobile App Developer',
-    'UI/UX Designer',
+    'Problem Solver',
+    'Innovation Specialist',
   ], []);
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
   useEffect(() => {
     const currentRole = roles[currentIndex];
@@ -38,85 +37,117 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, currentIndex, roles]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollIndicator(window.scrollY < 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const socialLinks = [
+    { icon: <Github size={20} />, href: import.meta.env.VITE_GITHUB_URL || "https://github.com/hasnain833", label: "GitHub" },
+    { icon: <Linkedin size={20} />, href: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/in/hasnain-aftab-043632302", label: "LinkedIn" },
+    { icon: <Instagram size={20} />, href: import.meta.env.VITE_INSTAGRAM_URL || "https://instagram.com", label: "Instagram" },
+  ];
 
   return (
-    <section id="hero" className="min-h-[100vh] flex items-center justify-center relative pt-16">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div
-          className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221.5%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"
-        ></div>
-      </div>
+    <section id="hero" className="min-h-screen pt-28 pb-10 flex flex-col items-center justify-center relative px-4 overflow-hidden bg-[#020617]">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex items-center justify-center">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-24 animate-fade-in-up mx-auto">
-          {/* Left Side: Picture */}
-          <div className="flex-1 flex justify-center md:justify-end items-center mt-8 md:mt-0">
-            <div className="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden relative group border-4 border-white dark:border-blue-500">
-              <img src={profileImg} alt="Hasnain Aftab" className="w-full h-full object-cover rounded-full" />
-              {/* Border shadow for both modes */}
-              <div className="absolute inset-0 rounded-full pointer-events-none transition-all duration-500 group-hover:scale-105
-                shadow-[0_0_24px_4px_rgba(0,0,0,0.15)] dark:shadow-[0_0_32px_8px_rgba(59,130,246,0.5),0_0_48px_16px_rgba(16,185,129,0.3)] dark:shadow-blue-600/40">
-              </div>
+      {/* Background Decorative Blobs */}
+      <div className="absolute top-1/4 -right-20 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-blob"></div>
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
+
+      <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-12 items-center relative z-10">
+
+        {/* Left Side: Content */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 lg:space-y-6 order-2 lg:order-1">
+
+          {/* Top Badge */}
+          <div className="animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 px-3 py-1 glass-morphism rounded-full border border-blue-500/20 text-blue-400 text-[10px] font-bold tracking-widest uppercase">
+              <Sparkles size={12} className="animate-pulse" />
+              AVAILABLE FOR NEW PROJECTS
             </div>
           </div>
 
-          {/* Right Side: Text and Buttons */}
-          <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left justify-center">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4">
-              <span className="block text-gray-900 dark:text-white">Hi, my name's</span>
-              <span className="block bg-gradient-to-r from-blue-600 via-emerald-600 to-orange-500 bg-clip-text text-transparent">
-                Hasnain Aftab
-              </span>
+          {/* Main Title Group */}
+          <div className="animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter mb-4 leading-tight text-white uppercase italic">
+              CRAFTING <br />
+              <span className="text-gradient not-italic">DIGITAL EXCELLENCE.</span>
             </h1>
-            <div className="text-lg sm:text-xl lg:text-2xl text-blue-600 dark:text-blue-400 font-semibold min-w-[200px] text-left mb-2">
-              I'm a {displayText}
-              <span className="animate-pulse">|</span>
-            </div>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl leading-relaxed">
-              Passionate about creating innovative solutions and building exceptional digital experiences. Let's collaborate to bring your ideas to life.
+            <p className="text-base md:text-lg text-slate-400 max-w-lg lg:mx-0 mx-auto leading-relaxed">
+              Hi, I'm <span className="text-white font-bold">Hasnain Aftab</span>. I architect high-performance
+              <span className="text-blue-400"> software ecosystems</span> that redefine modern user experiences.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-start items-center">
-              <button
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2 text-base"
-              >
-                <Mail size={18} />
-                Get In Touch
-              </button>
-              <a
-                href="https://drive.google.com/file/d/1WwpaXRZhRuyD90SvTaKNJ8Sj7j0-eJGQ/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 flex items-center gap-2 text-base"
-              >
-                <Download size={18} />
-                Download Resume
-              </a>
+          </div>
+
+          {/* Dynamic Role & Typing */}
+          <div className="min-h-[1.5rem] animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+            <span className="text-lg md:text-xl font-mono text-slate-600">const specialize = </span>
+            <span className="text-lg md:text-xl font-mono text-blue-400 border-b-2 border-blue-500/20 pb-0.5">
+              "{displayText}"
+              <span className="animate-pulse ml-1 inline-block w-2.5 h-5 bg-blue-500 translate-y-1"></span>
+            </span>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
+            <button
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group relative px-8 py-3.5 bg-white text-black font-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:-translate-y-1"
+            >
+              <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+              <span className="relative z-10 flex items-center gap-3 group-hover:text-white uppercase tracking-widest text-xs">
+                EXPLORE WORK <ArrowRight size={18} />
+              </span>
+            </button>
+
+            <a
+              href={import.meta.env.VITE_RESUME_LINK || "https://drive.google.com/file/d/1WwpaXRZhRuyD90SvTaKNJ8Sj7j0-eJGQ/view?usp=sharing"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3.5 glass-morphism border border-white/5 text-white font-black rounded-2xl hover:bg-white/5 transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 uppercase tracking-widest text-xs"
+            >
+              <Download size={18} className="text-blue-400" />
+              GET RESUME
+            </a>
+          </div>
+        </div>
+
+        {/* Right Side: Profile Integration */}
+        <div className="relative flex justify-center lg:justify-end order-1 lg:order-2 pr-12 lg:pr-16 animate-fade-in-right">
+
+          <div className="absolute -inset-10 bg-gradient-to-tr from-blue-500/10 via-transparent to-emerald-500/10 rounded-full blur-[60px] opacity-40 animate-pulse"></div>
+
+          <div className="relative group">
+            {/* Corner Decorative Lines */}
+            <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-blue-500/30 rounded-tl-2xl transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1"></div>
+            <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-emerald-500/30 rounded-br-2xl transition-all duration-500 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+
+            {/* Profile Frame */}
+            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-[3.5rem] p-1 bg-gradient-to-tr from-white/10 via-white/5 to-white/10">
+              <div className="w-full h-full rounded-[3.3rem] overflow-hidden border-4 border-[#020617] relative">
+                <img
+                  src={profileImg}
+                  alt="Hasnain Aftab"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/40 to-transparent"></div>
+              </div>
+            </div>
+
+            {/* Social Floating Group - Pull focus in */}
+            <div className="absolute -right-12 lg:-right-14 top-1/2 -translate-y-1/2 flex flex-col gap-4">
+              {socialLinks.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 glass-morphism rounded-2xl text-slate-500 hover:text-white hover:border-blue-500/40 transition-all duration-300 hover:scale-110 shadow-2xl"
+                  title={link.label}
+                >
+                  {React.cloneElement(link.icon as React.ReactElement, { size: 18 })}
+                </a>
+              ))}
             </div>
           </div>
         </div>
-        {/* Scroll Indicator */}
-        {showScrollIndicator && (
-          <button
-            onClick={scrollToAbout}
-            className="fixed bottom-8 right-8 md:bottom-12 md:right-12 animate-bounce text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 z-50 bg-white dark:bg-gray-800 rounded-full shadow-lg border border-gray-200 dark:border-gray-700 p-2"
-            aria-label="Scroll to About"
-          >
-            <ChevronDown size={32} />
-          </button>
-        )}
+
       </div>
     </section>
   );

@@ -1,436 +1,308 @@
-import React, { useState } from "react";
-import { Github, X, Calendar, Code, ExternalLink } from "lucide-react";
-import newsappimg from "../img/dailynews.png";
-import planifyImg from "../img/planify.png";
-import portfolioimg from "../img/portfolio.png";
-import landingPageimg from "../img/landingpage.png";
-import inotebookimg from "../img/iNoteBook.png";
-import rangzebImg from "../img/Rangzeb.png";
-import excelMiddlewareImg from "../img/excelmiddleware.png";
-import calmbot from "../img/CalmBot_image4.jpg";
-import habibi from "../img/Habibi_Market.png";
+import { useState } from 'react';
+import { Github, ExternalLink, X, ArrowRight, Maximize2 } from 'lucide-react';
 
+// Project Images
+import habibi from '../img/Habibi_Market.png';
+import calmbot from '../img/CalmBot_image4.jpg';
+import rangzeb from '../img/Rangzeb.png';
+import dailynews from '../img/dailynews.png';
+import inotebook from '../img/iNoteBook.png';
+import landingpage from '../img/landingpage.png';
+import planify from '../img/planify.png';
+import portfolio from '../img/portfolio.png';
 
-const Projects: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+interface Project {
+  title: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  technologies: string[];
+  githubLink: string | null;
+  liveLink: string | null;
+  year: string;
+  highlights: string[];
+}
+
+const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showAll, setShowAll] = useState(false);
-  const viewMoreRef = React.useRef<HTMLDivElement>(null);
 
-  const projects = [
+  const projects: Project[] = [
     {
-      title: "Habibi Market – MERN E-Commerce Platform",
-      description:
-        "A full-stack MERN e-commerce platform offering seamless product browsing, cart management, secure checkout, and a modern shopping experience.",
-      longDescription:
-        "Habibi Market is a fully featured e-commerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The application includes product management, authentication, cart and checkout workflows, admin dashboards, and responsive UI design. It integrates secure APIs, optimized database queries, and reusable React components to deliver a smooth shopping experience. The platform is deployed on AWS Amplify, ensuring fast performance and high availability.",
+      title: "HABIBI MARKET",
+      description: "A premium MERN e-commerce architecture.",
+      longDescription: "Habibi Market is a fully featured e-commerce ecosystem designed for scale. It features advanced state management, secure payment integration, and a mobile-first responsive design.",
       image: habibi,
-      technologies: [
-        "MongoDB",
-        "Express.js",
-        "React.js",
-        "Node.js",
-        "Redux Toolkit",
-        "JWT Authentication",
-        "Mongoose",
-        "AWS Amplify",
-        "REST API",
-      ],
-      githubLink: null, // Private repository - not shared
+      technologies: ["MERN Stack", "Redux", "AWS", "JWT"],
+      githubLink: null,
       liveLink: "https://staging.d2ejvdp70ucx64.amplifyapp.com/",
-      year: "2025",
-      highlights: [
-        "Built a fully functional MERN e-commerce experience",
-        "User authentication with JWT, protected routes, and role-based access",
-        "Dynamic product catalog with filtering, sorting, and search",
-        "Cart, checkout, and order-processing workflows",
-        "Admin dashboard for inventory and user management",
-        "Deployed on AWS Amplify for scalable production hosting"
-      ],
+      year: "2024",
+      highlights: ["Role-based access control", "Optimized image delivery", "Scalable REST architecture"],
     },
     {
-      title: "CalmBot – AI-Driven CBT App",
-      description:
-        "AI-driven cognitive behavioral therapy app for mental wellness",
-      longDescription:
-        "Currently working on an AI-driven cognitive behavioral therapy (CBT) application that provides personalized mental wellness support. The app uses natural language processing to analyze user input and offer tailored CBT exercises, mood tracking, and progress monitoring.",
+      title: "CALMBOT AI",
+      description: "AI-driven cognitive behavioral therapy assistant.",
+      longDescription: "CalmBot leverages OpenAI and Google Gemini models to provide empathetic, therapeutic conversations. It's built with high privacy standards and a focus on user mental well-being.",
       image: calmbot,
-      technologies: ["Java", "Firebase", "Python", "NLP", "Langchain", "Git"],
+      technologies: ["Next.js", "OpenAI", "Supabase", "Tailwind"],
       githubLink: "https://github.com/hasnain833/CalmBot",
-      year: "2025",
-      highlights: [
-        "AI-driven personalized CBT exercises",
-        "Mood tracking and progress monitoring",
-        "User-friendly interface with Flutter",
-        "Real-time data synchronization with Firebase",
-      ],
+      liveLink: "https://calmbot-ai.vercel.app/",
+      year: "2024",
+      highlights: ["Real-time AI interaction", "Emotion tracking analytics", "Encrypted session storage"],
     },
     {
-      title: "Excel Middleware API – Automation & Integration Layer",
-      description:
-        "A Node.js middleware API connecting Excel and OneDrive through Microsoft Graph for automated file operations.",
-      longDescription:
-        "Developed a scalable and secure Excel Middleware API using Node.js and Express, integrated with Microsoft Graph API. The system enables automated operations like reading, writing, renaming, and formatting Excel workbooks stored in OneDrive or SharePoint. It features robust middleware layers for validation, authentication, rate limiting, and auditing. The solution was deployed on Vercel, ensuring high availability and fast performance for enterprise-level automation tasks.",
-      image: excelMiddlewareImg, // Replace with your image import
-      technologies: [
-        "Node.js",
-        "Express.js",
-        "Microsoft Graph API",
-        "Vercel",
-        "REST API",
-        "Joi Validation",
-        "Winston Logger",
-        "Rate Limiting",
-      ],
-      githubLink: "https://github.com/hasnain833/Excel_middleware",
-      liveLink: "https://excel-middleware.vercel.app/",
-      year: "2025",
-      highlights: [
-        "Automated Excel file management via Microsoft Graph API",
-        "Robust API with read, write, rename, and batch operations",
-        "Integrated validation, rate limiting, and audit logging middleware",
-        "Deployed on Vercel for scalable serverless performance",
-        "Designed for secure enterprise-level data processing",
-      ],
-    },
-    {
-      title: "Rangzeb – Studio Portfolio & Booking Website",
-      description:
-        "A complete portfolio and booking website for a photography & videography studio.",
-      longDescription:
-        "Developed a full-featured website for Rangzeb Studio, a business offering photography, videography, and wedding shoot services. The platform showcases their portfolio, highlights service packages, and provides a seamless booking system for clients to schedule services easily. The site was built with a modern, responsive design ensuring smooth user experience across all devices.",
-      image: rangzebImg,
-      technologies: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React.js",
-        "Tailwind CSS",
-        "PHP",
-        "jQuery",
-      ],
+      title: "RANGZEB STUDIO",
+      description: "Premium studio portfolio & booking engine.",
+      longDescription: "A high-performance business platform for a professional photography studio. Features a dynamic gallery, package management, and an integrated booking workflow.",
+      image: rangzeb,
+      technologies: ["React", "Tailwind CSS", "PHP", "jQuery"],
       githubLink: "https://github.com/hasnain833/Rangzeb",
       liveLink: "https://rangzeb.netlify.app/",
       year: "2025",
-      highlights: [
-        "Responsive, mobile-friendly design with Tailwind CSS",
-        "Service package listing and booking system",
-        "Dynamic photo/video portfolio showcase",
-        "Custom backend with PHP and jQuery integration",
-        "Optimized for performance and SEO",
-      ],
+      highlights: ["High-res gallery optimization", "Custom booking engine", "SEO-optimized architecture"],
     },
     {
-      title: "Portfolio Website",
-      description: "Personal portfolio showcasing projects and skills",
-      longDescription:
-        "Developed a personal portfolio website to showcase my projects, skills, and experience. The site features a modern design, responsive layout, and smooth scrolling animations. It highlights my work in web development, including case studies and links to live projects.",
-      image: portfolioimg,
-      technologies: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React",
-        "Tailwind CSS",
-        "TypeScript",
-      ],
+      title: "INOTEBOOK",
+      description: "Cloud-synced secure note architecture.",
+      longDescription: "A full-stack note-taking ecosystem with end-to-end encryption and real-time syncing across devices. Built for high-speed content creation and organization.",
+      image: inotebook,
+      technologies: ["MongoDB", "Express", "React", "Node"],
+      githubLink: "https://github.com/hasnain833/iNoteBook",
+      liveLink: null,
+      year: "2025",
+      highlights: ["JWT secured architecture", "WebSocket real-time updates", "Rich content processing"],
+    },
+    {
+      title: "DAILY NEWS",
+      description: "Global news aggregation & analytics.",
+      longDescription: "An interactive news intelligence dashboard that processes thousands of articles in real-time. Features advanced filtering, search, and trend visualization.",
+      image: dailynews,
+      technologies: ["React", "Bootstrap", "News API"],
+      githubLink: "https://github.com/hasnain833/DailyNews",
+      liveLink: null,
+      year: "2025",
+      highlights: ["Real-time stream processing", "Category intelligence", "Cross-platform optimization"],
+    },
+    {
+      title: "PLANIFY",
+      description: "Collaborative tour & travel orchestration.",
+      longDescription: "A sophisticated booking platform for complex travel itineraries. Features team collaboration, real-time availability tracking, and integrated secure payments.",
+      image: planify,
+      technologies: ["React", "PHP", "MySQL", "JavaScript"],
+      githubLink: "https://github.com/hasnain833/Planify",
+      liveLink: null,
+      year: "2024",
+      highlights: ["Collaborative flow design", "Real-time state syncing", "Secure transaction layer"],
+    },
+    {
+      title: "CREATIVE LANDING",
+      description: "High-conversion agency entry point.",
+      longDescription: "A precision-engineered landing page for creative agencies. Focused on visceral visual impact and lightning-fast performance across all viewport scales.",
+      image: landingpage,
+      technologies: ["React", "Tailwind CSS", "Framer Motion"],
+      githubLink: "https://github.com/hasnain833/Landing-Page",
+      liveLink: null,
+      year: "2024",
+      highlights: ["Visceral UI design", "Performance-first architecture", "Advanced layout dynamics"],
+    },
+    {
+      title: "LEGACY PORTFOLIO",
+      description: "Original portfolio architecture.",
+      longDescription: "The initial iteration of this portfolio, serving as a clean, responsive showcase of foundational software engineering and design principles.",
+      image: portfolio,
+      technologies: ["React", "Tailwind CSS", "TypeScript"],
       githubLink: "https://github.com/hasnain833/Hasn-portfolio",
       liveLink: "https://hasn-portfolio.netlify.app/",
       year: "2024",
-      highlights: [
-        "Modern design and layout",
-        "Responsive across devices",
-        "Smooth scrolling animations",
-        "Showcase of web development skills",
-      ],
-    },
-    {
-      title: "iNoteBook – Note Taking Web App",
-      description: "A full-stack note-taking application with modern UI/UX",
-      longDescription:
-        "Built a comprehensive note-taking application with user authentication, CRUD operations, and a responsive design. The app allows users to create, edit, delete, and organize notes with rich text formatting and tagging features.",
-      image: inotebookimg,
-      technologies: [
-        "MongoDB",
-        "Express.js",
-        "React",
-        "Node.js",
-        "Tailwind CSS",
-      ],
-      githubLink: "https://github.com/hasnain833/iNoteBook",
-      // liveLink: "https://rangzeb.netlify.app/",
-      year: "2025",
-      highlights: [
-        "User authentication with JWT",
-        "Rich text editor integration",
-        "Responsive design with Tailwind CSS",
-        "Real-time updates with WebSockets",
-      ],
-    },
-
-    {
-      title: "News App - Interactive Dashboard",
-      description: "Interactive dashboard for news articles and trends",
-      longDescription:
-        "Created an interactive news dashboard that aggregates articles from various sources. The app features a clean and modern UI, allowing users to filter news by categories, search for specific topics, and view trending articles. It utilizes a third-party news API for real-time updates.",
-      image: newsappimg,
-      technologies: ["React.js", "CSS", "Bootstrap", "News API"],
-      githubLink: "https://github.com/hasnain833/DailyNews",
-      // liveLink: "https://rangzeb.netlify.app/",
-      year: "2025",
-      highlights: [
-        "Real-time news updates",
-        "Category filtering",
-        "Search functionality",
-        "Responsive design with Bootstrap",
-      ],
-    },
-    {
-      title: "Planify- Tour Booking Web App",
-      description:
-        "Collaborative tour booking application with real-time updates",
-      longDescription:
-        "Developed a comprehensive tour booking application that allows users to search, book, and manage tours. The app features a collaborative interface for team bookings, real-time availability updates, and a user-friendly dashboard for managing bookings and payments.",
-      image: planifyImg,
-      technologies: ["HTML", "CSS", "JavaScript", "React", "PHP", "MySQL"],
-      githubLink: "https://github.com/hasnain833/Planify",
-      // liveLink: "https://rangzeb.netlify.app/",
-      year: "2024",
-      highlights: [
-        "Collaborative booking features",
-        "Real-time availability updates",
-        "User-friendly dashboard",
-        "Secure payment integration",
-      ],
-    },
-    {
-      title: "Creative Services Landing Page",
-      description: "Landing page for a creative services agency",
-      longDescription:
-        "Designed and developed a landing page for a creative services agency. The page features a modern design, engaging visuals, and clear calls to action. It showcases the agency's services, portfolio, and client testimonials.",
-      image: landingPageimg,
-      technologies: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"],
-      githubLink: "https://github.com/hasnain833/Landing-Page",
-      // liveLink: "https://rangzeb.netlify.app/",
-      year: "2024",
-      highlights: [
-        "Modern and engaging design",
-        "Responsive layout",
-        "Clear calls to action",
-        "Showcase of services and portfolio",
-      ],
-    },
+      highlights: ["Responsive core layout", "Smooth scroll orchestration", "Clean content strategy"],
+    }
   ];
 
-  const openModal = (index: number) => {
-    setSelectedProject(index);
-    document.body.style.overflow = "hidden";
+  const openModal = (project: Project) => {
+    setSelectedProject(project);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setSelectedProject(null);
-    document.body.style.overflow = "unset";
+    document.body.style.overflow = 'unset';
   };
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured Projects
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A showcase of my recent work and personal projects
-          </p>
+    <section id="projects" className="py-40 relative bg-[#020617]">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* Cinematic Header - More Compact */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between items-start gap-10 mb-24 animate-fade-in-up">
+          <div className="max-w-2xl">
+            <h2 className="text-[10px] font-black tracking-[0.6em] text-blue-500 uppercase mb-6 flex items-center gap-4">
+              <span className="w-10 h-[1px] bg-blue-500/30"></span>
+              ARCHIVE_05 // SELECTED WORK
+            </h2>
+            <h3 className="text-5xl md:text-8xl font-black text-white leading-none tracking-tighter uppercase">
+              SELECTED <br />
+              <span className="text-gradient">GALLERY.</span>
+            </h3>
+          </div>
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="group flex items-center gap-4 px-10 py-5 glass-morphism rounded-2xl border border-white/5 text-white font-black tracking-widest text-[10px] uppercase hover:bg-white/5 transition-all"
+          >
+            {showAll ? 'Collapse Archive' : 'Expand Archive'}
+            <div className={`w-8 h-8 rounded-full bg-blue-600/10 flex items-center justify-center transition-transform duration-500 ${showAll ? 'rotate-180' : ''}`}>
+              <ArrowRight size={14} className="text-blue-500" />
+            </div>
+          </button>
         </div>
 
-        <div
-          style={{
-            transition:
-              "max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1)",
-            maxHeight: showAll ? "3000px" : "1200px",
-            opacity: showAll ? 1 : 1,
-          }}
-          className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 overflow-hidden">
+        {/* Panoramic Grid - 2 Column Balanced */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {(showAll ? projects : projects.slice(0, 4)).map((project, index) => (
             <div
               key={index}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
-              onClick={() => openModal(index)}>
-              <div className="relative overflow-hidden">
+              onClick={() => openModal(project)}
+              className="group relative animate-fade-in-up [animation-delay:100ms] cursor-pointer"
+            >
+              {/* Image Card - Fixed Panoramic Aspect Ratio */}
+              <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden border border-white/5 transition-all duration-700 group-hover:border-blue-500/40 group-hover:-translate-y-2">
                 <img
-                  src={Array.isArray(project.image) ? project.image[0] : project.image}
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover object-top transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 dark:bg-gray-900/90 px-3 py-1 rounded-full text-sm font-medium">
-                  {project.year}
+
+                {/* Tactical Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+
+                {/* Floating Meta */}
+                <div className="absolute top-8 left-8 flex items-center gap-3">
+                  <div className="px-3 py-1 glass-morphism rounded-full border border-white/10 text-[9px] font-black text-white/60 tracking-widest uppercase">
+                    {project.year}
+                  </div>
                 </div>
+
+                {/* Hover Quick Action */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+                    <Maximize2 size={24} />
+                  </div>
+                </div>
+
+                {/* Scan Line Detail */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/10 to-transparent h-[100px] w-full -translate-y-full group-hover:translate-y-[800px] transition-transform duration-[3s] linear"></div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <span className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs font-medium">
-                      +{project.technologies.length - 3} more
-                    </span>
-                  )}
+              {/* Text Info - Clean & Sophisticated */}
+              <div className="mt-8 px-2 flex justify-between items-start">
+                <div>
+                  <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-2 group-hover:text-blue-400 transition-colors">
+                    {project.title}
+                  </h4>
+                  <p className="text-slate-500 text-sm font-light tracking-wide max-w-sm">
+                    {project.description}
+                  </p>
                 </div>
-
-                <div className="flex gap-3">
-                  {project.liveLink && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.liveLink, "_blank");
-                      }}
-                      className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                      <ExternalLink size={16} />
-                      Live
-                    </button>
-                  )}
-                  {project.githubLink && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.githubLink, "_blank");
-                      }}
-                      className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                      <Github size={16} />
-                      Code
-                    </button>
-                  )}
+                <div className="flex flex-col items-end gap-2">
+                  <span className="text-[10px] font-mono text-blue-500 uppercase tracking-widest">
+                    /STACK:0{index + 1}
+                  </span>
+                  <div className="flex gap-2">
+                    {project.technologies.slice(0, 2).map((tech) => (
+                      <span key={tech} className="text-[9px] font-bold text-slate-700 uppercase tracking-widest">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* View More / View Less Button */}
-        {projects.length > 4 && (
-          <div className="flex justify-center mt-8" ref={viewMoreRef}>
-            <button
-              onClick={() => {
-                if (showAll && viewMoreRef.current) {
-                  setShowAll(false);
-                  setTimeout(() => {
-                    viewMoreRef.current?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "center",
-                    });
-                  }, 500);
-                } else {
-                  setShowAll(true);
-                }
-              }}
-              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105">
-              {showAll ? "View Less" : "View More"}
-            </button>
-          </div>
-        )}
+      </div>
 
-        {/* Project Modal */}
-        {selectedProject !== null && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="relative">
-                <img
-                  src={Array.isArray(projects[selectedProject].image) ? projects[selectedProject].image[0] : projects[selectedProject].image}
-                  alt={projects[selectedProject].title}
-                  className="w-full h-100 object-cover object-top"
-                />
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 w-10 h-10 bg-white/90 dark:bg-gray-900/90 rounded-full flex items-center justify-center hover:bg-white dark:hover:bg-gray-900 transition-colors duration-200">
-                  <X size={20} />
-                </button>
+      {/* Premium Analysis Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10">
+          <div className="absolute inset-0 bg-[#020617]/98 backdrop-blur-3xl" onClick={closeModal}></div>
+
+          <div className="relative w-full max-w-6xl max-h-full bg-[#030816] rounded-[3rem] overflow-hidden border border-white/5 flex flex-col md:flex-row shadow-[0_0_120px_rgba(0,0,0,1)] animate-scale-in">
+
+            {/* Split Image Side */}
+            <div className="md:w-3/5 relative h-64 md:h-auto overflow-hidden border-r border-white/5">
+              <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
+              {/* Decorative Corner */}
+              <div className="absolute top-10 left-10 w-20 h-20 border-t-2 border-l-2 border-blue-500 opacity-20 pointer-events-none"></div>
+            </div>
+
+            {/* Split Info Side */}
+            <div className="md:w-2/5 p-10 md:p-16 overflow-y-auto flex flex-col bg-gradient-to-br from-[#030816] to-[#01040a]">
+              <button
+                onClick={closeModal}
+                className="absolute top-10 right-10 w-12 h-12 flex items-center justify-center glass-morphism rounded-full text-slate-500 hover:text-white transition-all hover:rotate-90 group"
+              >
+                <X size={24} className="group-hover:scale-110" />
+              </button>
+
+              <div className="mb-14">
+                <div className="inline-flex items-center gap-3 px-3 py-1 bg-blue-600/10 rounded-full border border-blue-500/20 mb-8">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+                  <span className="text-[9px] font-black text-blue-400 tracking-[0.3em] uppercase">SYSTEM_ANALYSIS_{selectedProject.year}</span>
+                </div>
+                <h3 className="text-5xl md:text-6xl font-black text-white uppercase italic tracking-tighter leading-[0.85]">
+                  {selectedProject.title}
+                </h3>
               </div>
 
-              <div className="p-8">
-                <div className="flex items-center gap-4 mb-4">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {projects[selectedProject].title}
-                  </h3>
-                  <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-                    <Calendar size={16} />
-                    {projects[selectedProject].year}
+              <div className="space-y-12 flex-grow">
+                <div>
+                  <h5 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em] mb-6">Briefing //</h5>
+                  <p className="text-slate-400 text-lg font-light leading-relaxed italic border-l-2 border-blue-500/20 pl-8">
+                    {selectedProject.longDescription}
+                  </p>
+                </div>
+
+                <div>
+                  <h5 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em] mb-6">Core Stack //</h5>
+                  <div className="flex flex-wrap gap-3">
+                    {selectedProject.technologies.map(tech => (
+                      <span key={tech} className="px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-slate-300 text-[10px] font-black uppercase tracking-widest hover:border-blue-500/30 transition-colors">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  {projects[selectedProject].longDescription}
-                </p>
-
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-                    <Code size={18} />
-                    Technologies Used
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {projects[selectedProject].technologies.map(
-                      (tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium">
-                          {tech}
-                        </span>
-                      )
-                    )}
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                    Key Highlights
-                  </h4>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {projects[selectedProject].highlights.map(
-                      (highlight, highlightIndex) => (
-                        <li
-                          key={highlightIndex}
-                          className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-                          <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></span>
-                          {highlight}
-                        </li>
-                      )
-                    )}
+                <div>
+                  <h5 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em] mb-6">Capabilities //</h5>
+                  <ul className="space-y-4">
+                    {selectedProject.highlights.map((h, i) => (
+                      <li key={i} className="flex gap-4 items-center">
+                        <span className="w-1 h-1 rounded-full bg-blue-500"></span>
+                        <span className="text-slate-500 text-xs font-bold uppercase tracking-tight">{h}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
+              </div>
 
-                <div className="flex gap-4">
-                  {projects[selectedProject].githubLink && (
-                    <button
-                      onClick={() =>
-                        window.open(
-                          projects[selectedProject].githubLink!,
-                          "_blank"
-                        )
-                      }
-                      className="flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                      <Github size={18} />
-                      View Source Code
-                    </button>
-                  )}
-                </div>
+              <div className="grid grid-cols-1 gap-4 mt-16 pt-12 border-t border-white/5">
+                {selectedProject.liveLink && (
+                  <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="group px-8 py-5 bg-white text-black font-black rounded-2xl flex items-center justify-center gap-4 hover:bg-blue-600 hover:text-white transition-all uppercase tracking-[0.3em] text-xs shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+                    <ExternalLink size={20} /> Launch Interface
+                  </a>
+                )}
+                {selectedProject.githubLink && (
+                  <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="px-8 py-5 glass-morphism border border-white/10 text-white font-black rounded-2xl flex items-center justify-center gap-4 hover:bg-white/10 transition-all uppercase tracking-[0.3em] text-xs">
+                    <Github size={20} /> Access Logic
+                  </a>
+                )}
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -1,244 +1,144 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Linkedin, Github} from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Send, MessageSquare } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
-const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [success, setSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    const serviceId = import.meta.env.VITE_SERVICE_ID;
+    const templateId = import.meta.env.VITE_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS credentials missing in .env");
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 3000);
-    }, 1000);
+      return;
+    }
+
+    emailjs.sendForm(serviceId, templateId, e.currentTarget, publicKey)
+      .then(() => {
+        setIsSubmitting(false);
+        setSuccess(true);
+        e.currentTarget.reset();
+        setTimeout(() => setSuccess(false), 5000);
+      }, (error: any) => {
+        console.error('Email transmission failed:', error);
+        setIsSubmitting(false);
+        alert("Transmission failed. Please check console for details.");
+      });
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email',
-      value: 'hasnainaftab87@gmail.com',
-      link: 'mailto:hasnainaftab87@gmail.com'
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      value: '+92 331 8787833',
-      link: 'tel:+923318787833'
-    },
-    {
-      icon: MapPin,
-      title: 'Location',
-      value: 'Islamabad, Pakistan',
-      link: '#'
-    }
-  ];
-
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In Touch
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-8"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            I'm always open to discussing new opportunities, creative projects, or just having a chat about technology.
-          </p>
-        </div>
+    <section id="contact" className="py-24 relative bg-[#020617] overflow-hidden border-t border-white/5">
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-              Let's Connect
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              Whether you have a project in mind, want to collaborate, or just want to say hello,
-              I'd love to hear from you. Feel free to reach out through any of the channels below.
-            </p>
+      {/* Subtle Orbital Background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-blue-500/5 rounded-full pointer-events-none"></div>
 
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <a
-                  key={index}
-                  href={info.link}
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-lg flex items-center justify-center">
-                    <info.icon size={20} className="text-white" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left: Compact Info */}
+          <div className="space-y-12 animate-fade-in-left">
+            <div>
+              <h2 className="text-[10px] font-black tracking-[0.5em] text-blue-500 uppercase mb-6">
+                06 // CONTACT
+              </h2>
+              <h3 className="text-5xl md:text-7xl font-black text-white leading-[0.9] tracking-tighter uppercase italic mb-8">
+                GET IN <br />
+                <span className="text-gradient">TOUCH.</span>
+              </h3>
+              <p className="text-slate-500 text-lg font-light italic border-l-2 border-blue-500/20 pl-6 max-w-sm">
+                Ready to architect your next digital masterpiece.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-8">
+              {[
+                {
+                  icon: Mail,
+                  label: 'Email',
+                  value: import.meta.env.VITE_EMAIL || 'hasnainaftab87@gmail.com',
+                  href: `mailto:${import.meta.env.VITE_EMAIL || 'hasnainaftab87@gmail.com'}`
+                },
+                {
+                  icon: MessageSquare,
+                  label: 'Whatsapp',
+                  value: import.meta.env.VITE_WHATSAPP_NUMBER || '+92 331 8787833',
+                  href: `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER || '923318787833').replace(/\+/g, '').replace(/\s/g, '')}`
+                }
+              ].map((item, i) => (
+                <a key={i} href={item.href} className="group">
+                  <div className="text-[9px] font-mono text-slate-600 uppercase tracking-widest mb-2 group-hover:text-blue-500 transition-colors">
+                    {item.label}
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white">
-                      {info.title}
-                    </h4>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {info.value}
-                    </p>
+                  <div className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                    {item.value}
                   </div>
                 </a>
               ))}
             </div>
+          </div>
 
-            {/* Social Links */}
-            <div className="mt-8">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Follow Me
-              </h4>
-              <div className="flex gap-4">
-                <a
-                  href="https://www.linkedin.com/in/hasnain-aftab-043632302"
-                  className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110"
-                  title="LinkedIn"
-                  target="_blank" rel="noopener noreferrer"
+          {/* Right: Condensed Form */}
+          <div className="animate-fade-in-right">
+            <div className="p-1 glass-morphism rounded-[2.5rem] border border-white/5">
+              <form onSubmit={handleSubmit} className="bg-[#030816] rounded-[2.3rem] p-8 md:p-12 space-y-8">
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black text-blue-500 uppercase tracking-widest">Full Name</label>
+                    <input
+                      type="text"
+                      name="from_name"
+                      placeholder="NAME"
+                      className="w-full bg-transparent border-b border-white/10 py-3 text-white font-bold placeholder:text-slate-800 focus:outline-none focus:border-blue-500 transition-colors uppercase text-xs"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[9px] font-black text-blue-500 uppercase tracking-widest">Email</label>
+                    <input
+                      type="email"
+                      name="from_email"
+                      placeholder="EMAIL"
+                      className="w-full bg-transparent border-b border-white/10 py-3 text-white font-bold placeholder:text-slate-800 focus:outline-none focus:border-blue-500 transition-colors uppercase text-xs"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[9px] font-black text-blue-500 uppercase tracking-widest">Message</label>
+                  <textarea
+                    rows={2}
+                    name="message"
+                    placeholder="DESCRIBE THE PROJECT"
+                    className="w-full bg-transparent border-b border-white/10 py-3 text-white font-bold placeholder:text-slate-800 focus:outline-none focus:border-blue-500 transition-colors resize-none uppercase text-xs"
+                    required
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full relative group overflow-hidden rounded-2xl"
                 >
-                  <Linkedin size={20} />
-                </a>
-                <a
-                  href="https://github.com/hasnain833"
-                  className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110"
-                  title="GitHub"
-                  target="_blank" rel="noopener noreferrer"
-                >
-                  <Github size={20} />
-                </a>
-                <a
-                  href="mailto:hasnainaftab87@gmail.com"
-                  className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110"
-                  title="Email"
-                >
-                  <Mail size={20} />
-                </a>
-              </div>
+                  <div className="absolute inset-0 bg-white group-hover:bg-blue-600 transition-colors duration-500"></div>
+                  <div className="relative py-4 px-8 flex items-center justify-center gap-3 text-black group-hover:text-white transition-colors duration-500 font-black uppercase tracking-widest text-[10px]">
+                    {isSubmitting ? 'Sending...' : success ? 'Sent!' : (
+                      <>Send Message <Send size={14} /></>
+                    )}
+                  </div>
+                </button>
+              </form>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Send Message
-            </h3>
-
-            {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg flex items-center gap-3">
-                <CheckCircle size={20} className="text-emerald-600 dark:text-emerald-400" />
-                <span className="text-emerald-800 dark:text-emerald-300">
-                  Message sent successfully! I'll get back to you soon.
-                </span>
-              </div>
-            )}
-
-            {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-3">
-                <AlertCircle size={20} className="text-red-600 dark:text-red-400" />
-                <span className="text-red-800 dark:text-red-300">
-                  Something went wrong. Please try again.
-                </span>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white transition-colors duration-200"
-                    placeholder="Your Name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white transition-colors duration-200"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject *
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white transition-colors duration-200"
-                  placeholder="What's this about?"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:text-white transition-colors duration-200 resize-none"
-                  placeholder="Tell me about your project or just say hello!"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
         </div>
       </div>
     </section>
