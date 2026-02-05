@@ -83,7 +83,7 @@ const Header: React.FC = () => {
             onClick={() => scrollToSection('#contact')}
             className="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] animate-pulse hover:animate-none"
           >
-            Let's Talk
+            Let&apos;s Talk
           </button>
         </div>
 

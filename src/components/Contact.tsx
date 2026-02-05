@@ -10,9 +10,9 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const serviceId = import.meta.env.VITE_SERVICE_ID;
-    const templateId = import.meta.env.VITE_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+    const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
       console.error("EmailJS credentials missing in .env");
@@ -63,14 +63,14 @@ const Contact = () => {
                 {
                   icon: Mail,
                   label: 'Email',
-                  value: import.meta.env.VITE_EMAIL,
-                  href: `mailto:${import.meta.env.VITE_EMAIL}`
+                  value: process.env.NEXT_PUBLIC_EMAIL ?? '',
+                  href: `mailto:${process.env.NEXT_PUBLIC_EMAIL ?? ''}`
                 },
                 {
                   icon: MessageSquare,
                   label: 'Whatsapp',
-                  value: import.meta.env.VITE_WHATSAPP_NUMBER,
-                  href: `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER).replace(/\+/g, '').replace(/\s/g, '')}`
+                  value: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '',
+                  href: `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '').replace(/\+/g, '').replace(/\s/g, '')}`
                 }
               ].map((item, i) => (
                 <a key={i} href={item.href} className="group">

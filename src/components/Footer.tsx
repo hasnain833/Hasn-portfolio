@@ -32,9 +32,9 @@ const Footer = () => {
           {/* Center: Social Links */}
           <div className="flex gap-3">
             {[
-              { icon: Github, href: import.meta.env.VITE_GITHUB_URL },
-              { icon: Linkedin, href: import.meta.env.VITE_LINKEDIN_URL },
-              { icon: Instagram, href: import.meta.env.VITE_INSTAGRAM_URL },
+              { icon: Github, href: process.env.NEXT_PUBLIC_GITHUB_URL ?? '#' },
+              { icon: Linkedin, href: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? '#' },
+              { icon: Instagram, href: process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? '#' },
             ].map((social, i) => (
               <a
                 key={i}

@@ -25,7 +25,7 @@ const About = () => {
                 <span className="text-gradient italic">THE CODE.</span>
               </h3>
               <p className="text-2xl text-slate-400 leading-relaxed font-light max-w-xl">
-                I don't just build websites; I architect <span className="text-white font-bold italic">digital ecosystems</span> that breathe life into visionary ideas.
+                I don&apos;t just build websites; I architect <span className="text-white font-bold italic">digital ecosystems</span> that breathe life into visionary ideas.
               </p>
             </div>
 
@@ -50,10 +50,10 @@ const About = () => {
               </h2>
               <div className="space-y-8">
                 <p className="text-xl text-slate-300 leading-relaxed italic border-l-4 border-blue-500/20 pl-8">
-                  "Excellence is not an act, but a habit. I make excellence my standard by obsessing over the details others miss."
+                  &quot;Excellence is not an act, but a habit. I make excellence my standard by obsessing over the details others miss.&quot;
                 </p>
                 <p className="text-lg text-slate-400 leading-relaxed">
-                  Driven by a deep passion for the <span className="text-white font-bold">MERN stack</span> and <span className="text-white font-bold">Next.js</span>, I've dedicated my career to mastering the art of high-performance software orchestration. From secure fintech foundations to AI-driven cognitive assistants, my work is a testament to the power of precision.
+                  Driven by a deep passion for the <span className="text-white font-bold">MERN stack</span> and <span className="text-white font-bold">Next.js</span>, I&apos;ve dedicated my career to mastering the art of high-performance software orchestration. From secure fintech foundations to AI-driven cognitive assistants, my work is a testament to the power of precision.
                 </p>
               </div>
             </div>

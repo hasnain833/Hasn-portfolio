@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import Image from 'next/image';
 import { Download, Github, Linkedin, Instagram, Sparkles, ArrowRight } from 'lucide-react';
-import profileImg from '../img/profile.jpg';
 
 const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
@@ -38,9 +38,9 @@ const Hero: React.FC = () => {
   }, [displayText, isDeleting, currentIndex, roles]);
 
   const socialLinks = [
-    { icon: <Github size={20} />, href: import.meta.env.VITE_GITHUB_URL, label: "GitHub" },
-    { icon: <Linkedin size={20} />, href: import.meta.env.VITE_LINKEDIN_URL, label: "LinkedIn" },
-    { icon: <Instagram size={20} />, href: import.meta.env.VITE_INSTAGRAM_URL, label: "Instagram" },
+    { icon: <Github size={20} />, href: process.env.NEXT_PUBLIC_GITHUB_URL ?? '', label: "GitHub" },
+    { icon: <Linkedin size={20} />, href: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? '', label: "LinkedIn" },
+    { icon: <Instagram size={20} />, href: process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? '', label: "Instagram" },
   ];
 
   return (
@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
               <span className="text-gradient not-italic">DIGITAL EXCELLENCE.</span>
             </h1>
             <p className="text-base md:text-lg text-slate-400 max-w-lg lg:mx-0 mx-auto leading-relaxed">
-              Hi, I'm <span className="text-white font-bold">Hasnain Aftab</span>. I architect high-performance
+              Hi, I&apos;m <span className="text-white font-bold">Hasnain Aftab</span>. I architect high-performance
               <span className="text-blue-400"> software ecosystems</span> that redefine modern user experiences.
             </p>
           </div>
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
           <div className="min-h-[1.5rem] animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <span className="text-lg md:text-xl font-mono text-slate-600">const specialize = </span>
             <span className="text-lg md:text-xl font-mono text-blue-400 border-b-2 border-blue-500/20 pb-0.5">
-              "{displayText}"
+              {'"'}{displayText}{'"'}
               <span className="animate-pulse ml-1 inline-block w-2.5 h-5 bg-blue-500 translate-y-1"></span>
             </span>
           </div>
@@ -97,7 +97,7 @@ const Hero: React.FC = () => {
             </button>
 
             <a
-              href={import.meta.env.VITE_RESUME_LINK}
+              href={process.env.NEXT_PUBLIC_RESUME_LINK ?? '#'}
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 glass-morphism border border-white/5 text-white font-black rounded-2xl hover:bg-white/5 transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 uppercase tracking-widest text-xs"
@@ -121,10 +121,12 @@ const Hero: React.FC = () => {
             {/* Profile Frame */}
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-[3.5rem] p-1 bg-gradient-to-tr from-white/10 via-white/5 to-white/10">
               <div className="w-full h-full rounded-[3.3rem] overflow-hidden border-4 border-[#020617] relative">
-                <img
-                  src={profileImg}
+                <Image
+                  src="/img/profile.jpg"
                   alt="Hasnain Aftab"
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 320px, (max-width: 1024px) 320px, 400px"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/40 to-transparent"></div>
               </div>

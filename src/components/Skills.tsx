@@ -30,6 +30,16 @@ const Skills = () => {
     { name: "Git", level: "Version Control", color: "from-orange-500 to-red-600", size: "text-xl" },
   ];
 
+  const additionalSkills = [
+    "JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3",
+    "React.js", "Next.js", "Tailwind CSS", "Bootstrap",
+    "Node.js", "Express.js", "PHP", "Java",
+    "MongoDB", "MySQL", "Firebase",
+    "REST APIs", "GraphQL",
+    "Git/GitHub", "Postman", "Vercel/Netlify", "AWS (Basics)",
+    "Docker", "CI/CD", "Agile", "Unit Testing", "Jest", "Cypress"
+  ];
+
   return (
     <section ref={sectionRef} id="skills" className="py-40 relative overflow-hidden bg-[#020617]">
       {/* Background Kinetic Stream */}
@@ -56,7 +66,7 @@ const Skills = () => {
             </h3>
           </div>
           <p className="text-slate-500 text-xl font-light italic border-l-2 border-blue-500/20 pl-8 max-w-sm animate-fade-in-right">
-            "We don't just use tools; we orchestrate them to create digital miracles."
+            &quot;We don&apos;t just use tools; we orchestrate them to create digital miracles.&quot;
           </p>
         </div>
 
@@ -116,7 +126,7 @@ const Skills = () => {
                 <div className="flex flex-col gap-2 font-mono text-[10px] animate-data-feed">
                   {Array(20).fill(0).map((_, j) => (
                     <div key={j} className="whitespace-nowrap">
-                      0x{Math.random().toString(16).slice(2, 10).toUpperCase()} FB_DATA_PACKET_{i}{j} SUCCESS
+                      0x{((i * 31 + j * 17) % 0x100000000).toString(16).toUpperCase().padStart(8, "0")} FB_DATA_PACKET_{i}{j} SUCCESS
                     </div>
                   ))}
                 </div>
@@ -155,9 +165,30 @@ const Skills = () => {
           ))}
         </div>
 
+        {/* Additional Skills Cloud */}
+        <div className="mt-32 text-center relative z-10">
+          <h3 className="text-sm font-black tracking-[0.5em] uppercase mb-12 flex flex-wrap items-center justify-center gap-3 md:gap-6">
+            <span className="w-10 md:w-20 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-blue-500/60 rounded-full" />
+            <span className="text-slate-500">THE</span>
+            <span className="text-gradient">TOOLKIT</span>
+            <span className="w-10 md:w-20 h-px bg-gradient-to-l from-transparent via-emerald-500/40 to-emerald-500/60 rounded-full" />
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            {additionalSkills.map((tech, index) => (
+              <span
+                key={index}
+                className="px-6 py-3 glass-morphism border border-white/5 rounded-full text-sm font-bold text-slate-400 hover:text-white hover:border-blue-500/40 hover:scale-110 transition-all duration-500 cursor-default shadow-lg hover:shadow-blue-500/10"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
 };
+
 
 export default Skills;
