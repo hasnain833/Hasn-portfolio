@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
-import Image from 'next/image';
-import { Github, ExternalLink, X, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { motion, useScroll } from 'framer-motion';
+import ProjectModal from './ProjectModal';
+
 
 interface Project {
   title: string;
@@ -17,6 +18,39 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "PocketPinky - AI Dating App",
+    description: "A high-performance AI Dating App.",
+    longDescription: "PocketPinky is a revolutionary AI dating experience. It features realistic AI companions, real-time voice and video interactions, and personalized conversations, redefining digital companionship.",
+    image: '/img/pocketpinky.png',
+    technologies: ["Next.js", "TypeScript", "Shadcn UI"],
+    githubLink: "https://github.com/hasnain833/pocketpinky",
+    liveLink: "https://pocketpinky.vercel.app/",
+    year: "2026",
+    highlights: ["AI Girlfriend", "Real-time Chat", "Voice Chat", "Image Generation", "Video Generation", "Automated Workflows"],
+  },
+  {
+    title: "Invictus Connect - Roofing Bot",
+    description: "AI-driven Lead Generation for Roofing.",
+    longDescription: "InvictusConnect is a specialized AI bot designed to help roofing companies generate and qualify leads. It automates customer engagement 24/7, capturing critical project details and streamlining the sales pipeline for contractors.",
+    image: '/img/invictusconnect.png',
+    technologies: ["Next.js", "TypeScript", "PHP", "Laravel", "Others"],
+    githubLink: "https://github.com/hasnain833/roofbot",
+    liveLink: "https://invictusconnect.com/",
+    year: "2026",
+    highlights: ["AI Lead Qualification", "24/7 Client Engagement", "Roofing Niche CRM"],
+  },
+  {
+    title: "Existantly - Waterfall Enrichment",
+    description: "A high-performance Lead Generation CRM.",
+    longDescription: "Existantly is a powerful CRM and lead enrichment platform built for scale. It automates waterfall enrichment workflows, offering real-time data processing and a streamlined interface for managing complex sales pipelines.",
+    image: '/img/existantly.png',
+    technologies: ["Next.js", "TypeScript", "Shadcn UI"],
+    githubLink: "https://github.com/hasnain833/cesarEnrichFlow",
+    liveLink: "https://app.existantly.com/",
+    year: "2025",
+    highlights: ["Waterfall Enrichment Logic", "Real-time Lead CRM", "Automated Workflows"],
+  },
+  {
     title: "HABIBI MARKET",
     description: "A premium MERN e-commerce architecture.",
     longDescription: "Habibi Market is a fully featured e-commerce ecosystem designed for scale. It features advanced state management, secure payment integration, and a mobile-first responsive design.",
@@ -24,7 +58,7 @@ const projects: Project[] = [
     technologies: ["MERN Stack", "Redux", "AWS", "JWT"],
     githubLink: null,
     liveLink: "https://staging.d2ejvdp70ucx64.amplifyapp.com/",
-    year: "2024",
+    year: "2025",
     highlights: ["Role-based access control", "Optimized image delivery", "Scalable REST architecture"],
   },
   {
@@ -35,7 +69,7 @@ const projects: Project[] = [
     technologies: ["Next.js", "OpenAI", "Supabase", "Tailwind"],
     githubLink: "https://github.com/hasnain833/CalmBot",
     liveLink: "https://calmbot-ai.vercel.app/",
-    year: "2024",
+    year: "2025",
     highlights: ["Real-time AI interaction", "Emotion tracking analytics", "Encrypted session storage"],
   },
   {
@@ -92,17 +126,6 @@ const projects: Project[] = [
     liveLink: null,
     year: "2024",
     highlights: ["Visceral UI design", "Performance-first architecture", "Advanced layout dynamics"],
-  },
-  {
-    title: "LEGACY PORTFOLIO",
-    description: "Original portfolio architecture.",
-    longDescription: "The initial iteration of this portfolio, serving as a clean, responsive showcase of foundational software engineering and design principles.",
-    image: '/img/portfolio.png',
-    technologies: ["React", "Tailwind CSS", "TypeScript"],
-    githubLink: "https://github.com/hasnain833/Hasn-portfolio",
-    liveLink: "https://hasn-portfolio.netlify.app/",
-    year: "2024",
-    highlights: ["Responsive core layout", "Smooth scroll orchestration", "Clean content strategy"],
   }
 ];
 
@@ -229,91 +252,11 @@ const Projects = () => {
         <div className="w-[1px] h-10 bg-white/10" />
       </div>
 
-      {/* Experimental Projects Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[#020617]/98 backdrop-blur-3xl"
-              onClick={closeModal}
-            ></motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 30 }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-w-6xl max-h-[90vh] bg-[#030816] rounded-[3rem] overflow-hidden border border-blue-500/20 flex flex-col md:flex-row shadow-[0_0_150px_rgba(59,130,246,0.1)]"
-            >
-              {/* Media Section */}
-              <div className="md:w-3/5 relative h-72 md:min-h-[400px] overflow-hidden border-r border-white/5 bg-[#01040a]">
-                <Image src={selectedProject.image} alt={selectedProject.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 60vw" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#030816] via-transparent to-transparent hidden md:block w-40"></div>
-              </div>
-
-              {/* Data Section */}
-              <div className="md:w-2/5 p-12 md:p-16 lg:p-20 overflow-y-auto flex flex-col relative hide-scrollbar text-white">
-                <button
-                  onClick={closeModal}
-                  className="absolute top-12 right-12 text-slate-500 hover:text-white transition-all uppercase text-[10px] font-black tracking-widest flex items-center gap-3 group"
-                >
-                  <span>CLOSE</span>
-                  <X size={24} />
-                </button>
-
-                <div className="mb-20">
-                  <div className="inline-flex items-center gap-4 px-4 py-2 bg-blue-600/10 rounded-full border border-blue-500/20 mb-10">
-                    <span className="text-[10px] font-black text-blue-400 tracking-[0.4em] uppercase">YEAR_{selectedProject.year}</span>
-                  </div>
-                  <h3 className="text-5xl lg:text-7xl font-black text-white uppercase italic tracking-tighter leading-none">
-                    {selectedProject.title}
-                  </h3>
-                </div>
-
-                <div className="space-y-16 flex-grow">
-                  <div className="space-y-6">
-                    <h5 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em] mb-4 flex items-center gap-4">
-                      <span className="w-8 h-[1px] bg-slate-800"></span> BRIEF
-                    </h5>
-                    <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed border-l-2 border-blue-500/20 pl-10 italic">
-                      {selectedProject.longDescription}
-                    </p>
-                  </div>
-
-                  <div className="space-y-8">
-                    <h5 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em] mb-4 flex items-center gap-4">
-                      <span className="w-8 h-[1px] bg-slate-800"></span> STACK
-                    </h5>
-                    <div className="flex flex-wrap gap-3">
-                      {selectedProject.technologies.map((tech) => (
-                        <span key={tech} className="px-4 py-2 bg-blue-500/5 border border-blue-500/10 rounded-xl text-blue-400 text-[10px] font-black uppercase tracking-widest">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 gap-4 mt-20 pt-16 border-t border-white/5">
-                  {selectedProject.liveLink && (
-                    <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="group px-10 py-6 bg-blue-600 text-white font-black rounded-2xl flex items-center justify-center gap-6 hover:bg-blue-500 transition-all uppercase tracking-[0.4em] text-[11px] shadow-[0_20px_40px_rgba(59,130,246,0.2)]">
-                      <ExternalLink size={20} /> VISIT_LIVE
-                    </a>
-                  )}
-                  {selectedProject.githubLink && (
-                    <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="px-10 py-6 border border-white/10 text-white font-black rounded-2xl flex items-center justify-center gap-6 hover:bg-white/5 transition-all uppercase tracking-[0.4em] text-[11px]">
-                      <Github size={20} /> VIEW_CODE
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <ProjectModal
+        project={selectedProject}
+        isOpen={!!selectedProject}
+        onClose={closeModal}
+      />
     </section>
   );
 };

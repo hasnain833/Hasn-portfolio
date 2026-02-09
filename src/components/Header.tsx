@@ -62,7 +62,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {menuItems.map((item) => (
             <button
               key={item.name}
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <button
             onClick={() => scrollToSection('#contact')}
             className="px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] animate-pulse hover:animate-none"
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 mt-4 glass-morphism rounded-3xl overflow-hidden transition-all duration-500 origin-top ${isMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
+        className={`lg:hidden absolute top-full left-0 right-0 mt-4 glass-morphism rounded-3xl overflow-hidden transition-all duration-500 origin-top ${isMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
           }`}
       >
         <div className="p-4 space-y-2">
