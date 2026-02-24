@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion, useScroll } from 'framer-motion';
 import ProjectModal from './ProjectModal';
-
 
 interface Project {
   title: string;
@@ -16,123 +15,18 @@ interface Project {
   highlights: string[];
 }
 
-const projects: Project[] = [
-  {
-    title: "PocketPinky - AI Dating App",
-    description: "A high-performance AI Dating App.",
-    longDescription: "PocketPinky is a revolutionary AI dating experience. It features realistic AI companions, real-time voice and video interactions, and personalized conversations, redefining digital companionship.",
-    image: '/img/pocketpinky.png',
-    technologies: ["Next.js", "TypeScript", "Shadcn UI"],
-    githubLink: "https://github.com/hasnain833/pocketpinky",
-    liveLink: "https://pocketpinky.vercel.app/",
-    year: "2026",
-    highlights: ["AI Girlfriend", "Real-time Chat", "Voice Chat", "Image Generation", "Video Generation", "Automated Workflows"],
-  },
-  {
-    title: "Invictus Connect - Roofing Bot",
-    description: "AI-driven Lead Generation for Roofing.",
-    longDescription: "InvictusConnect is a specialized AI bot designed to help roofing companies generate and qualify leads. It automates customer engagement 24/7, capturing critical project details and streamlining the sales pipeline for contractors.",
-    image: '/img/invictusconnect.png',
-    technologies: ["Next.js", "TypeScript", "PHP", "Laravel", "Others"],
-    githubLink: "https://github.com/hasnain833/roofbot",
-    liveLink: "https://invictusconnect.com/",
-    year: "2026",
-    highlights: ["AI Lead Qualification", "24/7 Client Engagement", "Roofing Niche CRM"],
-  },
-  {
-    title: "Existantly - Waterfall Enrichment",
-    description: "A high-performance Lead Generation CRM.",
-    longDescription: "Existantly is a powerful CRM and lead enrichment platform built for scale. It automates waterfall enrichment workflows, offering real-time data processing and a streamlined interface for managing complex sales pipelines.",
-    image: '/img/existantly.png',
-    technologies: ["Next.js", "TypeScript", "Shadcn UI"],
-    githubLink: "https://github.com/hasnain833/cesarEnrichFlow",
-    liveLink: "https://app.existantly.com/",
-    year: "2025",
-    highlights: ["Waterfall Enrichment Logic", "Real-time Lead CRM", "Automated Workflows"],
-  },
-  {
-    title: "HABIBI MARKET",
-    description: "A premium MERN e-commerce architecture.",
-    longDescription: "Habibi Market is a fully featured e-commerce ecosystem designed for scale. It features advanced state management, secure payment integration, and a mobile-first responsive design.",
-    image: '/img/Habibi_Market.png',
-    technologies: ["MERN Stack", "Redux", "AWS", "JWT"],
-    githubLink: null,
-    liveLink: "https://staging.d2ejvdp70ucx64.amplifyapp.com/",
-    year: "2025",
-    highlights: ["Role-based access control", "Optimized image delivery", "Scalable REST architecture"],
-  },
-  {
-    title: "CALMBOT AI",
-    description: "AI-driven cognitive behavioral therapy assistant.",
-    longDescription: "CalmBot leverages OpenAI and Google Gemini models to provide empathetic, therapeutic conversations. It's built with high privacy standards and a focus on user mental well-being.",
-    image: '/img/CalmBot_image4.jpg',
-    technologies: ["Next.js", "OpenAI", "Supabase", "Tailwind"],
-    githubLink: "https://github.com/hasnain833/CalmBot",
-    liveLink: "https://calmbot-ai.vercel.app/",
-    year: "2025",
-    highlights: ["Real-time AI interaction", "Emotion tracking analytics", "Encrypted session storage"],
-  },
-  {
-    title: "RANGZEB STUDIO",
-    description: "Premium studio portfolio & booking engine.",
-    longDescription: "A high-performance business platform for a professional photography studio. Features a dynamic gallery, package management, and an integrated booking workflow.",
-    image: '/img/Rangzeb.png',
-    technologies: ["React", "Tailwind CSS", "PHP", "jQuery"],
-    githubLink: "https://github.com/hasnain833/Rangzeb",
-    liveLink: "https://rangzeb.netlify.app/",
-    year: "2025",
-    highlights: ["High-res gallery optimization", "Custom booking engine", "SEO-optimized architecture"],
-  },
-  {
-    title: "INOTEBOOK",
-    description: "Cloud-synced secure note architecture.",
-    longDescription: "A full-stack note-taking ecosystem with end-to-end encryption and real-time syncing across devices. Built for high-speed content creation and organization.",
-    image: '/img/iNoteBook.png',
-    technologies: ["MongoDB", "Express", "React", "Node"],
-    githubLink: "https://github.com/hasnain833/iNoteBook",
-    liveLink: null,
-    year: "2025",
-    highlights: ["JWT secured architecture", "WebSocket real-time updates", "Rich content processing"],
-  },
-  {
-    title: "DAILY NEWS",
-    description: "Global news aggregation & analytics.",
-    longDescription: "An interactive news intelligence dashboard that processes thousands of articles in real-time. Features advanced filtering, search, and trend visualization.",
-    image: '/img/dailynews.png',
-    technologies: ["React", "Bootstrap", "News API"],
-    githubLink: "https://github.com/hasnain833/DailyNews",
-    liveLink: null,
-    year: "2025",
-    highlights: ["Real-time stream processing", "Category intelligence", "Cross-platform optimization"],
-  },
-  {
-    title: "PLANIFY",
-    description: "Collaborative tour & travel orchestration.",
-    longDescription: "A sophisticated booking platform for complex travel itineraries. Features team collaboration, real-time availability tracking, and integrated secure payments.",
-    image: '/img/planify.png',
-    technologies: ["React", "PHP", "MySQL", "JavaScript"],
-    githubLink: "https://github.com/hasnain833/Planify",
-    liveLink: null,
-    year: "2024",
-    highlights: ["Collaborative flow design", "Real-time state syncing", "Secure transaction layer"],
-  },
-  {
-    title: "CREATIVE LANDING",
-    description: "High-conversion agency entry point.",
-    longDescription: "A precision-engineered landing page for creative agencies. Focused on visceral visual impact and lightning-fast performance across all viewport scales.",
-    image: '/img/landingpage.png',
-    technologies: ["React", "Tailwind CSS", "Framer Motion"],
-    githubLink: "https://github.com/hasnain833/Landing-Page",
-    liveLink: null,
-    year: "2024",
-    highlights: ["Visceral UI design", "Performance-first architecture", "Advanced layout dynamics"],
-  }
-];
-
 const Projects = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollXProgress } = useScroll({ container: containerRef });
+
+  useEffect(() => {
+    fetch('/api/admin/data/projects')
+      .then(r => r.json())
+      .then(setProjects)
+      .catch(() => { });
+  }, []);
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
