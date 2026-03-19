@@ -119,16 +119,21 @@ const Hero: React.FC = () => {
             <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-emerald-500/30 rounded-br-2xl transition-all duration-500 group-hover:translate-x-1 group-hover:translate-y-1"></div>
 
             {/* Profile Frame */}
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-[3.5rem] p-1 bg-gradient-to-tr from-white/10 via-white/5 to-white/10">
-              <div className="w-full h-full rounded-[3.3rem] overflow-hidden border-4 border-[#020617] relative">
+            <div className="relative w-64 h-80 md:w-80 md:h-[400px] lg:w-[400px] lg:h-[500px] rounded-[3.5rem] overflow-hidden">
+              <div
+                className="w-full h-full relative"
+                style={{
+                  maskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+                  WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+                }}
+              >
                 <Image
-                  src="/img/profile.jpg"
+                  src="/img/profile.png"
                   alt="Hasnain Aftab"
                   fill
                   sizes="(max-width: 768px) 320px, (max-width: 1024px) 320px, 400px"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-1000 group-hover:scale-105 mix-blend-lighten"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/40 to-transparent"></div>
               </div>
             </div>
 
