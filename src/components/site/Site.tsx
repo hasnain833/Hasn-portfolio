@@ -99,7 +99,7 @@ export default function Site({ projects, experience, services, tools }: SiteData
         <section className="work" id="work" aria-label="Selected work">
           <div className="work-head wrap">
             <h2>Selected<br />work</h2>
-            <p>Products that are live right now. Hover a screen to scroll through the real site.</p>
+            <p>Products that are live right now. Each screen scrolls through the real site.</p>
           </div>
           <div className="deck wrap">
             {featured.map((p, i) => <Card key={p.title} p={p} i={i} />)}

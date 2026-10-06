@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL as SITE } from '@/lib/site-url';
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.has-nain.dev';
 
 export default function robots(): MetadataRoute.Robots {
   return {

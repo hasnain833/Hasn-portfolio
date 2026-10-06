@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { PageHead, Skeleton } from '@/components/admin/ui';
+import { SITE_URL } from '@/lib/site-url';
 
 type Project = { title: string; image: string; liveLink: string | null; githubLink: string | null; year: string; highlights?: string[]; description?: string };
 type Job = { title: string; company: string; description?: string[]; current?: boolean };
@@ -34,7 +35,7 @@ export default function Overview() {
   return (
     <>
       <PageHead title="Overview" lead="Everything on the public site comes from here. Changes go live as soon as you save.">
-        <a className="adm-btn line" href="/" target="_blank" rel="noopener">View live site</a>
+        <a className="adm-btn line" href={SITE_URL} target="_blank" rel="noopener">View live site</a>
         <Link className="adm-btn solid" href="/admin/dashboard/projects">Edit projects</Link>
       </PageHead>
 

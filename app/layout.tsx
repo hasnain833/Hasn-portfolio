@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { SITE_URL } from '@/lib/site-url';
 
 const description =
   'Hasnain Aftab builds web products and the AI inside them. Full-stack developer based in Islamabad, working with clients in three countries.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.has-nain.dev'),
+  metadataBase: new URL(SITE_URL),
   title: 'Hasnain Aftab, full-stack developer',
   description,
   alternates: { canonical: '/' },

@@ -58,9 +58,18 @@ export default function Hero({ resumeUrl, company }: { resumeUrl?: string; compa
       cv.width = W * dpr; cv.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (!img.naturalWidth) return;
-      const h = W < 820 ? H * 0.62 : H * 0.84;
-      const w = (h * img.naturalWidth) / img.naturalHeight;
-      rect = { x: (W - w) / 2, y: H - h, w, h };
+      if (W < 820) {
+        // Phones: keep the portrait above the text block so they don't overlap.
+        const foot = hero.querySelector('.hero-foot') as HTMLElement | null;
+        const footTop = foot ? foot.offsetTop : H * 0.6;
+        const h = Math.max(220, Math.min(H * 0.58, footTop - 70));
+        const w = (h * img.naturalWidth) / img.naturalHeight;
+        rect = { x: (W - w) / 2, y: footTop - h + 24, w, h };
+      } else {
+        const h = H * 0.84;
+        const w = (h * img.naturalWidth) / img.naturalHeight;
+        rect = { x: (W - w) / 2, y: H - h, w, h };
+      }
       sample();
     }
 

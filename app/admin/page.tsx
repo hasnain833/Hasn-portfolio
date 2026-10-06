@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
+import { SITE_URL } from '@/lib/site-url';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
@@ -69,7 +70,7 @@ export default function AdminLogin() {
           <button type="submit" className="adm-btn solid" disabled={loading || !password} style={{ minHeight: 48 }}>
             {loading ? <span className="adm-spin" /> : null}{loading ? 'Signing in' : 'Sign in'}
           </button>
-          <a href="/" style={{ color: 'var(--mute)', fontSize: 14 }}>Back to the site</a>
+          <a href={SITE_URL} style={{ color: 'var(--mute)', fontSize: 14 }}>Back to the site</a>
         </form>
       </div>
     </main>
