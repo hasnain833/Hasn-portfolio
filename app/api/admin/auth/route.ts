@@ -1,24 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { SESSION_COOKIE, SESSION_MAX_AGE, createSession, passwordMatches } from '@/lib/session';
 
 export async function POST(req: NextRequest) {
-    const { password } = await req.json();
+    const { password } = await req.json().catch(() => ({}));
     const adminPassword = process.env.ADMIN_PASSWORD;
 
     if (!adminPassword) {
         return NextResponse.json({ error: 'Admin password not configured.' }, { status: 500 });
     }
 
-    if (password !== adminPassword) {
+    if (!passwordMatches(password, adminPassword)) {
         return NextResponse.json({ error: 'Invalid password.' }, { status: 401 });
     }
 
     const cookieStore = await cookies();
-    cookieStore.set('admin_session', 'authenticated', {
+    cookieStore.set(SESSION_COOKIE, await createSession(), {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
-        maxAge: 60 * 60 * 8, // 8 hours
+        maxAge: SESSION_MAX_AGE,
         path: '/',
     });
 
@@ -27,6 +28,6 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE() {
     const cookieStore = await cookies();
-    cookieStore.delete('admin_session');
+    cookieStore.delete(SESSION_COOKIE);
     return NextResponse.json({ success: true });
 }

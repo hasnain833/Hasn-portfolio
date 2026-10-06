@@ -1,126 +1,81 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Plus, Trash2, Save, Edit2, X, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import { Pencil, Plus } from 'lucide-react';
+import { Chips, DeleteButton, Drawer, Field, PageHead, Reorder, Skeleton, Toast, move, useSection } from '@/components/admin/ui';
 
 interface Service {
-    id: string;
-    icon: string;
-    title: string;
-    description: string;
-    color: string;
-    details: string[];
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  color: string;
+  details: string[];
 }
 
-const ICON_OPTIONS = ['Globe', 'Smartphone', 'Layout', 'Database', 'Cpu', 'Code2', 'Server', 'Shield'];
-const COLOR_OPTIONS = ['blue', 'emerald', 'purple', 'orange', 'red', 'pink', 'cyan', 'yellow'];
-
-const defaultService: Service = { id: '', icon: 'Globe', title: '', description: '', color: 'blue', details: [] };
+const blank = (): Service => ({ id: '', icon: 'Globe', title: '', description: '', color: 'blue', details: [] });
 
 export default function ServicesAdmin() {
-    const [services, setServices] = useState<Service[]>([]);
-    const [editing, setEditing] = useState<Service | null>(null);
-    const [saving, setSaving] = useState(false);
-    const [isNew, setIsNew] = useState(false);
+  const { data: services, loading, saving, save, status } = useSection<Service[]>('services', []);
+  const [editing, setEditing] = useState<Service | null>(null);
+  const [index, setIndex] = useState<number | null>(null);
 
-    useEffect(() => {
-        fetch('/api/admin/data/services').then(r => r.json()).then(setServices);
-    }, []);
+  const open = (s: Service | null, i: number | null) => { setEditing(s ? { ...blank(), ...s } : blank()); setIndex(i); };
+  const close = () => { setEditing(null); setIndex(null); };
+  const set = <K extends keyof Service>(k: K, v: Service[K]) => editing && setEditing({ ...editing, [k]: v });
 
-    const save = async (updated: Service[]) => {
-        setSaving(true);
-        await fetch('/api/admin/data/services', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updated) });
-        setSaving(false);
-    };
+  const submit = async () => {
+    if (!editing) return;
+    const s = { ...editing, id: editing.id || editing.title.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-') };
+    const next = index === null ? [...services, s] : services.map((x, i) => (i === index ? s : x));
+    if (await save(next)) close();
+  };
 
-    const handleSave = async () => {
-        if (!editing) return;
-        const updated = isNew
-            ? [...services, { ...editing, id: editing.title.toLowerCase().replace(/\s+/g, '-') }]
-            : services.map(s => s.id === editing.id ? editing : s);
-        setServices(updated);
-        await save(updated);
-        setEditing(null);
-        setIsNew(false);
-    };
+  return (
+    <>
+      <PageHead title="Services" lead="Shown in the “What do you need built?” command menu on the homepage. Visitors can search them, so clear titles and tags help. Up to six are shown.">
+        <button className="adm-btn solid" onClick={() => open(null, null)}><Plus size={16} />Add service</button>
+      </PageHead>
 
-    const handleDelete = async (id: string) => {
-        const updated = services.filter(s => s.id !== id);
-        setServices(updated);
-        await save(updated);
-    };
-
-    return (
-        <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-between mb-10">
-                <h1 className="text-4xl font-black text-white italic uppercase tracking-tighter">SERVICES <span className="text-blue-400">EDITOR</span>.</h1>
-                <button onClick={() => { setEditing({ ...defaultService }); setIsNew(true); }} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold uppercase text-xs tracking-widest px-5 py-3 rounded-2xl transition-all">
-                    <Plus size={16} /> Add Service
-                </button>
-            </div>
-
-            {/* Service Cards Table */}
-            <div className="space-y-4">
-                {services.map((svc) => (
-                    <div key={svc.id} className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 flex items-center gap-6">
-                        <div className={`w-10 h-10 rounded-xl bg-${svc.color}-500/10 border border-${svc.color}-500/20 flex items-center justify-center text-${svc.color}-400 text-xs font-mono font-bold`}>
-                            {svc.icon[0]}
-                        </div>
-                        <div className="flex-1">
-                            <p className="text-white font-black uppercase tracking-tight">{svc.title}</p>
-                            <p className="text-slate-500 text-xs mt-1 line-clamp-1">{svc.description}</p>
-                        </div>
-                        <div className="flex gap-2">
-                            <button onClick={() => { setEditing({ ...svc }); setIsNew(false); }} className="w-9 h-9 bg-white/5 hover:bg-blue-500/20 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-400 transition-all">
-                                <Edit2 size={15} />
-                            </button>
-                            <button onClick={() => handleDelete(svc.id)} className="w-9 h-9 bg-white/5 hover:bg-red-500/20 rounded-xl flex items-center justify-center text-slate-400 hover:text-red-400 transition-all">
-                                <Trash2 size={15} />
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Edit Modal */}
-            {editing && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 px-4">
-                    <div className="bg-[#050b1d] border border-white/10 rounded-[2rem] p-8 w-full max-w-lg shadow-2xl">
-                        <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-xl font-black text-white uppercase italic">{isNew ? 'New Service' : 'Edit Service'}</h2>
-                            <button onClick={() => setEditing(null)} className="text-slate-500 hover:text-white"><X size={20} /></button>
-                        </div>
-                        <div className="space-y-4">
-                            <input value={editing.title} onChange={e => setEditing({ ...editing, title: e.target.value })} placeholder="Service Title" className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500/50" />
-                            <textarea value={editing.description} onChange={e => setEditing({ ...editing, description: e.target.value })} placeholder="Description" rows={3} className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500/50 resize-none" />
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="text-[10px] font-mono text-slate-500 uppercase mb-2 block">Icon</label>
-                                    <select value={editing.icon} onChange={e => setEditing({ ...editing, icon: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none">
-                                        {ICON_OPTIONS.map(ic => <option key={ic} value={ic} className="bg-slate-900">{ic}</option>)}
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="text-[10px] font-mono text-slate-500 uppercase mb-2 block">Color</label>
-                                    <select value={editing.color} onChange={e => setEditing({ ...editing, color: e.target.value })} className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none">
-                                        {COLOR_OPTIONS.map(c => <option key={c} value={c} className="bg-slate-900">{c}</option>)}
-                                    </select>
-                                </div>
-                            </div>
-                            <div>
-                                <label className="text-[10px] font-mono text-slate-500 uppercase mb-2 block">Tags (comma-separated)</label>
-                                <input value={editing.details.join(', ')} onChange={e => setEditing({ ...editing, details: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} placeholder="Next.js, TypeScript, Performance" className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500/50" />
-                            </div>
-                        </div>
-                        <div className="flex gap-3 mt-6">
-                            <button onClick={() => setEditing(null)} className="flex-1 py-3 bg-white/5 hover:bg-white/10 text-white rounded-2xl transition-all text-sm font-bold uppercase tracking-widest">Cancel</button>
-                            <button onClick={handleSave} disabled={saving} className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white rounded-2xl transition-all flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest">
-                                <Save size={16} /> {saving ? 'Saving...' : 'Save'}
-                            </button>
-                        </div>
-                    </div>
+      {loading ? <Skeleton rows={3} /> : services.length === 0 ? (
+        <div className="adm-empty"><b>No services saved</b>The site is showing its default three: Web apps, AI features, APIs and data.</div>
+      ) : (
+        <div className="adm-list">
+          {services.map((s, i) => (
+            <div key={s.id || i}>
+              {i === 6 && <div className="adm-divider">Not shown on the site (only the first six are)</div>}
+              <div className="adm-row" style={{ gridTemplateColumns: 'minmax(0,1fr) auto' }}>
+                <div style={{ minWidth: 0 }}>
+                  <h3>{s.title}</h3>
+                  <p className="sub">{s.description}</p>
+                  <div className="meta">{s.details.slice(0, 3).map((t) => <span className="adm-pill" key={t}>{t}</span>)}</div>
                 </div>
-            )}
+                <div className="tools">
+                  <Reorder i={i} n={services.length} label={s.title} onMove={(to) => save(move(services, i, to))} />
+                  <button className="adm-icon" onClick={() => open(s, i)} aria-label={`Edit ${s.title}`}><Pencil size={16} /></button>
+                  <DeleteButton label={s.title || 'service'} onConfirm={() => save(services.filter((_, j) => j !== i))} />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-    );
+      )}
+
+      {editing && (
+        <Drawer title={index === null ? 'New service' : 'Edit service'} onClose={close} onSave={submit} saving={saving} saveLabel={index === null ? 'Add service' : 'Save changes'}>
+          <Field id="s-title" label="Name" hint="Short and clear, e.g. “AI features”. Words in the name pick which live demo plays: AI, Mobile, UX or Design, Data or API, otherwise a web dashboard.">
+            <input id="s-title" className="adm-input" value={editing.title} onChange={(e) => set('title', e.target.value)} required />
+          </Field>
+          <Field id="s-desc" label="Description" hint="One or two sentences.">
+            <textarea id="s-desc" className="adm-textarea" value={editing.description} onChange={(e) => set('description', e.target.value)} />
+          </Field>
+          <Field id="s-tags" label="Tags" hint="The first four are shown, and they are searchable.">
+            <Chips id="s-tags" value={editing.details} onChange={(v) => set('details', v)} placeholder="Next.js" />
+          </Field>
+        </Drawer>
+      )}
+
+      <Toast status={status} />
+    </>
+  );
 }

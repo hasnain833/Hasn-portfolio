@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { SESSION_COOKIE, verifySession } from '@/lib/session';
+import { revalidatePath } from 'next/cache';
 import clientPromise from '@/lib/mongodb';
 
 const VALID_SECTIONS = ['services', 'projects', 'skills', 'experience'];
@@ -39,8 +41,8 @@ export async function PUT(
     { params }: { params: { section: string } }
 ) {
     const cookieStore = await cookies();
-    const session = cookieStore.get('admin_session');
-    if (!session || session.value !== 'authenticated') {
+    const session = cookieStore.get(SESSION_COOKIE);
+    if (!(await verifySession(session?.value))) {
         return NextResponse.json({ error: 'Unauthorized.' }, { status: 401 });
     }
 
@@ -68,6 +70,9 @@ export async function PUT(
                 await collection.insertMany(body);
             }
         }
+
+        // Rebuild the public homepage now so the change is live immediately.
+        revalidatePath('/');
 
         return NextResponse.json({ success: true });
     } catch (error) {

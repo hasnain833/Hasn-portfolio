@@ -1,10 +1,25 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
+const description =
+  'Hasnain Aftab builds web products and the AI inside them. Full-stack developer at BitzSol, Islamabad, freelancing for clients in three countries.';
+
 export const metadata: Metadata = {
-  title: 'Hasnain - Portfolio',
-  description: 'Portfolio of Hasnain Aftab - Full Stack Developer',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://has-nain.dev'),
+  title: 'Hasnain Aftab, full-stack developer',
+  description,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Hasnain Aftab',
+    title: 'Hasnain Aftab, full-stack developer',
+    description,
+  },
+  twitter: { card: 'summary_large_image', title: 'Hasnain Aftab, full-stack developer', description },
 };
+
+export const viewport: Viewport = { themeColor: '#070A12' };
 
 export default function RootLayout({
   children,
@@ -13,9 +28,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" type="image/png" href="/img/favicon.png" />
-      </head>
       <body>{children}</body>
     </html>
   );
