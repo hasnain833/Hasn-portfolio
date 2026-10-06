@@ -2,10 +2,10 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 const description =
-  'Hasnain Aftab builds web products and the AI inside them. Full-stack developer at BitzSol, Islamabad, freelancing for clients in three countries.';
+  'Hasnain Aftab builds web products and the AI inside them. Full-stack developer based in Islamabad, working with clients in three countries.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://has-nain.dev'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.has-nain.dev'),
   title: 'Hasnain Aftab, full-stack developer',
   description,
   alternates: { canonical: '/' },
