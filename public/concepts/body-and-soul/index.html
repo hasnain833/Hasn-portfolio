@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>html{color-scheme:light dark}body{margin:0}</style>
+</head>
+<body>
+<title>Body &amp; Soul Miami</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: sunlight through Coral Way's banyans on a limestone wall (WebGL) -> "we moved" note -> six departments as an open price index -> Maydelin -> book in either language. Bilingual throughout, Spanish first. */
+:root{
+  --stone:#F3EEE7;      /* page ground: Miami limestone */
+  --stone-2:#E9E1D6;    /* panels */
+  --ink:#201A16;
+  --ink-soft:#5E554E;
+  --orange:#B8441C;     /* the brand's orange, deepened for text */
+  --line:rgba(32,26,22,.15);
+  --banyan:#1F2B24;     /* deep canopy, both themes */
+  --on-banyan:#F1ECE4;
+  --on-banyan-soft:#B7BDB3;
+  --sun:#F3A35B;
+  --display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --gutter:clamp(16px,4vw,56px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --stone:#17130F;--stone-2:#221C17;--ink:#F0E9E1;--ink-soft:#BBB0A6;--orange:#F3A35B;--line:rgba(240,233,225,.15);color-scheme:dark}}
+:root[data-theme="dark"]{--stone:#17130F;--stone-2:#221C17;--ink:#F0E9E1;--ink-soft:#BBB0A6;--orange:#F3A35B;--line:rgba(240,233,225,.15);color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;font:600 15px/1 var(--body);text-decoration:none;border:0;cursor:pointer;will-change:transform}
+.btn-orange{background:#B8441C;color:#FFF8F1}
+.btn-orange:hover{background:#A33A16}
+.btn-line{border:1px solid currentColor;background:transparent}
+[data-swap]{display:inline}
+
+/* ---------- header (sits on the sunlit hero: fixed light look) ---------- */
+.head{position:absolute;inset:0 0 auto;z-index:5;color:#201A16}
+.head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:20px}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none}
+.logo b{font:400 28px var(--display)}
+.logo span{font-size:12px;letter-spacing:.06em;color:#5E554E;margin-top:4px}
+.nav{display:flex;gap:26px;font-size:15px}
+.nav a{text-decoration:none;color:#4A423C}
+.nav a:hover{color:#201A16}
+.lang{display:flex;border:1px solid rgba(32,26,22,.3);border-radius:999px;padding:3px;gap:2px;background:rgba(243,238,231,.6)}
+.lang button{font:600 13px var(--body);min-width:44px;min-height:38px;border:0;border-radius:999px;background:transparent;color:#201A16;cursor:pointer}
+.lang button[aria-pressed="true"]{background:#201A16;color:#F3EEE7}
+@media (max-width:860px){.nav{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:#EFE6DA;color:#201A16;min-height:clamp(620px,92vh,880px);display:flex;align-items:flex-end}
+#sun{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-copy{position:relative;z-index:2;width:100%;padding-block:140px 60px;pointer-events:none}
+.hero-copy a{pointer-events:auto}
+.hero h1{font-size:clamp(66px,11.5vw,176px);letter-spacing:-.02em;line-height:.9;max-width:11ch}
+.hero h1 em{color:#B8441C}
+.hero-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px;margin-top:30px}
+.hero-sub{max-width:38ch;font-size:clamp(17px,1.5vw,20px);color:#3A322C}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn-line{color:#201A16}
+.facts{display:flex;flex-wrap:wrap;gap:28px;margin-top:40px;padding-top:20px;border-top:1px solid rgba(32,26,22,.2);font-size:14px;color:#4A423C}
+.facts strong{display:block;font:400 32px/1 var(--display);color:#201A16;margin-bottom:4px}
+
+/* ---------- moved ---------- */
+.moved{background:var(--banyan);color:var(--on-banyan)}
+.moved .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between;padding-block:22px}
+.moved p{font-size:16px}
+.moved b{font:italic 400 24px var(--display);color:var(--sun)}
+.moved a{color:var(--on-banyan);font-weight:600}
+
+/* ---------- departments index ---------- */
+.depts{padding-block:clamp(90px,12vw,160px)}
+.depts-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.depts h2{font-size:clamp(48px,7vw,104px)}
+.depts-top p{max-width:40ch;color:var(--ink-soft)}
+.dept{border-top:1px solid var(--line)}
+.dept:last-child{border-bottom:1px solid var(--line)}
+.dept-btn{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto 44px;gap:20px;align-items:center;padding:22px 0;background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.dept-btn h3{font-size:clamp(36px,5vw,68px);transition:transform .6s cubic-bezier(.2,.7,.2,1),color .3s}
+.dept-btn:hover h3{transform:translateX(14px)}
+.dept-btn[aria-expanded="true"] h3{color:var(--orange);font-style:italic}
+.dept-btn .from{font-size:15px;color:var(--ink-soft);white-space:nowrap}
+.arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .5s cubic-bezier(.2,.7,.2,1),background-color .3s}
+.arrow svg{width:16px;height:16px}
+.dept-btn[aria-expanded="true"] .arrow{transform:rotate(90deg);background:var(--stone-2)}
+.dept-body{overflow:hidden}
+.prices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;padding:4px 0 36px}
+.price{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:16px}
+.price span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink)}
+.price span:first-child{color:var(--ink-soft)}
+.dept-note{grid-column:1/-1;font-size:14px;color:var(--ink-soft);padding-top:14px}
+@media (max-width:700px){.prices{grid-template-columns:minmax(0,1fr)}.dept-btn{grid-template-columns:minmax(0,1fr) 44px}.dept-btn .from{display:none}}
+
+/* ---------- Maydelin ---------- */
+.story{background:var(--banyan);color:var(--on-banyan);padding-block:clamp(96px,12vw,170px);overflow:hidden}
+.story .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.story h2{font-size:clamp(44px,6vw,86px)}
+.story p{color:var(--on-banyan-soft);margin-top:22px;max-width:48ch}
+.quote{margin:34px 0 0;padding:0;font:italic 400 clamp(26px,2.6vw,34px)/1.25 var(--display);color:var(--on-banyan)}
+.quote cite{display:block;margin-top:12px;font:400 14px var(--body);color:var(--on-banyan-soft);font-style:normal}
+.values{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.values span{font-size:14px;border:1px solid rgba(241,236,228,.25);border-radius:999px;padding:6px 14px}
+.photo{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:18px;overflow:hidden;background:linear-gradient(170deg,#3A4A3E,#162019);display:flex;align-items:flex-end;padding:20px;color:var(--on-banyan-soft);font-size:13px}
+.photo::after{content:"";position:absolute;inset:0;background:radial-gradient(35% 30% at 30% 25%,rgba(243,163,91,.35),transparent 70%),radial-gradient(30% 25% at 70% 60%,rgba(243,163,91,.2),transparent 70%)}
+.photo span{position:relative;z-index:1}
+@media (max-width:860px){.story .wrap{grid-template-columns:minmax(0,1fr)}.photo{max-width:420px}}
+
+/* ---------- book ---------- */
+.book{padding-block:clamp(96px,12vw,160px)}
+.book .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px)}
+.book h2{font-size:clamp(48px,7vw,104px)}
+.book .lede{color:var(--ink-soft);margin-top:20px;max-width:40ch}
+.info{display:flex;flex-direction:column;gap:20px;margin-top:36px}
+.info div{padding-top:16px;border-top:1px solid var(--line)}
+.info span{display:block;font-size:14px;color:var(--ink-soft)}
+.info b{font-weight:500;font-size:19px;user-select:all}
+form{background:var(--stone-2);border-radius:26px;padding:clamp(24px,4vw,44px);display:flex;flex-direction:column;gap:22px}
+form h3{font-size:36px}
+fieldset{border:0;padding:0;margin:0}
+legend{font-weight:600;font-size:14px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);font-size:15px;cursor:pointer;transition:background-color .25s,color .25s}
+.chip input:checked + span{background:var(--ink);color:var(--stone);border-color:var(--ink)}
+.chip input:focus-visible + span{outline:2px solid var(--orange);outline-offset:2px}
+label.f{display:flex;flex-direction:column;gap:8px;font-weight:600;font-size:14px}
+input[type=text],input[type=tel],input[type=date]{font:400 16px var(--body);color:var(--ink);background:var(--stone);border:1px solid var(--line);border-radius:12px;min-height:52px;padding:0 16px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.msg{min-height:24px;color:var(--orange);font-size:15px}
+@media (max-width:860px){.book .wrap{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.two{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- balayage, painted by your scroll ---------- */
+.bal{background:#1C1511;color:#F4ECE2}
+.bal-stage{position:relative;height:100vh;min-height:560px;overflow:hidden}
+#hair{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bal-top{position:absolute;z-index:2;top:0;left:0;right:0;padding-block:clamp(30px,6vh,60px) 0;pointer-events:none}
+.bal-top h2{font-size:clamp(40px,5.4vw,78px);max-width:12ch}
+.bal-top p{margin-top:10px;color:#C9BBAE;font-size:15px}
+.bal-caps{position:absolute;z-index:2;left:0;right:0;bottom:clamp(28px,7vh,64px);pointer-events:none}
+.bal-caps .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.steps{list-style:none;margin:0;padding:0;display:flex;gap:22px;flex-wrap:wrap}
+.steps li{font:400 24px var(--display);color:rgba(244,236,226,.35);transition:color .4s}
+.steps li.on{color:#F4ECE2}
+.steps li.on::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sun);margin-right:10px;vertical-align:middle}
+.bal-say{max-width:36ch;font-size:16px;color:#E3D7CA;min-height:52px}
+.bal-meter{width:180px;height:2px;background:rgba(244,236,226,.2);position:relative}
+.bal-meter i{position:absolute;inset:0;background:var(--sun);transform-origin:left;transform:scaleX(var(--f,0))}
+@media (prefers-reduced-motion:reduce){.bal-stage{height:auto;min-height:0}#hair{position:relative;height:520px}.bal-top,.bal-caps{position:relative;padding-block:24px}}
+
+.foot{background:var(--banyan);color:var(--on-banyan-soft);padding-block:56px 40px;font-size:14px}
+.foot .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot b{display:block;font:400 28px var(--display);color:var(--on-banyan);margin-bottom:6px}
+.pill{position:fixed;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:20;transform:translateY(150%);transition:transform .6s cubic-bezier(.2,.7,.2,1);box-shadow:0 16px 36px -16px rgba(32,26,22,.6)}
+.pill.on{transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="head">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>Body &amp; Soul</b><span data-es="Salón y Med Spa · Miami" data-en="Salon and Med Spa · Miami">Salón y Med Spa · Miami</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
+      <a href="#balayage">Balayage</a>
+      <a href="#historia" data-es="Nuestra historia" data-en="Our story">Nuestra historia</a>
+      <a href="#reservar" data-es="Reservar" data-en="Book">Reservar</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" id="lang-es" aria-pressed="true" lang="es">ES</button>
+      <button type="button" id="lang-en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Body &amp; Soul">
+    <canvas id="sun" aria-hidden="true"></canvas>
+    <div class="hero-copy">
+      <div class="wrap">
+        <h1 id="headline" data-es-html="Tu destino final a la &lt;em&gt;belleza.&lt;/em&gt;" data-en-html="Your final destination for &lt;em&gt;beauty.&lt;/em&gt;">Tu destino final a la <em>belleza.</em></h1>
+        <div class="hero-row">
+          <p class="hero-sub" data-es="Peluquería, uñas, faciales, spa y tratamientos médicos estéticos bajo un mismo techo, en nuestro nuevo hogar de Coral Way." data-en="Hair, nails, facials, spa and medical aesthetics under one roof, in our new home on Coral Way.">Peluquería, uñas, faciales, spa y tratamientos médicos estéticos bajo un mismo techo, en nuestro nuevo hogar de Coral Way.</p>
+          <div class="hero-actions">
+            <a class="btn btn-orange magnetic" href="#reservar" data-es="Reservar cita" data-en="Book a visit">Reservar cita</a>
+            <a class="btn btn-line magnetic" href="#servicios" data-es="Ver precios" data-en="See prices">Ver precios</a>
+          </div>
+        </div>
+        <div class="facts">
+          <span><strong>4.6</strong><span data-es="en 100 reseñas de Google" data-en="from 100 Google reviews">en 100 reseñas de Google</span></span>
+          <span><strong>6</strong><span data-es="departamentos de belleza" data-en="beauty departments">departamentos de belleza</span></span>
+          <span><strong>ES · EN</strong><span data-es="atendemos en ambos idiomas" data-en="we speak both languages">atendemos en ambos idiomas</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="moved">
+    <div class="wrap">
+      <p><b data-es="¡Nos mudamos!" data-en="We've moved!">¡Nos mudamos!</b>&nbsp; <span data-es="A solo unas cuadras: 1566 Coral Way, Miami, FL 33145" data-en="Just a few blocks away: 1566 Coral Way, Miami, FL 33145">A solo unas cuadras: 1566 Coral Way, Miami, FL 33145</span></p>
+      <a href="#reservar" data-es="Cómo llegar" data-en="Get directions">Cómo llegar</a>
+    </div>
+  </div>
+
+  <section class="depts" id="servicios">
+    <div class="wrap">
+      <div class="depts-top">
+        <h2 data-es="Servicios y precios" data-en="Services and prices">Servicios y precios</h2>
+        <p data-es="Precios reales, sin sorpresas. Toca un departamento para ver la lista completa." data-en="Real prices, no surprises. Tap a department to see the full list.">Precios reales, sin sorpresas. Toca un departamento para ver la lista completa.</p>
+      </div>
+
+      <div class="dept">
+        <button class="dept-btn" id="d1" aria-expanded="true" aria-controls="d1b"><h3 data-es="Peluquería" data-en="Hair">Peluquería</h3><span class="from" data-es="desde $10" data-en="from $10">desde $10</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 2l6 6-6 6"/></svg></span></button>
+        <div class="dept-body" id="d1b" role="region" aria-labelledby="d1"><div class="prices">
+          <div class="price"><span data-es="Corte de mujer" data-en="Women's haircut">Corte de mujer</span><span>$35–40</span></div>
+          <div class="price"><span data-es="Corte de hombre" data-en="Men's haircut">Corte de hombre</span><span>$35–60</span></div>
+          <div class="price"><span data-es="Lavado" data-en="Wash">Lavado</span><span>$10</span></div>
+          <div class="price"><span data-es="Secado" data-en="Blow-dry">Secado</span><span>$45–120</span></div>
+          <div class="price"><span data-es="Color raíz" data-en="Root color">Color raíz</span><span>$55–60</span></div>
+          <div class="price"><span data-es="Color completo" data-en="Full color">Color completo</span><span>$150–200</span></div>
+          <div class="price"><span data-es="Rayitos totales" data-en="Full highlights">Rayitos totales</span><span>$300–400</span></div>
+          <div class="price"><span>Balayage</span><span>$350–1,000</span></div>
+          <div class="price"><span data-es="Keratina" data-en="Keratin">Keratina</span><span>$150+</span></div>
+          <div class="price"><span data-es="Botox capilar" data-en="Hair Botox">Botox capilar</span><span>$120+</span></div>
+          <div class="price"><span data-es="Alisado" data-en="Straightening">Alisado</span><span>$200–350</span></div>
+          <div class="price"><span data-es="Peinado completo" data-en="Full styling">Peinado completo</span><span>$150–200</span></div>
+        </div></div>
+      </div>
+
+      <div class="dept">
+        <button class="dept-btn" id="d2" aria-expanded="false" aria-controls="d2b"><h3 data-es="Uñas" data-en="Nails">Uñas</h3><span class="from" data-es="desde $5" data-en="from $5">desde $5</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 2l6 6-6 6"/></svg></span></button>
+        <div class="dept-body" id="d2b" role="region" aria-labelledby="d2" hidden><div class="prices">
+          <div class="price"><span data-es="Manicura regular" data-en="Regular manicure">Manicura regular</span><span>$20</span></div>
+          <div class="price"><span data-es="Pedicura regular" data-en="Regular pedicure">Pedicura regular</span><span>$28</span></div>
+          <div class="price"><span data-es="Mani y pedi regular" data-en="Regular mani and pedi">Mani y pedi regular</span><span>$40</span></div>
+          <div class="price"><span data-es="Manicura gel" data-en="Gel manicure">Manicura gel</span><span>$40</span></div>
+          <div class="price"><span data-es="Mani gel + pedi gel" data-en="Gel mani + gel pedi">Mani gel + pedi gel</span><span>$75</span></div>
+          <div class="price"><span data-es="Acrílico" data-en="Acrylic set">Acrílico</span><span>$80</span></div>
+          <div class="price"><span data-es="Relleno de acrílico" data-en="Acrylic refill">Relleno de acrílico</span><span>$70</span></div>
+          <div class="price"><span>Apress gel</span><span>$70</span></div>
+          <div class="price"><span data-es="Diseño" data-en="Nail art">Diseño</span><span>$10</span></div>
+          <div class="price"><span data-es="Parafina (pedicura)" data-en="Paraffin (pedicure)">Parafina (pedicura)</span><span>$20</span></div>
+        </div></div>
+      </div>
+
+      <div class="dept">
+        <button class="dept-btn" id="d3" aria-expanded="false" aria-controls="d3b"><h3 data-es="Rostro y pestañas" data-en="Face and lashes">Rostro y pestañas</h3><span class="from" data-es="desde $25" data-en="from $25">desde $25</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 2l6 6-6 6"/></svg></span></button>
+        <div class="dept-body" id="d3b" role="region" aria-labelledby="d3" hidden><div class="prices">
+          <div class="price"><span data-es="Hidratación facial" data-en="Hydrating facial">Hidratación facial</span><span>$50</span></div>
+          <div class="price"><span>Pologen</span><span>$90</span></div>
+          <div class="price"><span data-es="Tinte de cejas" data-en="Brow tint">Tinte de cejas</span><span>$25</span></div>
+          <div class="price"><span data-es="Maquillaje social" data-en="Event makeup">Maquillaje social</span><span>$120</span></div>
+          <div class="price"><span data-es="Maquillaje completo" data-en="Full makeup and effects">Maquillaje completo</span><span>$400</span></div>
+          <div class="price"><span data-es="Extensiones y lifting de pestañas" data-en="Lash extensions and lift">Extensiones y lifting de pestañas</span><span>[PRECIO]</span></div>
+        </div></div>
+      </div>
+
+      <div class="dept">
+        <button class="dept-btn" id="d4" aria-expanded="false" aria-controls="d4b"><h3 data-es="Spa y cuerpo" data-en="Spa and body">Spa y cuerpo</h3><span class="from" data-es="desde $40" data-en="from $40">desde $40</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 2l6 6-6 6"/></svg></span></button>
+        <div class="dept-body" id="d4b" role="region" aria-labelledby="d4" hidden><div class="prices">
+          <div class="price"><span data-es="Masaje 30 min" data-en="Massage, 30 min">Masaje 30 min</span><span>$40</span></div>
+          <div class="price"><span data-es="Masaje 45 min" data-en="Massage, 45 min">Masaje 45 min</span><span>$55</span></div>
+          <div class="price"><span data-es="Masaje 1 hora" data-en="Massage, 1 hour">Masaje 1 hora</span><span>$70</span></div>
+          <div class="price"><span>Facial</span><span>$45</span></div>
+          <div class="price"><span data-es="Cavitación" data-en="Cavitation">Cavitación</span><span>$50</span></div>
+          <div class="price"><span data-es="Lipo láser" data-en="Lipo laser">Lipo láser</span><span>$50</span></div>
+          <div class="price"><span data-es="Carboxiterapia" data-en="Carboxytherapy">Carboxiterapia</span><span>$50</span></div>
+          <div class="price"><span data-es="Presoterapia" data-en="Pressotherapy">Presoterapia</span><span>$50</span></div>
+          <p class="dept-note" data-es="Algunos tratamientos corporales tienen restricciones. Te orientamos en tu consulta." data-en="Some body treatments have restrictions. We'll advise you at your consultation.">Algunos tratamientos corporales tienen restricciones. Te orientamos en tu consulta.</p>
+        </div></div>
+      </div>
+
+      <div class="dept">
+        <button class="dept-btn" id="d5" aria-expanded="false" aria-controls="d5b"><h3 data-es="Depilación láser" data-en="Laser hair removal">Depilación láser</h3><span class="from" data-es="6 sesiones desde $200" data-en="6 sessions from $200">6 sesiones desde $200</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 2l6 6-6 6"/></svg></span></button>
+        <div class="dept-body" id="d5b" role="region" aria-labelledby="d5" hidden><div class="prices">
+          <div class="price"><span data-es="Zonas pequeñas, 6 sesiones" data-en="Small areas, 6 sessions">Zonas pequeñas, 6 sesiones</span><span>$200</span></div>
+          <div class="price"><span data-es="Zonas medianas, 6 sesiones" data-en="Medium areas, 6 sessions">Zonas medianas, 6 sesiones</span><span>$300</span></div>
+          <div class="price"><span data-es="Zonas grandes, 6 sesiones" data-en="Large areas, 6 sessions">Zonas grandes, 6 sesiones</span><span>$400</span></div>
+        </div></div>
+      </div>
+
+      <div class="dept">
+        <button class="dept-btn" id="d6" aria-expanded="false" aria-controls="d6b"><h3 data-es="Tratamientos médicos" data-en="Medical treatments">Tratamientos médicos</h3><span class="from" data-es="con consulta" data-en="by consultation">con consulta</span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 2l6 6-6 6"/></svg></span></button>
+        <div class="dept-body" id="d6b" role="region" aria-labelledby="d6" hidden><div class="prices">
+          <div class="price"><span>Botox</span><span data-es="Consulta" data-en="Consult">Consulta</span></div>
+          <div class="price"><span data-es="Plasma PRP" data-en="PRP plasma">Plasma PRP</span><span data-es="Consulta" data-en="Consult">Consulta</span></div>
+          <div class="price"><span>Plasmagel</span><span data-es="Consulta" data-en="Consult">Consulta</span></div>
+          <div class="price"><span data-es="Lifting con hilos" data-en="Thread lift">Lifting con hilos</span><span data-es="Consulta" data-en="Consult">Consulta</span></div>
+          <div class="price"><span data-es="Ozonoterapia" data-en="Ozone therapy">Ozonoterapia</span><span data-es="Consulta" data-en="Consult">Consulta</span></div>
+          <div class="price"><span data-es="Terapia neural" data-en="Neural therapy">Terapia neural</span><span data-es="Consulta" data-en="Consult">Consulta</span></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bal" id="balayage" aria-label="Balayage">
+    <div class="bal-stage">
+      <canvas id="hair" role="img" aria-label="Illustration of dark hair being hand-painted with honey balayage tones as you scroll" data-es-label="Ilustración de cabello oscuro pintado a mano con tonos miel de balayage mientras haces scroll"></canvas>
+      <div class="bal-top">
+        <div class="wrap">
+          <h2 data-es="Balayage, pintado a mano." data-en="Balayage, painted by hand.">Balayage, pintado a mano.</h2>
+          <p data-es="Haz scroll despacio. El pincel sigue tu ritmo." data-en="Scroll slowly. The brush follows your pace.">Haz scroll despacio. El pincel sigue tu ritmo.</p>
+        </div>
+      </div>
+      <div class="bal-caps">
+        <div class="wrap">
+          <div>
+            <ol class="steps" id="steps">
+              <li class="on" data-es="Secciones" data-en="Section">Secciones</li>
+              <li data-es="Pintar" data-en="Paint">Pintar</li>
+              <li data-es="Difuminar" data-en="Blend">Difuminar</li>
+              <li data-es="Brillo" data-en="Glow">Brillo</li>
+            </ol>
+            <p class="bal-say" id="say" data-es="Dividimos el cabello en secciones para pintar cada mechón donde le daría el sol." data-en="We divide the hair into sections so each strand is painted where the sun would naturally lighten it.">Dividimos el cabello en secciones para pintar cada mechón donde le daría el sol.</p>
+          </div>
+          <div class="bal-meter" aria-hidden="true"><i id="balbar"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="historia">
+    <div class="wrap">
+      <div class="photo" id="photo"><span data-es="Foto: Maydelin Govea en el salón" data-en="Photo: Maydelin Govea in the salon">Foto: Maydelin Govea en el salón</span></div>
+      <div>
+        <h2 data-es="Fundado por Maydelin Govea" data-en="Founded by Maydelin Govea">Fundado por Maydelin Govea</h2>
+        <p data-es="Maydelin llegó de Cuba con una visión: un lugar donde la belleza, la comodidad y la atención personal se unen. Hoy Body &amp; Soul atiende a familias de Miami en peluquería, uñas, spa y medicina estética, con un equipo que te conoce por tu nombre." data-en="Maydelin came from Cuba with a vision: a place where beauty, comfort and personal attention come together. Today Body &amp; Soul looks after Miami families across hair, nails, spa and medical aesthetics, with a team that knows you by name.">Maydelin llegó de Cuba con una visión: un lugar donde la belleza, la comodidad y la atención personal se unen. Hoy Body &amp; Soul atiende a familias de Miami en peluquería, uñas, spa y medicina estética, con un equipo que te conoce por tu nombre.</p>
+        <blockquote class="quote"><span data-es="“Una de las empresarias más destacadas de la industria de la belleza en Miami.”" data-en="“One of the most prominent entrepreneurs in Miami's beauty industry.”">“Una de las empresarias más destacadas de la industria de la belleza en Miami.”</span><cite>Diario Las Américas</cite></blockquote>
+        <div class="values">
+          <span data-es="Humildad" data-en="Humility">Humildad</span>
+          <span data-es="Honestidad" data-en="Honesty">Honestidad</span>
+          <span data-es="Integridad" data-en="Integrity">Integridad</span>
+          <span data-es="Respeto" data-en="Respect">Respeto</span>
+          <span data-es="Bondad" data-en="Kindness">Bondad</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="reservar">
+    <div class="wrap">
+      <div>
+        <h2 data-es="Reserva tu cita" data-en="Book your visit">Reserva tu cita</h2>
+        <p class="lede" data-es="Elige el servicio y el día. Te confirmamos por teléfono o mensaje." data-en="Choose a service and a day. We'll confirm by phone or text.">Elige el servicio y el día. Te confirmamos por teléfono o mensaje.</p>
+        <div class="info">
+          <div><span data-es="Dirección" data-en="Address">Dirección</span><b>1566 Coral Way, Miami, FL 33145</b></div>
+          <div><span data-es="Teléfonos" data-en="Phone">Teléfonos</span><b>(786) 618-9692 · (786) 332-2988</b></div>
+          <div><span>Email</span><b>bodyandsoulspaok@gmail.com</b></div>
+          <div><span data-es="Horario" data-en="Hours">Horario</span><b data-es="[HORARIO]" data-en="[HOURS]">[HORARIO]</b></div>
+        </div>
+      </div>
+      <form id="bookform" novalidate>
+        <h3 data-es="Solicitar cita" data-en="Request an appointment">Solicitar cita</h3>
+        <fieldset>
+          <legend data-es="Servicio" data-en="Service">Servicio</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="svc" id="s1" checked><span data-es="Peluquería" data-en="Hair">Peluquería</span></label>
+            <label class="chip"><input type="radio" name="svc" id="s2"><span data-es="Uñas" data-en="Nails">Uñas</span></label>
+            <label class="chip"><input type="radio" name="svc" id="s3"><span data-es="Rostro" data-en="Face">Rostro</span></label>
+            <label class="chip"><input type="radio" name="svc" id="s4"><span data-es="Spa y cuerpo" data-en="Spa and body">Spa y cuerpo</span></label>
+            <label class="chip"><input type="radio" name="svc" id="s5"><span data-es="Láser" data-en="Laser">Láser</span></label>
+            <label class="chip"><input type="radio" name="svc" id="s6"><span data-es="Médico" data-en="Medical">Médico</span></label>
+          </div>
+        </fieldset>
+        <div class="two">
+          <label class="f" for="b-date"><span data-es="Fecha" data-en="Date">Fecha</span><input type="date" id="b-date"></label>
+          <label class="f" for="b-phone"><span data-es="Teléfono" data-en="Phone">Teléfono</span><input type="tel" id="b-phone" autocomplete="tel" placeholder="(786) 000-0000"></label>
+        </div>
+        <label class="f" for="b-name"><span data-es="Nombre" data-en="Name">Nombre</span><input type="text" id="b-name" autocomplete="name"></label>
+        <button class="btn btn-orange magnetic" type="submit" data-es="Solicitar cita" data-en="Request appointment">Solicitar cita</button>
+        <p class="msg" id="msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><b>Body &amp; Soul</b><span data-es="Salón y Med Spa en Coral Way, Miami." data-en="Salon and med spa on Coral Way, Miami.">Salón y Med Spa en Coral Way, Miami.</span></div>
+    <div data-es="Diseño conceptual de Hasnain, has-nain.dev. No es el sitio oficial." data-en="Concept design by Hasnain, has-nain.dev. Not the live site.">Diseño conceptual de Hasnain, has-nain.dev. No es el sitio oficial.</div>
+  </div>
+</footer>
+
+<a class="btn btn-orange pill" id="pill" href="#reservar" data-es="Reservar cita" data-en="Book a visit">Reservar cita</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGsap = typeof gsap !== 'undefined';
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger, SplitText);
+  document.documentElement.lang = 'es';
+
+  var lenis = null;
+  if (!reduce && hasGsap && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: 0.09 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var el = a.getAttribute('href') === '#top' ? document.body : document.querySelector(a.getAttribute('href'));
+      if (!el) return; e.preventDefault();
+      if (lenis) lenis.scrollTo(el, { duration: 1.4 }); else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------- Coral Way light: sun through banyan leaves on limestone ---------- */
+  var sunU = null;
+  (function(){
+    var canvas = document.getElementById('sun');
+    if (typeof THREE === 'undefined' || !canvas) return;
+    var renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false }); } catch (e) { return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    var scene = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    var U = { uTime: { value: 0 }, uRes: { value: new THREE.Vector2(1, 1) }, uMouse: { value: new THREE.Vector2(0.72, 0.62) }, uLight: { value: 0 } };
+    var mat = new THREE.ShaderMaterial({
+      uniforms: U,
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
+      fragmentShader: [
+        'precision highp float;',
+        'varying vec2 vUv; uniform float uTime, uLight; uniform vec2 uRes, uMouse;',
+        'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }',
+        'float noise(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f*f*(3.0-2.0*f);',
+        '  return mix(mix(hash(i), hash(i+vec2(1,0)), u.x), mix(hash(i+vec2(0,1)), hash(i+vec2(1,1)), u.x), u.y); }',
+        'float fbm(vec2 p){ float v = 0.0, a = 0.5; for(int i=0;i<5;i++){ v += a*noise(p); p = p*2.02 + 3.1; a *= 0.5; } return v; }',
+        'void main(){',
+        '  float asp = uRes.x / uRes.y; vec2 p = vec2(vUv.x * asp, vUv.y);',
+        '  float t = uTime;',
+        // limestone: soft grain and small fossil pits
+        '  float grain = fbm(p * 18.0) * 0.5 + fbm(p * 70.0) * 0.25;',
+        '  float pits = smoothstep(0.72, 0.8, fbm(p * 26.0 + 9.0));',
+        '  vec3 stone = vec3(0.93, 0.90, 0.85) - grain * 0.07 - pits * 0.05;',
+        // the canopy: two drifting leaf layers, swaying in a sea breeze
+        '  vec2 sway = vec2(sin(t * 0.35) * 0.04 + t * 0.012, cos(t * 0.27) * 0.03);',
+        '  float leavesA = fbm(p * 3.2 + sway);',
+        '  float leavesB = fbm(p * 5.5 - sway * 1.6 + 4.0);',
+        '  float gapsA = smoothstep(0.55, 0.6, leavesA);',
+        '  float gapsB = smoothstep(0.5, 0.58, leavesB) * 0.6;',
+        '  float sun = clamp(gapsA + gapsB * gapsA * 0.6 + gapsB * 0.25, 0.0, 1.0);',
+        // a broad patch of sun follows the pointer
+        '  vec2 m = vec2(uMouse.x * asp, uMouse.y);',
+        '  float patchSun = exp(-dot(p - m, p - m) / 0.06) * 0.55;',
+        '  sun = clamp(sun * 0.75 + patchSun * (0.5 + gapsA), 0.0, 1.0);',
+        '  vec3 shade = stone * vec3(0.80, 0.80, 0.78);',
+        '  vec3 lit = stone * vec3(1.06, 1.0, 0.9) + vec3(0.06, 0.03, -0.01);',
+        '  vec3 col = mix(shade, lit, sun * uLight);',
+        // keep the headline zone calm and readable
+        '  float calm = smoothstep(0.62, 0.0, vUv.y) * smoothstep(1.0, 0.25, vUv.x);',
+        '  col = mix(col, vec3(0.93, 0.90, 0.85) * mix(0.9, 1.0, sun), calm * 0.55);',
+        '  col *= mix(0.86, 1.0, smoothstep(1.3, 0.4, length((vUv - vec2(0.5, 0.55)) * vec2(asp, 1.0))));',
+        '  gl_FragColor = vec4(col, 1.0);',
+        '}'
+      ].join('\n')
+    });
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+    function size(){ var w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); U.uRes.value.set(w, h); }
+    size();
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(size).observe(canvas);
+    var target = U.uMouse.value.clone();
+    if (!reduce) canvas.parentElement.addEventListener('pointermove', function(e){
+      var r = canvas.getBoundingClientRect();
+      target.set((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height);
+    });
+    var clock = new THREE.Clock(), visible = true;
+    if (typeof IntersectionObserver !== 'undefined') new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(canvas);
+    function frame(){
+      requestAnimationFrame(frame);
+      if (!visible) return;
+      U.uTime.value = clock.getElapsedTime();
+      U.uMouse.value.lerp(target, 0.04);
+      renderer.render(scene, cam);
+    }
+    if (reduce || !hasGsap) { U.uLight.value = 1; U.uTime.value = 3; renderer.render(scene, cam); }
+    else frame();
+    sunU = U;
+  })();
+
+  /* ---------- language: Spanish first, English on request ---------- */
+  var lang = 'es';
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-es]'));
+  var headline = document.getElementById('headline');
+  var split = null;
+  function setLang(next){
+    if (next === lang) return;
+    lang = next;
+    document.documentElement.lang = next;
+    document.getElementById('lang-es').setAttribute('aria-pressed', String(next === 'es'));
+    document.getElementById('lang-en').setAttribute('aria-pressed', String(next === 'en'));
+    var apply = function(){
+      nodes.forEach(function(n){ n.textContent = n.getAttribute('data-' + next); });
+      if (split) { split.revert(); split = null; }
+      headline.innerHTML = headline.getAttribute('data-' + next + '-html');
+      try { localStorage.setItem('bs-lang', next); } catch (e) {}
+    };
+    if (reduce || !hasGsap) { apply(); return; }
+    var visibleText = nodes.filter(function(n){ var r = n.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; });
+    gsap.to(visibleText.concat([headline]), { autoAlpha: 0, y: -8, duration: 0.22, stagger: 0.008, ease: 'power2.in', onComplete: function(){
+      apply();
+      gsap.fromTo(visibleText, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.012, ease: 'power3.out' });
+      split = SplitText.create(headline, { type: 'words', mask: 'words' });
+      gsap.set(headline, { autoAlpha: 1, y: 0 });
+      gsap.from(split.words, { yPercent: 105, duration: 0.8, stagger: 0.06, ease: 'expo.out' });
+    } });
+  }
+  document.getElementById('lang-es').addEventListener('click', function(){ setLang('es'); });
+  document.getElementById('lang-en').addEventListener('click', function(){ setLang('en'); });
+  try { var saved = localStorage.getItem('bs-lang'); if (saved === 'en') { reduce = true; setLang('en'); reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } } catch (e) {}
+
+  if (!hasGsap) return;
+  var mm = gsap.matchMedia();
+  mm.add('(prefers-reduced-motion: no-preference)', function(){
+    /* the one orchestrated moment: morning light arrives, the headline settles */
+    split = SplitText.create(headline, { type: 'words', mask: 'words' });
+    var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    if (sunU) tl.to(sunU.uLight, { value: 1, duration: 2.4, ease: 'power2.out' }, 0);
+    tl.from(split.words, { yPercent: 105, duration: 1.3, stagger: 0.08 }, 0.3)
+      .from('.hero-sub, .hero-actions .btn', { autoAlpha: 0, y: 20, duration: 1, stagger: 0.08 }, 0.9)
+      .from('.facts > span', { autoAlpha: 0, y: 14, duration: 0.8, stagger: 0.07 }, 1.1)
+      .from('.head', { autoAlpha: 0, duration: 1 }, 1);
+    gsap.from('#photo', { clipPath: 'inset(0% 0% 100% 0% round 18px)', duration: 1.4, ease: 'expo.out',
+      scrollTrigger: { trigger: '#photo', start: 'top 75%', once: true } });
+  });
+
+  /* ---------- balayage scrubbed by scroll ----------
+     Progress 0..1 comes only from the scroll position, so stopping holds the frame
+     and scrolling back lifts the colour off. To use real footage later, export a
+     clip to numbered frames and list them in FRAME_URLS: the same code draws them. */
+  var FRAME_URLS = [];
+  var STEP_TEXT = [
+    { es: 'Dividimos el cabello en secciones para pintar cada mechón donde le daría el sol.', en: 'We divide the hair into sections so each strand is painted where the sun would naturally lighten it.' },
+    { es: 'El aclarado se pinta a mano, de medios a puntas, sección por sección.', en: 'Lightener is painted by hand from mid-lengths to ends, one section at a time.' },
+    { es: 'Suavizamos la transición para que crezca sin línea de raíz.', en: 'We soften the transition so it grows out with no harsh root line.' },
+    { es: 'Tono miel, brillo y movimiento. Desde $350.', en: 'Honey tones, shine and movement. From $350.' }
+  ];
+  (function initHair(){
+    var cv = document.getElementById('hair');
+    if (!cv) return;
+    var ctx = cv.getContext('2d');
+    var steps = Array.prototype.slice.call(document.querySelectorAll('#steps li'));
+    var say = document.getElementById('say'), bar = document.getElementById('balbar');
+    var frames = FRAME_URLS.map(function(u){ var im = new Image(); im.onload = function(){ im._ok = true; render(last); }; im.src = u; return im; });
+    var W = 0, H = 0, last = 0, curStep = -1, strands = [];
+    var SECTIONS = 4;
+
+    function rnd(seed){ var x = Math.sin(seed * 9301 + 49297) * 233280; return x - Math.floor(x); }
+    function build(){
+      strands = [];
+      var N = W < 700 ? 110 : 170;
+      for (var i = 0; i < N; i++) {
+        var u = i / (N - 1);
+        strands.push({
+          u: u,
+          sec: Math.min(SECTIONS - 1, Math.floor(u * SECTIONS)),
+          w: 1.6 + rnd(i) * 2.4,
+          start: 0.32 + rnd(i + 3) * 0.16,     /* where the paint begins on this strand */
+          wave: 0.6 + rnd(i + 7) * 1.2,
+          phase: rnd(i + 11) * 6.28,
+          shade: rnd(i + 17),
+          light: rnd(i + 23)
+        });
+      }
+    }
+    function fit(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight; if (!W || !H) return;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build(); render(last);
+    }
+    var clamp = function(v){ return v < 0 ? 0 : v > 1 ? 1 : v; };
+    var ease = function(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; };
+    function mix(a, b, t){ return [a[0] + (b[0]-a[0])*t, a[1] + (b[1]-a[1])*t, a[2] + (b[2]-a[2])*t]; }
+    function rgb(c, k){ k = k || 1; return 'rgb(' + Math.round(c[0]*k) + ',' + Math.round(c[1]*k) + ',' + Math.round(c[2]*k) + ')'; }
+
+    function scene(P){
+      /* phases: 0–.1 section, .1–.72 paint (4 sections), .72–.86 blend, .86–1 glow */
+      var part = ease(clamp(P / 0.1));
+      var blend = ease(clamp((P - 0.72) / 0.14));
+      var glow = ease(clamp((P - 0.86) / 0.14));
+      ctx.fillStyle = '#1C1511'; ctx.fillRect(0, 0, W, H);
+
+      var cx = W * 0.5, top = H * 0.04, len = H * 1.02;
+      var spread = Math.min(W * 0.62, 760);
+      var base = [42, 27, 19], baseHi = [74, 48, 32];
+      var honey = [226, 176, 112], caramel = [184, 124, 70];
+      var brush = null;
+
+      for (var i = 0; i < strands.length; i++) {
+        var s = strands[i];
+        var gap = (s.sec - (SECTIONS - 1) / 2) * 16 * part;
+        var x0 = cx + (s.u - 0.5) * spread * 0.55 + gap;
+        var x1 = cx + (s.u - 0.5) * spread + gap * 1.4;
+        var sway = Math.sin(s.phase + P * 3.2) * 10 * s.wave;
+        /* how far down this strand the brush has reached */
+        var secStart = 0.1 + s.sec * 0.155, local = clamp((P - secStart) / 0.155);
+        var reach = s.start + (1.02 - s.start) * ease(local);
+        var painted = local > 0;
+        var dark = mix(base, baseHi, s.shade * 0.6);
+        var light = mix(caramel, honey, 0.35 + s.light * 0.65);
+        var g = ctx.createLinearGradient(0, top, 0, top + len);
+        var st = s.start - blend * 0.14;
+        g.addColorStop(0, rgb(dark, 0.85));
+        g.addColorStop(Math.max(0.01, st - 0.02), rgb(dark));
+        if (painted) {
+          var r = Math.min(0.995, reach);
+          var soft = 0.03 + blend * 0.18;
+          g.addColorStop(Math.min(r - 0.002, st + soft), rgb(mix(dark, light, 0.35 + blend * 0.15)));
+          g.addColorStop(r, rgb(light, 1 + glow * 0.12));
+          if (r < 0.99) g.addColorStop(Math.min(1, r + 0.006), rgb(dark));
+          g.addColorStop(1, rgb(r < 0.99 ? dark : light, r < 0.99 ? 0.9 : 1 + glow * 0.15));
+        } else {
+          g.addColorStop(1, rgb(dark, 0.9));
+        }
+        ctx.strokeStyle = g;
+        ctx.lineWidth = s.w;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(x0, top - 20);
+        ctx.bezierCurveTo(
+          x0 + (x1 - x0) * 0.2 + sway * 0.4, top + len * 0.33,
+          x1 - sway, top + len * 0.66,
+          x1 + sway * 0.6, top + len);
+        ctx.stroke();
+        if (local > 0 && local < 1 && s.u % (1 / SECTIONS) < 0.02) brush = { x: x1 - sway * 0.3, y: top + len * reach, sec: s.sec };
+      }
+
+      /* the brush: a soft wide stroke riding down the active section */
+      var activeSec = Math.floor(clamp((P - 0.1) / 0.62) * SECTIONS);
+      if (P > 0.1 && P < 0.72) {
+        var lp = clamp((P - (0.1 + activeSec * 0.155)) / 0.155);
+        var su = (activeSec + 0.5) / SECTIONS;
+        var gapB = (activeSec - (SECTIONS - 1) / 2) * 16;
+        var bx = cx + (su - 0.5) * spread * (0.55 + 0.45 * (0.4 + 0.6 * lp)) + gapB * 1.2;
+        var by = top + len * (0.42 + 0.55 * ease(lp));
+        ctx.save();
+        ctx.translate(bx, by); ctx.rotate(-0.25);
+        var bg = ctx.createRadialGradient(0, 0, 4, 0, 0, 90);
+        bg.addColorStop(0, 'rgba(255,226,180,.32)'); bg.addColorStop(1, 'rgba(255,226,180,0)');
+        ctx.fillStyle = bg; ctx.fillRect(-90, -90, 180, 180);
+        ctx.fillStyle = '#2B2622'; ctx.fillRect(-6, -150, 12, 120);
+        ctx.fillStyle = '#B8441C'; ctx.fillRect(-7, -60, 14, 18);
+        ctx.fillStyle = '#EBDCC5'; ctx.beginPath(); ctx.moveTo(-16, -42); ctx.lineTo(16, -42); ctx.lineTo(10, 4); ctx.lineTo(-10, 4); ctx.closePath(); ctx.fill();
+        ctx.restore();
+      }
+
+      /* final sheen sweeping across */
+      if (glow > 0) {
+        var sx = W * (-0.2 + glow * 1.4);
+        var sg = ctx.createLinearGradient(sx - 160, 0, sx + 160, 0);
+        sg.addColorStop(0, 'rgba(255,236,205,0)'); sg.addColorStop(0.5, 'rgba(255,236,205,' + (0.22 * (1 - Math.abs(glow - 0.5))) + ')'); sg.addColorStop(1, 'rgba(255,236,205,0)');
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.fillStyle = sg; ctx.fillRect(0, 0, W, H);
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      /* keep captions readable */
+      var vg = ctx.createLinearGradient(0, 0, 0, H);
+      vg.addColorStop(0, 'rgba(28,21,17,.85)'); vg.addColorStop(0.24, 'rgba(28,21,17,0)');
+      vg.addColorStop(0.7, 'rgba(28,21,17,0)'); vg.addColorStop(1, 'rgba(28,21,17,.92)');
+      ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+      return P < 0.1 ? 0 : P < 0.72 ? 1 : P < 0.86 ? 2 : 3;
+    }
+
+    function render(P){
+      last = P;
+      var step;
+      var idx = Math.min(frames.length - 1, Math.round(P * (frames.length - 1)));
+      if (frames.length && frames[idx] && frames[idx]._ok) {
+        var im = frames[idx], sc = Math.max(W / im.naturalWidth, H / im.naturalHeight);
+        ctx.drawImage(im, (W - im.naturalWidth * sc) / 2, (H - im.naturalHeight * sc) / 2, im.naturalWidth * sc, im.naturalHeight * sc);
+        step = P < 0.1 ? 0 : P < 0.72 ? 1 : P < 0.86 ? 2 : 3;
+      } else {
+        step = scene(P);
+      }
+      bar.style.setProperty('--f', P);
+      if (step !== curStep) {
+        curStep = step;
+        steps.forEach(function(li, i){ li.classList.toggle('on', i === step); });
+        say.setAttribute('data-es', STEP_TEXT[step].es);
+        say.setAttribute('data-en', STEP_TEXT[step].en);
+        say.textContent = STEP_TEXT[step][document.documentElement.lang === 'en' ? 'en' : 'es'];
+      }
+    }
+
+    fit();
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(fit).observe(cv);
+    else window.addEventListener('resize', fit);
+    if (reduce || !hasGsap) { render(0.95); return; }
+    var st = { p: 0 };
+    gsap.to(st, { p: 1, ease: 'none',
+      scrollTrigger: { trigger: '#balayage', start: 'top top', end: '+=280%', pin: true, scrub: 0.5, anticipatePin: 1 },
+      onUpdate: function(){ render(st.p); } });
+  })();
+
+  /* ---------- departments: motion answers the click ---------- */
+  document.querySelectorAll('.dept-btn').forEach(function(btn){
+    var body = document.getElementById(btn.getAttribute('aria-controls'));
+    btn.addEventListener('click', function(){
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      if (open) {
+        if (reduce) { body.hidden = true; return; }
+        gsap.to(body, { height: 0, duration: 0.5, ease: 'power3.inOut', onComplete: function(){ body.hidden = true; gsap.set(body, { clearProps: 'height' }); ScrollTrigger.refresh(); } });
+      } else {
+        body.hidden = false;
+        if (reduce) return;
+        gsap.from(body, { height: 0, duration: 0.7, ease: 'expo.out', onComplete: function(){ ScrollTrigger.refresh(); } });
+        gsap.from(body.querySelectorAll('.price'), { y: 12, autoAlpha: 0, duration: 0.5, stagger: 0.025, ease: 'power3.out', delay: 0.1 });
+      }
+    });
+  });
+
+  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.magnetic').forEach(function(el){
+      var xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' }), yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });
+      el.addEventListener('pointermove', function(e){ var r = el.getBoundingClientRect(); xTo((e.clientX - r.left - r.width / 2) * 0.28); yTo((e.clientY - r.top - r.height / 2) * 0.38); });
+      el.addEventListener('pointerleave', function(){ xTo(0); yTo(0); });
+    });
+  }
+
+  var pill = document.getElementById('pill');
+  ScrollTrigger.create({ trigger: '.hero', start: 'bottom 20%', endTrigger: '#reservar', end: 'top 80%',
+    onToggle: function(s){ pill.classList.toggle('on', s.isActive); } });
+
+  document.getElementById('bookform').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('b-name').value.trim(), msg = document.getElementById('msg');
+    if (!name) {
+      msg.textContent = lang === 'es' ? 'Escribe tu nombre para que sepamos a quién confirmar.' : 'Add your name so the salon knows who to confirm with.';
+      document.getElementById('b-name').focus(); return;
+    }
+    var first = name.split(' ')[0];
+    msg.textContent = lang === 'es'
+      ? 'Gracias, ' + first + '. En el sitio real esta solicitud llegaría al salón para confirmarla. Este concepto no envía nada.'
+      : 'Thanks, ' + first + '. On the live site this request would go to the salon for confirmation. This concept does not send anything.';
+  });
+
+  window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+})();
+</script>
+
+</body>
+</html>

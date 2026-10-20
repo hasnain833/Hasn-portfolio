@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>html{color-scheme:light dark}body{margin:0}</style>
+</head>
+<body>
+<title>Orlando Family Dental Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: split hero with the booking card sitting in the first screen; services as a ruled list; bilingual toggle in the header. */
+:root{
+  --bg:#F2F6F5; --surface:#FFFFFF; --ink:#0D2B33; --muted:#51666B; --line:#D3DEDC;
+  --accent:#E4572E; --accent-ink:#FFFFFF; --tint:#DDEBE8; --ok:#1E7A55;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'Figtree','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0A1D22; --surface:#10282F; --ink:#EAF3F1; --muted:#9BB3B6; --line:#24434B;
+  --accent:#F0704A; --accent-ink:#1A0A05; --tint:#16353C; --ok:#58C79A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A1D22; --surface:#10282F; --ink:#EAF3F1; --muted:#9BB3B6; --line:#24434B;
+  --accent:#F0704A; --accent-ink:#1A0A05; --tint:#16353C; --ok:#58C79A; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.015em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.concept{font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line);padding:8px 0;display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+.brand{font:700 20px var(--display);display:flex;flex-direction:column;line-height:1.1}
+.brand small{font:500 12px var(--body);color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;color:var(--muted);font:600 13px var(--body);padding:8px 14px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:13px 22px;font:600 16px var(--body);cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.06)}
+.btn.ghost{background:none;color:var(--ink);border:1.5px solid var(--ink)}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;padding-block:44px 64px;align-items:start}
+.eyebrow{font:600 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(38px,6vw,68px);margin-top:14px}
+.lede{font-size:19px;color:var(--muted);max-width:54ch;margin:22px 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.facts b{display:block;font:700 30px var(--display)}
+.facts span{font-size:14px;color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 18px 40px -28px rgba(13,43,51,.5)}
+.card h2{font-size:26px}
+.card .sub{color:var(--muted);font-size:14.5px;margin:6px 0 18px}
+fieldset{border:0;padding:0;margin:0 0 16px}
+legend,label.l{font:600 13px var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14.5px;cursor:pointer;background:var(--bg)}
+.chips input:checked+label{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips input:focus-visible+label{outline:3px solid var(--accent);outline-offset:2px}
+.slots label{min-width:84px;text-align:center;font-variant-numeric:tabular-nums}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input[type=text],input[type=tel],input[type=date]{width:100%;font:400 16px var(--body);padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.card .btn{width:100%;margin-top:6px}
+.fine{font-size:12.5px;color:var(--muted);margin-top:12px}
+.done{display:none;text-align:left}
+.done.on{display:block}
+.done .tick{width:44px;height:44px;border-radius:50%;background:var(--ok);color:var(--surface);display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:16px 0}
+.done dt{color:var(--muted);font-size:14px}
+.done dd{margin:0;font-weight:600}
+section{padding-block:64px;border-top:1px solid var(--line)}
+.sec-h{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px}
+.sec-h h2{font-size:clamp(28px,4vw,42px)}
+.sec-h p{color:var(--muted);margin:0;max-width:60ch}
+.svc{list-style:none;margin:36px 0 0;padding:0}
+.svc li{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) auto;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:center}
+.svc li:last-child{border-bottom:1px solid var(--line)}
+.svc h3{font-size:22px}
+.svc p{margin:0;color:var(--muted)}
+.svc button{background:none;border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;font:600 14px var(--body);color:var(--ink);cursor:pointer}
+.svc button:hover{border-color:var(--accent);color:var(--accent)}
+.doc{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
+.cred{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.cred li{padding-left:22px;position:relative;color:var(--muted)}
+.cred li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--accent)}
+.photo{aspect-ratio:4/5;max-width:100%;border-radius:18px;background:var(--tint);border:1px dashed var(--muted);display:grid;place-items:center;text-align:center;color:var(--muted);font-size:14px;padding:20px}
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
+.rev{border:1px dashed var(--muted);border-radius:14px;padding:20px;color:var(--muted);font-size:14px}
+.visit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:28px}
+.visit h3{font-size:15px;font-family:var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin-bottom:8px}
+footer{border-top:1px solid var(--line);padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:860px){
+  .hero,.sec-h,.doc{grid-template-columns:minmax(0,1fr);gap:28px}
+  .svc li{grid-template-columns:minmax(0,1fr);gap:8px}
+  .svc button{justify-self:start;margin-top:6px}
+  .reviews,.visit{grid-template-columns:minmax(0,1fr)}
+  .facts b{font-size:24px}
+}
+@media (max-width:420px){.row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.btn{transition:filter .15s}}
+</style>
+
+<div class="wrap">
+  <div class="concept"><span data-en="Concept redesign made for Orlando Family Dental. Not live. Hours, photos and reviews are placeholders." data-es="Concepto de rediseño para Orlando Family Dental. No es el sitio real. Horarios, fotos y reseñas son marcadores.">Concept redesign made for Orlando Family Dental. Not live. Hours, photos and reviews are placeholders.</span><span>by Hasnain · has-nain.dev</span></div>
+
+  <header>
+    <div class="brand">Orlando Family Dental<small>Dr. Raul Castaño, DMD, MS</small></div>
+    <div class="hd">
+      <div class="lang" role="group" aria-label="Language"><button id="en" aria-pressed="true">EN</button><button id="es" aria-pressed="false">ES</button></div>
+      <a class="btn ghost" href="tel:+14072959096">(407) 295-9096</a>
+    </div>
+  </header>
+
+  <main>
+  <div class="hero">
+    <div>
+      <div class="eyebrow" data-en="Family dentistry in Orlando, FL" data-es="Odontología familiar en Orlando, FL">Family dentistry in Orlando, FL</div>
+      <h1 data-en="Healthy smiles for your whole family." data-es="Sonrisas sanas para toda su familia.">Healthy smiles for your whole family.</h1>
+      <p class="lede" data-en="Over 30 years of experience, from checkups and braces to dental implants and All-on-4. We speak English and Spanish, and you can book a visit in under a minute." data-es="Más de 30 años de experiencia, desde revisiones y brackets hasta implantes dentales y All-on-4. Hablamos inglés y español, y puede reservar su cita en menos de un minuto.">Over 30 years of experience, from checkups and braces to dental implants and All-on-4. We speak English and Spanish, and you can book a visit in under a minute.</p>
+      <div class="cta">
+        <a class="btn" href="#book" data-en="Book an appointment" data-es="Reservar una cita">Book an appointment</a>
+        <a class="btn ghost" href="#services" data-en="See our services" data-es="Ver servicios">See our services</a>
+      </div>
+      <div class="facts">
+        <div><b>30+</b><span data-en="years of experience" data-es="años de experiencia">years of experience</span></div>
+        <div><b>EN · ES</b><span data-en="bilingual care" data-es="atención bilingüe">bilingual care</span></div>
+        <div><b>ABOI</b><span data-en="board diplomate in implants" data-es="diplomado en implantes">board diplomate in implants</span></div>
+      </div>
+    </div>
+
+    <div class="card" id="book">
+      <form id="form" novalidate>
+        <h2 data-en="Book your visit" data-es="Reserve su visita">Book your visit</h2>
+        <p class="sub" data-en="Pick a service and a time. We confirm by phone." data-es="Elija un servicio y un horario. Confirmamos por teléfono.">Pick a service and a time. We confirm by phone.</p>
+        <fieldset class="chips" id="svcset"><legend data-en="Service" data-es="Servicio">Service</legend>
+          <input type="radio" name="svc" id="s1" value="Checkup & cleaning" checked><label for="s1" data-en="Checkup & cleaning" data-es="Revisión y limpieza">Checkup & cleaning</label>
+          <input type="radio" name="svc" id="s2" value="Dental implants"><label for="s2" data-en="Dental implants" data-es="Implantes dentales">Dental implants</label>
+          <input type="radio" name="svc" id="s3" value="Veneers / cosmetic"><label for="s3" data-en="Veneers / cosmetic" data-es="Carillas / estética">Veneers / cosmetic</label>
+          <input type="radio" name="svc" id="s4" value="Braces / SureSmile"><label for="s4" data-en="Braces / SureSmile" data-es="Brackets / SureSmile">Braces / SureSmile</label>
+        </fieldset>
+        <div class="row">
+          <div><label class="l" for="date" data-en="Day" data-es="Día">Day</label><input type="date" id="date"></div>
+          <fieldset class="chips slots" id="slotset" style="margin:0"><legend data-en="Time" data-es="Hora">Time</legend>
+            <input type="radio" name="slot" id="t1" value="9:00 AM" checked><label for="t1">9:00 AM</label>
+            <input type="radio" name="slot" id="t2" value="11:00 AM"><label for="t2">11:00 AM</label>
+            <input type="radio" name="slot" id="t3" value="2:00 PM"><label for="t3">2:00 PM</label>
+          </fieldset>
+        </div>
+        <div class="row" style="margin-top:16px">
+          <div><label class="l" for="nm" data-en="Name" data-es="Nombre">Name</label><input type="text" id="nm" autocomplete="name"></div>
+          <div><label class="l" for="ph" data-en="Phone" data-es="Teléfono">Phone</label><input type="tel" id="ph" autocomplete="tel"></div>
+        </div>
+        <p class="fine" id="err" role="alert" style="color:var(--accent);min-height:1.2em"></p>
+        <button class="btn" type="submit" data-en="Request appointment" data-es="Solicitar cita">Request appointment</button>
+        <p class="fine" data-en="Concept demo: nothing is sent from this page. On the live site this request goes to the front desk by email and text." data-es="Demo de concepto: esta página no envía nada. En el sitio real, la solicitud llega a recepción por correo y mensaje.">Concept demo: nothing is sent from this page. On the live site this request goes to the front desk by email and text.</p>
+      </form>
+      <div class="done" id="done" aria-live="polite">
+        <div class="tick">✓</div>
+        <h2 data-en="Request received" data-es="Solicitud recibida">Request received</h2>
+        <dl><dt data-en="Service" data-es="Servicio">Service</dt><dd id="d1"></dd><dt data-en="When" data-es="Cuándo">When</dt><dd id="d2"></dd><dt data-en="Name" data-es="Nombre">Name</dt><dd id="d3"></dd></dl>
+        <p class="fine" data-en="This is how a patient would see it. Your front desk would get this instantly and call to confirm." data-es="Así lo vería un paciente. Su recepción lo recibiría al instante y llamaría para confirmar.">This is how a patient would see it. Your front desk would get this instantly and call to confirm.</p>
+        <button class="btn ghost" type="button" id="again" data-en="Try again" data-es="Probar de nuevo">Try again</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="sec-h"><h2 data-en="Care for every age, from first checkup to full-mouth implants." data-es="Atención para todas las edades, de la primera revisión a implantes de boca completa.">Care for every age, from first checkup to full-mouth implants.</h2>
+    <p data-en="Each service below links straight into the booking form." data-es="Cada servicio lleva directo al formulario de reserva.">Each service below links straight into the booking form.</p></div>
+    <ul class="svc">
+      <li><h3 data-en="General dentistry" data-es="Odontología general">General dentistry</h3><p data-en="Exams, cleanings and oral hygiene for the whole family." data-es="Revisiones, limpiezas e higiene oral para toda la familia.">Exams, cleanings and oral hygiene for the whole family.</p><button data-svc="s1" data-en="Book" data-es="Reservar">Book</button></li>
+      <li><h3 data-en="Dental implants" data-es="Implantes dentales">Dental implants</h3><p data-en="Placed by a doctor with a fellowship in implantology and ABOI diplomate status." data-es="Colocados por un doctor con fellowship en implantología y diplomado ABOI.">Placed by a doctor with a fellowship in implantology and ABOI diplomate status.</p><button data-svc="s2" data-en="Book" data-es="Reservar">Book</button></li>
+      <li><h3>Zygomatic implants &amp; All-on-4</h3><p data-en="A fixed option for patients with significant bone loss." data-es="Una opción fija para pacientes con pérdida ósea importante.">A fixed option for patients with significant bone loss.</p><button data-svc="s2" data-en="Book" data-es="Reservar">Book</button></li>
+      <li><h3 data-en="Veneers & cosmetic" data-es="Carillas y estética">Veneers & cosmetic</h3><p data-en="Whitening, contouring and veneers." data-es="Blanqueamiento, contorneado y carillas.">Whitening, contouring and veneers.</p><button data-svc="s3" data-en="Book" data-es="Reservar">Book</button></li>
+      <li><h3 data-en="Orthodontics" data-es="Ortodoncia">Orthodontics</h3><p data-en="Traditional braces and SureSmile clear aligners." data-es="Brackets tradicionales y alineadores transparentes SureSmile.">Traditional braces and SureSmile clear aligners.</p><button data-svc="s4" data-en="Book" data-es="Reservar">Book</button></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="doc">
+      <div class="photo" data-en="Photo of Dr. Castaño goes here" data-es="Aquí va la foto del Dr. Castaño">Photo of Dr. Castaño goes here</div>
+      <div>
+        <div class="eyebrow" data-en="Your dentist" data-es="Su dentista">Your dentist</div>
+        <h2 style="font-size:clamp(28px,4vw,42px);margin-top:10px">Dr. Raul Castaño, DMD, MS</h2>
+        <p style="color:var(--muted);max-width:60ch;margin-top:16px" data-en="More than three decades of experience, with advanced training in cosmetic dentistry and implants." data-es="Más de tres décadas de experiencia, con formación avanzada en odontología estética e implantes.">More than three decades of experience, with advanced training in cosmetic dentistry and implants.</p>
+        <ul class="cred">
+          <li data-en="DMD, Pontificia Universidad Javeriana, 1992" data-es="DMD, Pontificia Universidad Javeriana, 1992">DMD, Pontificia Universidad Javeriana, 1992</li>
+          <li data-en="Fellowship in cosmetic dentistry and implantology, Tufts University" data-es="Fellowship en odontología estética e implantología, Tufts University">Fellowship in cosmetic dentistry and implantology, Tufts University</li>
+          <li data-en="Member, Academy of Osseointegration and ICOI" data-es="Miembro, Academy of Osseointegration e ICOI">Member, Academy of Osseointegration and ICOI</li>
+          <li data-en="Diplomate, American Board of Oral Implantology (ABOI)" data-es="Diplomado, American Board of Oral Implantology (ABOI)">Diplomate, American Board of Oral Implantology (ABOI)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="reviews">
+      <div class="rev" data-en="Patient review goes here. Pull the 3 best from Google." data-es="Aquí va una reseña de paciente. Se toman las 3 mejores de Google.">Patient review goes here. Pull the 3 best from Google.</div>
+      <div class="rev" data-en="Patient review goes here." data-es="Aquí va una reseña de paciente.">Patient review goes here.</div>
+      <div class="rev" data-en="Patient review goes here." data-es="Aquí va una reseña de paciente.">Patient review goes here.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="font-size:clamp(28px,4vw,42px)" data-en="Visit us" data-es="Visítenos">Visit us</h2>
+    <div class="visit">
+      <div><h3 data-en="Address" data-es="Dirección">Address</h3>3300 S Hiawassee Rd #101<br>Orlando, FL 32835</div>
+      <div><h3 data-en="Call" data-es="Llame">Call</h3>(407) 295-9096<br>orlandofamilydental@gmail.com</div>
+      <div><h3 data-en="Hours" data-es="Horario">Hours</h3><span style="color:var(--muted)" data-en="Add office hours here" data-es="Agregar horario aquí">Add office hours here</span></div>
+    </div>
+  </section>
+  </main>
+  <footer><span>© Orlando Family Dental</span><span data-en="Concept by Hasnain, web developer · has-nain.dev" data-es="Concepto de Hasnain, desarrollador web · has-nain.dev">Concept by Hasnain, web developer · has-nain.dev</span></footer>
+</div>
+
+<script>
+(function(){
+  var lang='en';
+  function setLang(l){
+    lang=l;
+    document.querySelectorAll('[data-en]').forEach(function(e){e.textContent=e.getAttribute('data-'+l)});
+    document.getElementById('en').setAttribute('aria-pressed',l==='en');
+    document.getElementById('es').setAttribute('aria-pressed',l==='es');
+    document.documentElement.lang=l;
+  }
+  document.getElementById('en').onclick=function(){setLang('en')};
+  document.getElementById('es').onclick=function(){setLang('es')};
+
+  var d=document.getElementById('date'), t=new Date();
+  t.setDate(t.getDate()+1);
+  d.value=t.toISOString().slice(0,10); d.min=d.value;
+
+  document.querySelectorAll('.svc button').forEach(function(b){
+    b.onclick=function(){
+      document.getElementById(b.dataset.svc).checked=true;
+      document.getElementById('book').scrollIntoView({behavior:'smooth',block:'center'});
+      document.getElementById('nm').focus({preventScroll:true});
+    };
+  });
+
+  var form=document.getElementById('form'), done=document.getElementById('done');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var nm=document.getElementById('nm').value.trim(), ph=document.getElementById('ph').value.trim(), err=document.getElementById('err');
+    if(!nm||ph.replace(/\D/g,'').length<7){
+      err.textContent=lang==='en'?'Please add your name and a phone number.':'Agregue su nombre y un número de teléfono.';
+      return;
+    }
+    err.textContent='';
+    var svc=document.querySelector('input[name=svc]:checked'), slot=document.querySelector('input[name=slot]:checked');
+    document.getElementById('d1').textContent=svc.nextElementSibling.textContent;
+    var dt=new Date(d.value+'T12:00:00');
+    document.getElementById('d2').textContent=dt.toLocaleDateString(lang==='en'?'en-US':'es-US',{weekday:'long',month:'short',day:'numeric'})+', '+slot.value;
+    document.getElementById('d3').textContent=nm;
+    form.style.display='none'; done.classList.add('on');
+  });
+  document.getElementById('again').onclick=function(){form.style.display='';done.classList.remove('on')};
+})();
+</script>
+
+</body>
+</html>

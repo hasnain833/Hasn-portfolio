@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>html{color-scheme:light dark}body{margin:0}</style>
+</head>
+<body>
+<title>SkinSpaMED Dallas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: a black stage where a rose laser resurfaces skin (WebGL) -> press line -> the bruise-fix -> treatments by area (tabs) -> Marie -> memberships as an awards set -> book online -> two locations */
+:root{
+  --porcelain:#FAF6F3;   /* page ground */
+  --blush:#F1E3DF;       /* soft panels */
+  --ink:#1A1416;         /* text */
+  --ink-soft:#5E5054;    /* secondary text */
+  --rose:#A63A55;        /* accent on light */
+  --line:rgba(26,20,22,.14);
+  --stage:#0E0B0C;       /* black stage, both themes */
+  --on-stage:#F6ECE9;
+  --on-stage-soft:#BBA9AC;
+  --rose-glow:#EE9AAE;   /* accent on black */
+  --champagne:#E4CFB4;
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(16px,4vw,56px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --porcelain:#141012;--blush:#201A1C;--ink:#F1E8E6;--ink-soft:#B9A9AC;--rose:#EE9AAE;--line:rgba(241,232,230,.14);color-scheme:dark}}
+:root[data-theme="dark"]{--porcelain:#141012;--blush:#201A1C;--ink:#F1E8E6;--ink-soft:#B9A9AC;--rose:#EE9AAE;--line:rgba(241,232,230,.14);color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--porcelain);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--rose-glow);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.02;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;font:600 15px/1 var(--body);letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;will-change:transform}
+.btn-rose{background:var(--rose-glow);color:#1A0D11}
+.btn-rose:hover{background:#F4B1C1}
+.btn-ghost{border:1px solid rgba(246,236,233,.4);color:var(--on-stage);background:transparent}
+.btn-ghost:hover{border-color:var(--on-stage)}
+.btn-ink{background:var(--ink);color:var(--porcelain)}
+
+/* ---------- header ---------- */
+.head{position:absolute;inset:0 0 auto;z-index:5;color:var(--on-stage)}
+.head .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-block:22px}
+.logo{font:500 26px var(--display);text-decoration:none;letter-spacing:.01em}
+.logo em{font-style:italic;color:var(--rose-glow)}
+.nav{display:flex;gap:28px;font-size:15px}
+.nav a{text-decoration:none;color:var(--on-stage-soft);transition:color .25s}
+.nav a:hover{color:var(--on-stage)}
+@media (max-width:860px){.nav{display:none}}
+
+/* ---------- hero: the laser stage ---------- */
+.hero{position:relative;background:var(--stage);color:var(--on-stage);overflow:hidden;min-height:clamp(640px,94vh,900px);display:flex;align-items:flex-end}
+#skin{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:none}
+.hero-copy{position:relative;z-index:2;width:100%;padding-block:150px 56px;pointer-events:none}
+.hero-copy a{pointer-events:auto}
+.kicker{font-size:15px;color:var(--on-stage-soft);margin-bottom:22px}
+.hero h1{font-size:clamp(68px,12.5vw,190px);letter-spacing:-.025em;line-height:.88}
+.hero h1 .l2{display:block;font-style:italic;color:var(--rose-glow);padding-left:.6em}
+.hero-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px;margin-top:34px}
+.hero-sub{max-width:36ch;font-size:clamp(17px,1.5vw,20px);color:var(--on-stage)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.laser-dot{position:absolute;z-index:3;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--rose-glow);box-shadow:0 0 18px 6px rgba(238,154,174,.55);pointer-events:none;opacity:0;transition:opacity .3s}
+.hero:hover .laser-dot{opacity:1}
+.hero-hint{position:absolute;z-index:2;right:var(--gutter);top:42%;font:italic 400 17px var(--display);color:var(--on-stage-soft);pointer-events:none}
+@media (max-width:860px){.hero-hint{display:none}}
+@media (pointer:coarse){#skin{cursor:default}.laser-dot{display:none}}
+
+/* ---------- press ---------- */
+.press{background:var(--stage);color:var(--on-stage-soft);border-top:1px solid rgba(246,236,233,.1)}
+.press .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px 40px;padding-block:22px;font-size:15px}
+.press b{font:italic 400 22px var(--display);color:var(--on-stage)}
+
+/* ---------- bruise-fix ---------- */
+.fix{padding-block:clamp(96px,13vw,170px)}
+.fix .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:center}
+.big{font:400 clamp(110px,15vw,210px)/.85 var(--display);letter-spacing:-.04em;color:var(--rose);font-variant-numeric:lining-nums}
+.big small{font-size:.3em;color:var(--ink-soft);letter-spacing:0}
+.fix h2{font-size:clamp(38px,4.6vw,64px)}
+.fix p{color:var(--ink-soft);margin-top:20px;max-width:46ch}
+.fix .note{font-size:14px;margin-top:16px}
+@media (max-width:860px){.fix .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- treatments ---------- */
+.treat{background:var(--blush);padding-block:clamp(88px,11vw,150px)}
+.treat-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.treat h2{font-size:clamp(44px,6vw,86px)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-block:40px 8px;position:relative}
+.tab{position:relative;z-index:1;font:500 15px var(--body);color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;min-height:44px;padding:0 20px;cursor:pointer;transition:color .3s,border-color .3s}
+.tab[aria-selected="true"]{color:var(--porcelain);border-color:transparent}
+.tab-pill{position:absolute;z-index:0;top:0;left:0;height:44px;border-radius:999px;background:var(--ink);pointer-events:none}
+.panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;margin-top:24px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.row h3{font-size:clamp(24px,2.4vw,30px)}
+.row span{font-size:14px;color:var(--ink-soft);white-space:nowrap}
+.row p{grid-column:1/-1;color:var(--ink-soft);font-size:16px;max-width:52ch}
+.panel-foot{margin-top:28px;font-size:15px;color:var(--ink-soft)}
+@media (max-width:760px){.panel{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- Marie ---------- */
+.marie{padding-block:clamp(96px,12vw,170px)}
+.marie .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:220px 220px 18px 18px;overflow:hidden;background:linear-gradient(160deg,#D9B4B5,#7C3B4C);display:flex;align-items:flex-end;justify-content:center;padding:22px;color:#FBEFEE;font-size:13px}
+.portrait span{position:relative}
+.marie h2{font-size:clamp(40px,5vw,70px)}
+.marie .lede{margin-top:22px;color:var(--ink-soft);max-width:50ch}
+.timeline{list-style:none;padding:0;margin:34px 0 0;border-top:1px solid var(--line)}
+.timeline li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.timeline b{font:400 22px var(--display);color:var(--rose);font-variant-numeric:tabular-nums}
+.md{margin-top:26px;font-size:15px;color:var(--ink-soft)}
+@media (max-width:860px){.marie .wrap{grid-template-columns:minmax(0,1fr)}.portrait{max-width:420px}}
+
+/* ---------- memberships ---------- */
+.club{background:var(--stage);color:var(--on-stage);padding-block:clamp(96px,12vw,170px);overflow:hidden}
+.club h2{font-size:clamp(44px,6vw,86px)}
+.club-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.club-top p{max-width:42ch;color:var(--on-stage-soft)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;perspective:1200px}
+.card{position:relative;border-radius:22px;padding:34px 30px;min-height:380px;display:flex;flex-direction:column;gap:14px;background:#1A1416;border:1px solid rgba(246,236,233,.1);transform-style:preserve-3d;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at var(--mx,50%) var(--my,0%),rgba(238,154,174,.22),transparent 70%);opacity:.9;pointer-events:none}
+.card.feature{background:linear-gradient(170deg,#3A1C25,#1A1416 70%);border-color:rgba(238,154,174,.4)}
+.card .tier{font:italic 400 44px var(--display);color:var(--champagne)}
+.card .count{font-size:15px;color:var(--on-stage-soft)}
+.card .price{font:400 34px var(--display);margin-top:auto}
+.card .price small{font:400 15px var(--body);color:var(--on-stage-soft)}
+.card .btn{align-self:flex-start}
+.perks{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:40px;color:var(--on-stage-soft);font-size:15px}
+.perks b{color:var(--on-stage);font-weight:600}
+@media (max-width:900px){.cards{grid-template-columns:minmax(0,1fr)}.card{min-height:0}}
+
+/* ---------- book ---------- */
+.book{padding-block:clamp(96px,12vw,160px)}
+.book .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px)}
+.book h2{font-size:clamp(44px,6vw,86px)}
+.book .lede{margin-top:20px;color:var(--ink-soft);max-width:40ch}
+.locs{display:flex;flex-direction:column;gap:22px;margin-top:40px}
+.loc{padding-top:18px;border-top:1px solid var(--line)}
+.loc h3{font-size:28px;margin-bottom:6px}
+.loc p{color:var(--ink-soft);font-size:16px;user-select:all}
+.hours{margin-top:18px;font-size:15px;color:var(--ink-soft)}
+form{background:var(--blush);border-radius:28px;padding:clamp(24px,4vw,44px);display:flex;flex-direction:column;gap:22px}
+fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+legend{font-weight:600;font-size:14px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);cursor:pointer;font-size:15px;transition:background-color .25s,color .25s,border-color .25s}
+.chip input:checked + span{background:var(--ink);color:var(--porcelain);border-color:var(--ink)}
+.chip input:focus-visible + span{outline:2px solid var(--rose);outline-offset:2px}
+label.f{display:flex;flex-direction:column;gap:8px;font-weight:600;font-size:14px}
+select,input[type=text],input[type=tel]{font:400 16px var(--body);color:var(--ink);background:var(--porcelain);border:1px solid var(--line);border-radius:12px;min-height:52px;padding:0 16px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.msg{min-height:24px;font-size:15px;color:var(--rose)}
+@media (max-width:860px){.book .wrap{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.two{grid-template-columns:minmax(0,1fr)}}
+
+.foot{background:var(--stage);color:var(--on-stage-soft);padding-block:56px 40px;font-size:14px}
+.foot .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot .logo{color:var(--on-stage);display:block;margin-bottom:6px}
+
+.pill{position:fixed;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:20;transform:translateY(150%);transition:transform .6s cubic-bezier(.2,.7,.2,1);box-shadow:0 18px 40px -16px rgba(14,11,12,.6)}
+.pill.on{transform:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="head">
+  <div class="wrap">
+    <a class="logo" href="#top">Skin<em>Spa</em>MED</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#treatments">Treatments</a>
+      <a href="#marie">Meet Marie</a>
+      <a href="#club">Memberships</a>
+      <a href="#book">Locations</a>
+    </nav>
+    <a class="btn btn-ghost magnetic" href="#book">Book online</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Welcome">
+    <canvas id="skin" aria-hidden="true"></canvas>
+    <div class="laser-dot" id="dot" aria-hidden="true"></div>
+    <p class="hero-hint" aria-hidden="true">Move the light across the skin</p>
+    <div class="hero-copy">
+      <div class="wrap">
+        <p class="kicker">Medical spa and laser clinic · Dallas and Colleyville</p>
+        <h1 id="headline"><span class="l1">Skin,</span><span class="l2">refined.</span></h1>
+        <div class="hero-foot">
+          <p class="hero-sub">Lasers, injectables and medical-grade facials from a nurse-founded clinic that has been treating Dallas skin since 2004.</p>
+          <div class="hero-actions">
+            <a class="btn btn-rose magnetic" href="#book">Book online</a>
+            <a class="btn btn-ghost magnetic" href="#treatments">See treatments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="press" aria-label="Press">
+    <div class="wrap">
+      <span>Marie has been featured on</span>
+      <b>The Real Housewives of Dallas</b><b>People</b><b>Life &amp; Style</b><b>Bravo</b>
+    </div>
+  </div>
+
+  <section class="fix">
+    <div class="wrap">
+      <div class="big" id="bignum" aria-label="40 to 60 percent">40–60<small>%</small></div>
+      <div>
+        <h2>Bruised after filler? We treat that too, free.</h2>
+        <p>After any injectable treatment, SkinSpaMED offers a complimentary IPL session aimed at bruising. The clinic reports bruises heal 40 to 60 percent overnight, so you can get back to your week sooner.</p>
+        <p class="note">Included with injectables at both locations. Ask at your appointment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="treat" id="treatments">
+    <div class="wrap">
+      <div class="treat-top">
+        <h2>Treatments</h2>
+        <p style="max-width:40ch;color:var(--ink-soft)">Over 50 treatments across face, body and laser hair removal. Choose an area to see the favorites.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Treatment areas" id="tabs">
+        <span class="tab-pill" id="tabpill" aria-hidden="true"></span>
+        <button class="tab" role="tab" id="tab-face" aria-controls="p-face" aria-selected="true">Face</button>
+        <button class="tab" role="tab" id="tab-inj" aria-controls="p-inj" aria-selected="false" tabindex="-1">Injectables</button>
+        <button class="tab" role="tab" id="tab-body" aria-controls="p-body" aria-selected="false" tabindex="-1">Body</button>
+        <button class="tab" role="tab" id="tab-hair" aria-controls="p-hair" aria-selected="false" tabindex="-1">Laser hair removal</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-face" aria-labelledby="tab-face">
+        <div class="row"><h3>Triniti laser series</h3><span>[PRICE]</span><p>Three technologies in one session to even tone, smooth texture and firm loose skin.</p></div>
+        <div class="row"><h3>DOT CO2 and Tixel</h3><span>[PRICE]</span><p>Fractional resurfacing for fine lines, sun damage and acne scars, with short downtime.</p></div>
+        <div class="row"><h3>Ultherapy</h3><span>[PRICE]</span><p>A non-surgical lift for the face, neck and chest using focused ultrasound.</p></div>
+        <div class="row"><h3>Hydrafacial MD</h3><span>[PRICE]</span><p>Deep cleansing, exfoliation and hydration in one facial. No downtime.</p></div>
+        <div class="row"><h3>Photofacial (IPL)</h3><span>[PRICE]</span><p>Fades brown spots, redness and broken capillaries.</p></div>
+        <div class="row"><h3>Madonna eye lift</h3><span>[PRICE]</span><p>CO2 laser around the eyes for crepey lids and crow's feet.</p></div>
+      </div>
+      <div class="panel" role="tabpanel" id="p-inj" aria-labelledby="tab-inj" hidden>
+        <div class="row"><h3>Botox, Dysport and Xeomin</h3><span>[PRICE]</span><p>Softens frown lines, forehead lines and crow's feet.</p></div>
+        <div class="row"><h3>Juvederm, Restylane and Belotero</h3><span>[PRICE]</span><p>Fillers for lips, cheeks and smile lines, placed for a natural result.</p></div>
+        <div class="row"><h3>Skinvive</h3><span>[PRICE]</span><p>Micro-droplet hydration for a smoother, dewier finish.</p></div>
+        <div class="row"><h3>Sculptra and Radiesse</h3><span>[PRICE]</span><p>Collagen stimulators that rebuild volume gradually.</p></div>
+        <div class="row"><h3>Voluma</h3><span>[PRICE]</span><p>Lift and contour for the cheeks and mid-face.</p></div>
+        <div class="row"><h3>PRP facial</h3><span>[PRICE]</span><p>Your own platelets paired with microneedling for renewal.</p></div>
+      </div>
+      <div class="panel" role="tabpanel" id="p-body" aria-labelledby="tab-body" hidden>
+        <div class="row"><h3>CoolSculpting</h3><span>[PRICE]</span><p>Freezes away stubborn fat on the abdomen, thighs, arms and chin. No surgery.</p></div>
+        <div class="row"><h3>Venus Legacy RF</h3><span>[PRICE]</span><p>Radiofrequency skin tightening and cellulite smoothing.</p></div>
+        <div class="row"><h3>Z-Wave cellulite</h3><span>[PRICE]</span><p>Acoustic wave therapy that improves elasticity and texture.</p></div>
+        <div class="row"><h3>FlexTone</h3><span>[PRICE]</span><p>Muscle toning paired with body contouring.</p></div>
+        <div class="row"><h3>Leg vein laser</h3><span>[PRICE]</span><p>Clears spider veins on the legs.</p></div>
+        <div class="row"><h3>Stretch mark repair</h3><span>[PRICE]</span><p>Skinfinity and Tixel to soften the look of stretch marks.</p></div>
+      </div>
+      <div class="panel" role="tabpanel" id="p-hair" aria-labelledby="tab-hair" hidden>
+        <div class="row"><h3>Lip, chin and sideburns</h3><span>[PRICE]</span><p>Quick sessions for small areas.</p></div>
+        <div class="row"><h3>Entire face</h3><span>[PRICE]</span><p>Full facial hair reduction.</p></div>
+        <div class="row"><h3>Bikini, underarms or neck</h3><span>[PRICE]</span><p>The most-booked areas.</p></div>
+        <div class="row"><h3>Lower legs and chest</h3><span>[PRICE]</span><p>Including male chest and upper or lower back.</p></div>
+        <div class="row"><h3>Abdomen</h3><span>[PRICE]</span><p>Smooth results across the stomach.</p></div>
+        <div class="row"><h3>Full leg or entire back</h3><span>[PRICE]</span><p>Large areas in fewer visits.</p></div>
+      </div>
+      <p class="panel-foot">Prices from the clinic's current menu go here. Every treatment can be booked online.</p>
+    </div>
+  </section>
+
+  <section class="marie" id="marie">
+    <div class="wrap">
+      <div class="portrait" id="portrait"><span>Photo: Marie Reyes</span></div>
+      <div>
+        <h2>Meet Marie Reyes</h2>
+        <p class="lede">Marie is a registered nurse who has spent more than two decades helping Dallas women look after their skin. Her advice is simple: a few good products, regular professional treatments and consistency.</p>
+        <ol class="timeline">
+          <li><b>1992</b><span>Earns her bachelor's degree in nursing</span></li>
+          <li><b>2000</b><span>Begins formal training in injection techniques</span></li>
+          <li><b>2004</b><span>Opens her first clinic in North Dallas</span></li>
+          <li><b>2016</b><span>Launches the Rags-2-Riches skincare line and joins The Real Housewives of Dallas</span></li>
+        </ol>
+        <p class="md">Medical director: Dr. Dee Martinez, a Dallas physician with more than 20 years of experience and a cosmetic injector and laser provider.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="club" id="club">
+    <div class="wrap">
+      <div class="club-top">
+        <h2>The membership</h2>
+        <p>Pick two to four treatments a month for one flat monthly fee. Available on 12-month, 24-month or prepaid plans.</p>
+      </div>
+      <div class="cards" id="cards">
+        <article class="card"><span class="tier">Starlet</span><span class="count">[2] treatments a month</span><span class="price">[PRICE]<small> / month</small></span><a class="btn btn-ghost" href="#book">Join Starlet</a></article>
+        <article class="card feature"><span class="tier">Emmy</span><span class="count">[3] treatments a month</span><span class="price">[PRICE]<small> / month</small></span><a class="btn btn-rose" href="#book">Join Emmy</a></article>
+        <article class="card"><span class="tier">Oscar</span><span class="count">[4] treatments a month</span><span class="price">[PRICE]<small> / month</small></span><a class="btn btn-ghost" href="#book">Join Oscar</a></article>
+      </div>
+      <div class="perks">
+        <span><b>20% off</b> medical-grade skincare</span>
+        <span><b>50% off</b> extra treatments, excluding CoolSculpting</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="wrap">
+      <div>
+        <h2>Book online</h2>
+        <p class="lede">Choose a location, a treatment and a time that suits you. Most bookings take under a minute.</p>
+        <div class="locs">
+          <div class="loc"><h3>North Dallas</h3><p>5330 Alpha Rd, Suite 100, Dallas, TX 75240</p><p>(972) 392-3895</p></div>
+          <div class="loc"><h3>Colleyville</h3><p>5604 Colleyville Blvd, Suite D, Colleyville, TX 76034</p><p>(817) 281-8181</p></div>
+        </div>
+        <p class="hours">Mon and Wed 12–7pm · Tue, Thu and Fri 10am–5pm · Select Saturdays 9am–4pm</p>
+      </div>
+      <form id="bookform" novalidate>
+        <fieldset>
+          <legend>Location</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="loc" id="loc-dal" checked><span>North Dallas</span></label>
+            <label class="chip"><input type="radio" name="loc" id="loc-col"><span>Colleyville</span></label>
+          </div>
+        </fieldset>
+        <label class="f" for="b-treat">Treatment
+          <select id="b-treat">
+            <option>Botox or Dysport</option><option>Filler</option><option>Hydrafacial MD</option><option>Triniti laser series</option><option>DOT CO2 or Tixel</option><option>Ultherapy</option><option>CoolSculpting consultation</option><option>Laser hair removal</option><option>Not sure yet, I'd like a consultation</option>
+          </select>
+        </label>
+        <fieldset>
+          <legend>Preferred day</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="day" id="d-mon"><span>Mon</span></label>
+            <label class="chip"><input type="radio" name="day" id="d-tue" checked><span>Tue</span></label>
+            <label class="chip"><input type="radio" name="day" id="d-wed"><span>Wed</span></label>
+            <label class="chip"><input type="radio" name="day" id="d-thu"><span>Thu</span></label>
+            <label class="chip"><input type="radio" name="day" id="d-fri"><span>Fri</span></label>
+            <label class="chip"><input type="radio" name="day" id="d-sat"><span>Sat</span></label>
+          </div>
+        </fieldset>
+        <div class="two">
+          <label class="f" for="b-name">Name<input type="text" id="b-name" autocomplete="name" placeholder="First and last name"></label>
+          <label class="f" for="b-phone">Phone<input type="tel" id="b-phone" autocomplete="tel" placeholder="(000) 000-0000"></label>
+        </div>
+        <button class="btn btn-ink magnetic" type="submit">Request appointment</button>
+        <p class="msg" id="msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><span class="logo">Skin<em style="color:var(--rose-glow)">Spa</em>MED</span>Medical spa and laser clinic in Dallas and Colleyville since 2004.</div>
+    <div>Concept design by Hasnain, has-nain.dev. Not the live site.</div>
+  </div>
+</footer>
+
+<a class="btn btn-rose pill" id="pill" href="#book">Book online</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGsap = typeof gsap !== 'undefined';
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  /* smooth scroll */
+  var lenis = null;
+  if (!reduce && hasGsap && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: 0.09 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var el = a.getAttribute('href') === '#top' ? document.body : document.querySelector(a.getAttribute('href'));
+      if (!el) return; e.preventDefault();
+      if (lenis) lenis.scrollTo(el, { duration: 1.4 }); else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------- the laser stage (WebGL) ---------- */
+  var stage = null;
+  (function(){
+    var canvas = document.getElementById('skin');
+    if (typeof THREE === 'undefined' || !canvas) return;
+    var renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false }); } catch (e) { return; }
+    var DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+    renderer.setPixelRatio(DPR);
+    var scene = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    var PTS = 10, pts = [];
+    for (var i = 0; i < PTS; i++) pts.push(new THREE.Vector3(-9, -9, -100));
+    var U = {
+      uTime: { value: 0 }, uRes: { value: new THREE.Vector2(1, 1) },
+      uScan: { value: -0.15 }, uRestore: { value: 0 }, uIntro: { value: 0 },
+      uPts: { value: pts }
+    };
+    var mat = new THREE.ShaderMaterial({
+      uniforms: U,
+      extensions: { derivatives: true },
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
+      fragmentShader: [
+        'precision highp float;',
+        'varying vec2 vUv;',
+        'uniform float uTime, uScan, uRestore, uIntro; uniform vec2 uRes; uniform vec3 uPts[10];',
+        'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }',
+        'float noise(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f*f*(3.0-2.0*f);',
+        '  return mix(mix(hash(i), hash(i+vec2(1,0)), u.x), mix(hash(i+vec2(0,1)), hash(i+vec2(1,1)), u.x), u.y); }',
+        'float fbm(vec2 p){ float v = 0.0, a = 0.5; for(int i=0;i<5;i++){ v += a*noise(p); p *= 2.03; a *= 0.5; } return v; }',
+        'float pores(vec2 p){ vec2 g = floor(p), f = fract(p); float d = 1.0;',
+        '  for(int y=-1;y<=1;y++) for(int x=-1;x<=1;x++){ vec2 o = vec2(float(x), float(y));',
+        '    vec2 r = o + vec2(hash(g+o), hash(g+o+7.3)) - f; d = min(d, dot(r, r)); }',
+        '  return smoothstep(0.0, 0.08, d); }',
+        'void main(){',
+        '  float asp = uRes.x / uRes.y;',
+        '  vec2 p = vec2(vUv.x * asp, vUv.y);',
+        '  float yt = 1.0 - vUv.y;',
+        '  float passed = smoothstep(uScan + 0.01, uScan - 0.06, yt) * (1.0 - uRestore);',
+        '  float touch = 0.0;',
+        '  for(int i=0;i<10;i++){ vec3 q = uPts[i]; float age = uTime - q.z;',
+        '    if(age > 0.0){ vec2 d = p - vec2(q.x * asp, q.y); touch += exp(-dot(d,d) / 0.012) * exp(-age * 0.35); } }',
+        '  float s = clamp(max(passed, touch), 0.0, 1.0);',
+        '  vec2 sp = p * 9.0;',
+        '  float rough = fbm(sp * 2.4) * 0.55 + (1.0 - pores(sp * 6.0)) * 0.35 + fbm(sp * 0.6 + 4.0) * 0.4;',
+        '  float soft = fbm(sp * 0.6 + 4.0) * 0.4;',
+        '  float h = mix(rough, soft, s);',
+        '  vec3 n = normalize(vec3(-dFdx(h) * 40.0, -dFdy(h) * 40.0, 1.0));',
+        '  vec3 L = normalize(vec3(-0.45, 0.6, 0.65));',
+        '  float lam = clamp(dot(n, L), 0.0, 1.0);',
+        '  vec3 hv = normalize(L + vec3(0.0, 0.0, 1.0));',
+        '  float spec = pow(clamp(dot(n, hv), 0.0, 1.0), mix(18.0, 60.0, s)) * mix(0.15, 0.55, s);',
+        '  vec3 shadow = vec3(0.10, 0.045, 0.05), lit = vec3(0.62, 0.34, 0.33);',
+        '  vec3 col = mix(shadow, lit, lam * 0.85 + 0.1);',
+        '  col += spec * vec3(1.0, 0.82, 0.84);',
+        '  col = mix(col, col * vec3(1.06, 0.98, 1.0) + 0.03, s);',
+        '  float beam = exp(-abs(yt - uScan) * 160.0);',
+        '  float bloom = exp(-abs(yt - uScan) * 18.0) * 0.28;',
+        '  col += (beam * 1.4 + bloom) * vec3(0.93, 0.6, 0.68) * step(-0.05, uScan) * step(uScan, 1.08);',
+        '  float left = smoothstep(0.95, 0.15, vUv.x);',
+        '  float bottom = smoothstep(0.62, 0.0, vUv.y);',
+        '  col *= 1.0 - 0.55 * max(left * 0.75, bottom);',
+        '  float vig = smoothstep(1.25, 0.35, length((vUv - 0.5) * vec2(asp, 1.0)));',
+        '  col *= mix(0.35, 1.0, vig);',
+        '  gl_FragColor = vec4(col * uIntro, 1.0);',
+        '}'
+      ].join('\n')
+    });
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+    function size(){
+      var w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
+      renderer.setSize(w, h, false); U.uRes.value.set(w, h);
+    }
+    size();
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(size).observe(canvas);
+
+    var clock = new THREE.Clock(), visible = true, pi = 0, lastT = 0;
+    var dot = document.getElementById('dot');
+    function addTouch(e){
+      var r = canvas.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = 1 - (e.clientY - r.top) / r.height;
+      if (dot) { dot.style.transform = 'translate(' + (e.clientX - r.left) + 'px,' + (e.clientY - r.top) + 'px)'; }
+      var now = U.uTime.value;
+      if (now - lastT < 0.05) return; lastT = now;
+      pts[pi].set(x, y, now); pi = (pi + 1) % PTS;
+    }
+    if (!reduce) {
+      canvas.addEventListener('pointermove', addTouch);
+      canvas.addEventListener('pointerdown', addTouch);
+      canvas.parentElement.addEventListener('pointermove', function(e){ if (e.target !== canvas) addTouch(e); });
+    }
+    function frame(){
+      requestAnimationFrame(frame);
+      if (!visible) return;
+      U.uTime.value = clock.getElapsedTime();
+      renderer.render(scene, cam);
+    }
+    if (typeof IntersectionObserver !== 'undefined') new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(canvas);
+    if (reduce || !hasGsap) { U.uIntro.value = 1; U.uScan.value = 0.55; U.uTime.value = 1; renderer.render(scene, cam); }
+    else frame();
+    stage = U;
+  })();
+
+  if (!hasGsap) return;
+  var mm = gsap.matchMedia();
+
+  mm.add('(prefers-reduced-motion: no-preference)', function(){
+    /* the one orchestrated moment: headline + the first laser pass */
+    var split = SplitText.create('#headline .l1, #headline .l2', { type: 'chars', mask: 'chars' });
+    var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    if (stage) tl.to(stage.uIntro, { value: 1, duration: 1.6, ease: 'power2.out' }, 0);
+    tl.from(split.chars, { yPercent: 110, duration: 1.3, stagger: 0.05 }, 0.25)
+      .from('.kicker', { autoAlpha: 0, y: 12, duration: 0.9 }, 0.2)
+      .from('.hero-sub, .hero-actions .btn', { autoAlpha: 0, y: 22, duration: 1, stagger: 0.08 }, 0.9)
+      .from('.head', { autoAlpha: 0, duration: 1 }, 1);
+
+    if (stage) {
+      /* a slow resurfacing pass, then the skin relaxes back and the laser passes again */
+      var loop = gsap.timeline({ repeat: -1, delay: 0.6 });
+      loop.fromTo(stage.uScan, { value: -0.12 }, { value: 1.12, duration: 4.2, ease: 'sine.inOut' })
+          .to({}, { duration: 2.2 })
+          .to(stage.uRestore, { value: 1, duration: 1.6, ease: 'power1.inOut' })
+          .set(stage.uScan, { value: -0.12 })
+          .set(stage.uRestore, { value: 0 });
+    }
+
+    /* 40–60% counts up as it arrives */
+    var big = document.getElementById('bignum');
+    var n = { a: 0, b: 0 };
+    gsap.to(n, { a: 40, b: 60, duration: 1.6, ease: 'power3.out',
+      scrollTrigger: { trigger: big, start: 'top 80%', once: true },
+      onUpdate: function(){ big.firstChild.nodeValue = Math.round(n.a) + '–' + Math.round(n.b); } });
+
+    /* Marie's portrait opens like a curtain, timeline years settle in */
+    gsap.from('#portrait', { clipPath: 'inset(100% 0% 0% 0% round 220px 220px 18px 18px)', duration: 1.4, ease: 'expo.out',
+      scrollTrigger: { trigger: '#portrait', start: 'top 75%', once: true } });
+
+    /* membership cards deal out like award envelopes */
+    gsap.from('#cards .card', { y: 80, rotationX: -28, rotationZ: function(i){ return (i - 1) * -5; }, autoAlpha: 0,
+      transformOrigin: '50% 100%', duration: 1.2, stagger: 0.12, ease: 'expo.out',
+      scrollTrigger: { trigger: '#cards', start: 'top 78%', once: true } });
+
+    return function(){ split.revert(); };
+  });
+
+  /* card light follows the pointer */
+  document.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      c.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+
+  /* ---------- treatment tabs: the pill slides, rows cascade in ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var pill = document.getElementById('tabpill');
+  function placePill(t, instant){
+    var r = t.getBoundingClientRect(), pr = t.parentElement.getBoundingClientRect();
+    var to = { x: r.left - pr.left, y: r.top - pr.top, width: r.width };
+    if (instant || reduce) gsap.set(pill, to); else gsap.to(pill, Object.assign({ duration: 0.55, ease: 'expo.out' }, to));
+  }
+  function select(t){
+    tabs.forEach(function(x){
+      var on = x === t;
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+    placePill(t);
+    if (!reduce) gsap.from('#' + t.getAttribute('aria-controls') + ' .row', { y: 18, autoAlpha: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out' });
+    ScrollTrigger.refresh();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(t); });
+    t.addEventListener('keydown', function(e){
+      var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!k) return;
+      var nx = tabs[(i + k + tabs.length) % tabs.length]; nx.focus(); select(nx);
+    });
+  });
+  placePill(tabs[0], true);
+  window.addEventListener('resize', function(){ placePill(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0], true); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ placePill(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0], true); ScrollTrigger.refresh(); });
+
+  /* magnetic buttons */
+  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.magnetic').forEach(function(el){
+      var xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' }), yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });
+      el.addEventListener('pointermove', function(e){ var r = el.getBoundingClientRect(); xTo((e.clientX - r.left - r.width / 2) * 0.28); yTo((e.clientY - r.top - r.height / 2) * 0.38); });
+      el.addEventListener('pointerleave', function(){ xTo(0); yTo(0); });
+    });
+  }
+
+  /* sticky booking pill between hero and booking */
+  var pillBtn = document.getElementById('pill');
+  ScrollTrigger.create({ trigger: '.hero', start: 'bottom 20%', endTrigger: '#book', end: 'top 80%',
+    onToggle: function(s){ pillBtn.classList.toggle('on', s.isActive); } });
+
+  /* booking form (concept only) */
+  document.getElementById('bookform').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('b-name').value.trim(), msg = document.getElementById('msg');
+    if (!name) { msg.textContent = 'Add your name so the clinic knows who to confirm with.'; document.getElementById('b-name').focus(); return; }
+    var loc = document.getElementById('loc-col').checked ? 'Colleyville' : 'North Dallas';
+    msg.textContent = 'Thanks, ' + name.split(' ')[0] + '. On the live site this request would go to the ' + loc + ' team for confirmation. This concept does not send anything.';
+    if (!reduce) gsap.from(msg, { y: 8, autoAlpha: 0, duration: 0.5 });
+  });
+
+  window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+})();
+</script>
+
+</body>
+</html>
