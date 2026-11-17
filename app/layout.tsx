@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { SITE_URL } from '@/lib/site-url';
+import { Analytics } from '@vercel/analytics/next';
 
 const description =
   'Hasnain Aftab builds web products and the AI inside them. Full-stack developer based in Islamabad, working with clients in three countries.';
@@ -29,7 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
