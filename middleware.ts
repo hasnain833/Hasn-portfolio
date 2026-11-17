@@ -2,9 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { SESSION_COOKIE, verifySession } from '@/lib/session';
 
 
-const ADMIN_HOST = (process.env.ADMIN_HOST || '').toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-
-const SHARED = /^\/(api|_next|favicon\.ico|icon|apple-icon|manifest\.webmanifest|robots\.txt|img)/;
+const ADMIN_HOST = (process.env.ADMIN_HOST || '').toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '').split(':')[0];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -14,10 +12,6 @@ export async function middleware(req: NextRequest) {
 
   if (ADMIN_HOST && !onAdminHost && isAdminPath) {
     return NextResponse.rewrite(new URL('/404-admin-hidden', req.url));
-  }
-
-  if (onAdminHost && !isAdminPath && !SHARED.test(pathname)) {
-    return NextResponse.redirect(new URL('/admin', req.url));
   }
 
   if (pathname.startsWith('/admin/dashboard') && !(await verifySession(req.cookies.get(SESSION_COOKIE)?.value))) {
@@ -30,5 +24,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image).*)'],
+  // Public pages, assets and APIs do not need session middleware.
+  // Admin-host redirects and noindex headers live in next.config.js.
+  matcher: ['/admin/:path*'],
 };

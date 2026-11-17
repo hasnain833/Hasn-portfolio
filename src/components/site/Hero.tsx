@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { PORTRAIT_URL } from '@/lib/images';
 
 const GLYPHS = '{}[]<>/=+*;:.#$&%@01';
 const ROLES = ['AI', 'APIs', 'dashboards', 'chatbots', 'checkout'];
-const PORTRAIT = '/img/portrait-cutout.webp';
 
 type Particle = {
   tx: number; ty: number; x: number; y: number;
@@ -44,6 +44,8 @@ export default function Hero({ resumeUrl, company }: { resumeUrl?: string; compa
       getComputedStyle(hero).getPropertyValue('--font-jetbrains').trim() || 'ui-monospace, monospace';
 
     const img = new Image();
+    // The glyph effect reads image pixels; request CORS access before loading.
+    img.crossOrigin = 'anonymous';
     let W = 0, H = 0;
     let parts: Particle[] = [];
     let rect = { x: 0, y: 0, w: 0, h: 0 };
@@ -201,7 +203,7 @@ export default function Hero({ resumeUrl, company }: { resumeUrl?: string; compa
     window.addEventListener('resize', onResize);
 
     img.onload = () => { t0 = performance.now(); layout(); };
-    img.src = PORTRAIT;
+    img.src = PORTRAIT_URL;
     document.fonts?.ready.then(() => { if (alive && img.naturalWidth) sample(); });
 
     return () => {

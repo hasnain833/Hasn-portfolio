@@ -57,7 +57,7 @@ export default function ImageUpload({ id, value, onChange }: { id: string; value
         className="adm-input"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Or paste an image URL or /img/path.png"
+        placeholder="Or paste a Cloudinary image URL"
       />
       {error && <span className="hint" style={{ color: 'var(--bad)' }}>{error}</span>}
       <input ref={input} type="file" hidden accept="image/jpeg,image/png,image/webp,image/gif" onChange={(e) => { const f = e.target.files?.[0]; if (f) upload(f); e.target.value = ''; }} />

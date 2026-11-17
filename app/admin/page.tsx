@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff } from 'lucide-react';
 import { SITE_URL } from '@/lib/site-url';
+import { PORTRAIT_URL } from '@/lib/images';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
@@ -41,7 +42,7 @@ export default function AdminLogin() {
       <div className="art" aria-hidden="true">
         <div className="word">Admin</div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/img/portrait-cutout.webp" alt="" />
+        <img src={PORTRAIT_URL} alt="" />
       </div>
       <div className="form">
         <form onSubmit={submit}>

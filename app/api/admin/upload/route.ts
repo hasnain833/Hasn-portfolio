@@ -49,7 +49,18 @@ export async function POST(req: NextRequest) {
             ).end(buffer);
         });
 
-        return NextResponse.json({ url: result.secure_url });
+        // Deliver directly from Cloudinary, with no Vercel image proxy.
+        const url = cloudinary.url(result.public_id, {
+            secure: true,
+            version: result.version,
+            format: result.format,
+            transformation: [
+                { crop: 'limit', width: 1200 },
+                { quality: 'auto' },
+                { fetch_format: 'auto' },
+            ],
+        });
+        return NextResponse.json({ url });
     } catch (error: any) {
         console.error('Cloudinary Upload Error:', error);
         return NextResponse.json({ error: `Upload failed: ${error.message}` }, { status: 500 });

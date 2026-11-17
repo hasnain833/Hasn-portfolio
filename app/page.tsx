@@ -3,9 +3,9 @@ import { getSiteData } from '@/components/site/data';
 import { fontVars } from '@/lib/fonts';
 import '@/components/site/site.css';
 
-// Saving in /admin refreshes this page instantly (see the data API route).
-// This is only a safety net in case that refresh is missed.
-export const revalidate = 3600;
+// Admin saves invalidate this page; the next visit regenerates it.
+// Daily revalidation is a fallback for changes made directly in MongoDB.
+export const revalidate = 86400;
 
 export default async function Home() {
   const data = await getSiteData();
