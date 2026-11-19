@@ -1,0 +1,110 @@
+name: CI/CD
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch: # manual deploy: run from main in the Actions tab
+
+permissions:
+  contents: read
+
+# Supersede stale runs for the same PR; on main, queued runs collapse to the newest.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  ci:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+      # Not a secret: src/lib/mongodb.ts throws at import without a URI. Nothing listens
+      # on this port, so the CI build renders an empty homepage. CI never ships it.
+      MONGODB_URI: mongodb://127.0.0.1:9/ci-placeholder
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc --noEmit
+      - name: Build
+        run: npm run build
+        env:
+          SKIP_BUILD_CHECKS: 1 # lint and types were checked in the steps above
+
+  deploy:
+    needs: ci
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    environment:
+      name: production
+      url: ${{ vars.SITE_URL }}
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: false # never kill a deploy halfway through
+    env:
+      SITE_URL: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+        run: |
+          for v in DEPLOY_SSH_KEY DEPLOY_KNOWN_HOSTS DEPLOY_HOST DEPLOY_USER SITE_URL; do
+            [ -n "${!v}" ] || { echo "::error::$v is not configured"; exit 1; }
+          done
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<EOF
+          Host prod
+            HostName $DEPLOY_HOST
+            User $DEPLOY_USER
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+            StrictHostKeyChecking yes
+            UserKnownHostsFile ~/.ssh/known_hosts
+            ServerAliveInterval 30
+          EOF
+
+      # The VM builds this exact commit in a new release dir. The live release keeps
+      # serving until the switch. If the new release fails its local health check,
+      # the VM restores the previous release before this step fails.
+      - name: Deploy ${{ github.sha }}
+        id: deploy
+        run: git archive --format=tar.gz "$GITHUB_SHA" | ssh prod "deploy $GITHUB_SHA"
+
+      - name: Verify from outside
+        run: |
+          ssh prod status | tee /dev/stderr | grep -x "current_revision=$GITHUB_SHA" >/dev/null
+          for path in / /robots.txt; do
+            ok=
+            for i in 1 2 3 4 5 6; do
+              code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 15 "$SITE_URL$path" || true)
+              echo "GET $SITE_URL$path -> $code"
+              [ "$code" = 200 ] && { ok=1; break; }
+              sleep 5
+            done
+            [ -n "$ok" ] || { echo "::error::$SITE_URL$path is not healthy"; exit 1; }
+          done
+
+      - name: Roll back after failed external check
+        if: failure() && steps.deploy.outcome == 'success'
+        run: |
+          ssh prod rollback
+          curl -fsS -o /dev/null --max-time 15 "$SITE_URL/" && echo "Previous release restored and reachable."
