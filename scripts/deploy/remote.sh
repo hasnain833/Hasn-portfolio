@@ -100,13 +100,18 @@ deploy() {
   ln -s "$ENV_FILE" "$rel/.env.local"
 
   # Full output goes to files in the release dir. Only a tail is printed on failure.
+  # Failed releases keep their logs but drop node_modules (~500 MB) so retries can't fill the disk.
   log "npm ci"
   (cd "$rel" && npm ci --no-audit --no-fund) >"$rel/install.log" 2>&1 ||
-    { tail -n 30 "$rel/install.log"; die "npm ci failed; live site untouched"; }
+    { tail -n 30 "$rel/install.log"; rm -rf "$rel/node_modules"; die "npm ci failed; live site untouched"; }
 
+  # The VM has no IPv6. Under build load Node's happy-eyeballs (250 ms per address) gives up on
+  # IPv4 and hangs on IPv6, so next/font's Google Fonts fetch dies with ETIMEDOUT. Stay on IPv4.
   log "next build (CI already linted and type-checked this commit)"
-  (cd "$rel" && NEXT_TELEMETRY_DISABLED=1 SKIP_BUILD_CHECKS=1 npm run build) >"$rel/build.log" 2>&1 ||
-    { tail -n 40 "$rel/build.log"; die "build failed; live site untouched"; }
+  (cd "$rel" && NODE_OPTIONS="--no-network-family-autoselection --dns-result-order=ipv4first" \
+    NEXT_TELEMETRY_DISABLED=1 SKIP_BUILD_CHECKS=1 npm run build) >"$rel/build.log" 2>&1 ||
+    { grep -m 5 -E 'Error|ETIMEDOUT|ENOTFOUND' "$rel/build.log"; tail -n 25 "$rel/build.log"
+      rm -rf "$rel/node_modules"; die "build failed; live site untouched"; }
 
   # getSiteData() swallows MongoDB errors and the homepage is ISR (revalidate = 1 day),
   # so a build without data would serve an empty site for up to 24h. Refuse it.
