@@ -192,7 +192,10 @@
 .work-head p{color:var(--mute);max-width:36ch;margin:0}
 .deck{display:flex;flex-direction:column;gap:clamp(24px,4vh,48px);padding-bottom:10vh}
 .card{position:sticky;top:calc(88px + var(--i) * 16px + env(safe-area-inset-top,0px));height:min(80vh,780px);min-height:520px;border-radius:clamp(18px,2vw,30px);background:var(--tint);border:1px solid rgba(255,255,255,.07);overflow:hidden;transform-origin:50% 0;will-change:transform}
-.card::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--shade,0);pointer-events:none;border-radius:inherit}
+/* --shade is scrubbed every scroll frame: non-inherited so it doesn't restyle the whole card,
+   and the overlay gets its own layer so the fade composites instead of repainting. */
+@property --shade{syntax:'<number>';inherits:false;initial-value:0}
+.card::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--shade,0);pointer-events:none;border-radius:inherit;will-change:opacity}
 .card-in{height:100%;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.35fr);gap:clamp(24px,3.5vw,56px);padding:clamp(24px,3.4vw,52px);align-items:stretch}
 .card-info{display:flex;flex-direction:column;min-width:0}
 .card .yr{font-family:var(--code);font-size:13px;color:var(--glow)}

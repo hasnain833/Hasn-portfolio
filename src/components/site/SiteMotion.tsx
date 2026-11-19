@@ -75,10 +75,15 @@ export default function SiteMotion() {
     /* ---------- project cursor ---------- */
     const cur = cursorRef.current;
     if (fine && cur) {
+      // Runs only while the cursor is catching up to the pointer, not every frame forever.
       let cx = 0, cy = 0, tx = 0, ty = 0, raf = 0;
-      const onMove = (e: PointerEvent) => { tx = e.clientX; ty = e.clientY; };
-      const loop = () => { cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2; cur.style.translate = `${cx}px ${cy}px`; raf = requestAnimationFrame(loop); };
-      loop();
+      const loop = () => {
+        cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
+        if (Math.abs(tx - cx) < 0.1 && Math.abs(ty - cy) < 0.1) { cx = tx; cy = ty; raf = 0; }
+        else raf = requestAnimationFrame(loop);
+        cur.style.translate = `${cx}px ${cy}px`;
+      };
+      const onMove = (e: PointerEvent) => { tx = e.clientX; ty = e.clientY; if (!raf) raf = requestAnimationFrame(loop); };
       window.addEventListener('pointermove', onMove);
       const shots = Array.from(document.querySelectorAll<HTMLElement>('.browser'));
       const on = () => cur.classList.add('on');
